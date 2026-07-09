@@ -1,0 +1,19 @@
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Editor / OS noise
+Thumbs.db
+*~
+
+# Vercel
+.vercel
+
+# gstack tooling
+.gstack/
+
+# Raw source material (not needed for deploy)
+source-assets/
+archive/
+/ADA01661.jpg
+/ADA09612.JPG
