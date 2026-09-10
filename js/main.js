@@ -804,6 +804,83 @@
     window.addEventListener("resize", function () { clearTimeout(t); t = setTimeout(fitAll, 40); });
   }
 
+  /* ---------- Gallery slideshow (= sqs-gallery-design-stacked) ----------
+     Autoplay every 3s, no controls; each change crossfades the outgoing and incoming slide
+     over ~.85s (timing sampled from the reference). Static first slide under reduced motion. */
+  function setupRRSlideshow() {
+    var shows = document.querySelectorAll("[data-rr-slideshow]");
+    if (!shows.length) return;
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    [].forEach.call(shows, function (show) {
+      var slides = show.querySelectorAll(".rr-slide");
+      if (slides.length < 2) return;
+      var i = 0;
+      setInterval(function () {
+        slides[i].classList.remove("is-active");
+        i = (i + 1) % slides.length;
+        slides[i].classList.add("is-active");
+      }, 3000);
+    });
+  }
+
+  /* ---------- Fit the services section to the screen ----------
+     On laptop-height screens the text column (closing line + CTA) dropped below the fold. Shorten the
+     two photos by whole grid rows so heading → CTA fits in the viewport under the fixed nav; the text
+     block stays two rows below the photos, as in the reference. Desktop only (defaults = reference). */
+  function setupRRFit() {
+    var sec = document.querySelector(".rr-comp");
+    if (!sec) return;
+    var grid = sec.querySelector(".rr-grid"), head = sec.querySelector(".rr-comp__head"),
+        copy = sec.querySelector(".rr-comp__copy .rr-block__inner"), nav = document.querySelector(".nav"),
+        fig = sec.querySelector(".rr-comp__fig"), tag = fig && fig.querySelector(".rr-comp__tag");
+    var lastNavH = -1;
+    function navHeight() {
+      if (!nav) return 0;
+      var pos = window.getComputedStyle(nav).position;
+      return (pos === "fixed" || pos === "sticky") ? nav.offsetHeight : 0;
+    }
+    function fit() {
+      if (window.innerWidth < 768) {
+        ["--ph-end", "--tx-start", "--tx-end", "--fig-max", "--sl-end"].forEach(function (p) { sec.style.removeProperty(p); });
+        grid.style.removeProperty("--rows-d");
+        return;
+      }
+      var rowH = parseFloat(window.getComputedStyle(grid).gridTemplateRows); // row 1 is never stretched
+      var navH = lastNavH = navHeight();
+      var top = head.getBoundingClientRect().top - sec.getBoundingClientRect().top;
+      var avail = window.innerHeight - navH - top - 2 * rowH - copy.offsetHeight - 16;
+      var rows = Math.max(8, Math.min(17, Math.floor(avail / rowH)));
+      sec.style.setProperty("--ph-end", 3 + rows);
+      sec.style.setProperty("--tx-start", 5 + rows);
+      sec.style.setProperty("--tx-end", 14 + rows);
+
+      // left photo: keep it 4:5 unless that pushes its "Planning" name below the screen — then
+      // end the grid on the last row line that still fits and shorten only the photo to match
+      if (!fig || !tag) return;
+      ["--fig-max", "--sl-end"].forEach(function (p) { sec.style.removeProperty(p); });
+      grid.style.removeProperty("--rows-d");
+      var tracks = window.getComputedStyle(grid).gridTemplateRows.split(" ").map(parseFloat);
+      var lineTop = function (n) { var y = 0; for (var i = 0; i < n - 1; i++) y += tracks[i]; return y; };
+      var cs = window.getComputedStyle(sec);
+      var limit = window.innerHeight - navH - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
+      var end = tracks.length + 1;
+      if (lineTop(end) <= limit) return;                         // whole section already fits
+      while (end > 9 && lineTop(end) > limit) end--;
+      var natural = fig.offsetWidth * 1.25;
+      var below = tag.offsetHeight / 2 - 0.12 * parseFloat(window.getComputedStyle(tag).fontSize) + 16;
+      var figH = Math.max(natural * 0.55, Math.min(natural, lineTop(end) - lineTop(8) - below));
+      if (figH < natural) sec.style.setProperty("--fig-max", figH.toFixed(1) + "px");
+      sec.style.setProperty("--sl-end", end);
+      grid.style.setProperty("--rows-d", Math.max(end - 1, 13 + rows));
+    }
+    fit();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+    var t;
+    window.addEventListener("resize", function () { clearTimeout(t); t = setTimeout(fit, 60); });
+    // the nav changes height once scrolled; refit when it does
+    window.addEventListener("scroll", function () { if (navHeight() !== lastNavH) fit(); }, { passive: true });
+  }
+
   /* ---------- Init ---------- */
   function init() {
     var nav = buildNav();
@@ -820,6 +897,8 @@
     setupTestimonialFan();
     setupScaledText();
     setupTextShapes();
+    setupRRSlideshow();
+    setupRRFit();
   }
 
   if (document.readyState === "loading") {

@@ -26,9 +26,14 @@
   --peacock:    #0f7c8c;  /* peacock teal                    */
 
   /* Type */
-  --serif: 'Cormorant Garamond', 'Times New Roman', serif;
-  --sans:  'Mulish', system-ui, sans-serif;
-  --display: 'Cinzel', 'Cormorant Garamond', serif;
+  /* site-wide type = the reference trio: Newsreader (headings), EB Garamond (body serif / italics), Jost (labels, UI) */
+  --serif: 'EB Garamond', 'Times New Roman', serif;
+  --sans:  'Jost', 'Futura', system-ui, sans-serif;
+  --display: 'Newsreader', 'EB Garamond', 'Times New Roman', serif;
+  --brand: 'Cinzel', 'EB Garamond', serif;   /* logo wordmark only */
+  /* script accent: Kallimata Script is a paid font — once licensed, add its @font-face
+     (fonts/KallimataScript-Script.woff2) and it takes over; Allison is the free stand-in */
+  --script: 'Kallimata Script', 'Allison', cursive;
 
   /* Spacing */
   --gutter: clamp(20px, 5vw, 56px);   /* horizontal page padding */
@@ -81,7 +86,7 @@ h1, h2, h3, p { margin: 0; }
 }
 
 .display {
-  font-family: var(--serif); font-weight: 500; color: var(--ink);
+  font-family: var(--display); font-weight: 500; color: var(--ink);
   line-height: .96; letter-spacing: -.01em;
 }
 .display em, .display .em { font-style: italic; color: var(--gold); }
@@ -147,7 +152,7 @@ h1, h2, h3, p { margin: 0; }
 
 /* Stats row */
 .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; max-width: 380px; }
-.stat__num { font-family: var(--serif); font-size: clamp(26px, 3vw, 32px); color: var(--green); }
+.stat__num { font-family: var(--display); font-size: clamp(26px, 3vw, 32px); color: var(--green); }
 .stat__label { font-family: var(--sans); font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: var(--gold-dark); margin-top: 6px; }
 
 /* ---------- 5. Navigation (injected by main.js) ---------- */
@@ -159,16 +164,16 @@ h1, h2, h3, p { margin: 0; }
   transition: background-color .6s cubic-bezier(.2,.7,.2,1), padding .5s cubic-bezier(.2,.7,.2,1), border-color .4s ease;
 }
 .nav__inner { max-width: var(--maxw); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 40px; }
-.nav__group { display: flex; gap: clamp(20px, 2.6vw, 38px); }
+.nav__group { display: flex; gap: clamp(14px, 1.5vw, 22px); }
 .nav__group--right { justify-content: flex-end; }
-.nav__wordmark { display: flex; flex-direction: row; align-items: center; gap: clamp(10px, 1vw, 16px); font-family: var(--display); font-weight: 500; letter-spacing: .26em; white-space: nowrap; font-size: clamp(15px, 1.6vw, 22px); line-height: 1; transition: color .4s ease, letter-spacing .5s ease; }
+.nav__wordmark { display: flex; flex-direction: row; align-items: center; gap: clamp(10px, 1vw, 16px); font-family: var(--brand); font-weight: 500; letter-spacing: .26em; white-space: nowrap; font-size: clamp(15px, 1.6vw, 22px); line-height: 1; transition: color .4s ease, letter-spacing .5s ease; }
 .nav__logo { display: block; height: clamp(40px, 4.2vw, 56px); width: auto; object-fit: contain; transition: transform .4s ease; }
 .nav__wordmark:hover .nav__logo { transform: scale(1.04); }
 .nav__wordmark-text { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
 .nav__wordmark-sub { font-family: var(--sans); font-weight: 600; font-size: clamp(10px, 1vw, 13px); letter-spacing: .3em; text-transform: uppercase; color: var(--gold-light); }
 /* keep it readable on light/paper-tone nav */
 .nav[data-tone="paper"] .nav__wordmark-sub { color: var(--gold-dark); }
-.nav__link { font-family: var(--sans); font-size: 11px; letter-spacing: .28em; text-transform: uppercase; cursor: pointer; transition: color .4s ease, opacity .3s ease; position: relative; }
+.nav__link { font-family: var(--sans); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; transition: color .4s ease, opacity .3s ease; position: relative; }
 .nav__link:hover { opacity: .65; }
 .nav__link[aria-current="page"]::after { content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 1px; background: currentColor; opacity: .6; }
 
@@ -274,7 +279,7 @@ h1, h2, h3, p { margin: 0; }
 .hero__caption-quote { font-family: var(--serif); font-style: italic; font-size: 16px; line-height: 1.55; text-shadow: 0 1px 18px rgba(0,0,0,.6); }
 .hero__content { position: relative; align-self: flex-end; width: 100%; padding: 0 var(--gutter) clamp(72px, 14vh, 116px); color: #f6f1e6; }
 .hero__kicker { font-family: var(--serif); font-style: italic; font-size: clamp(15px, 1.5vw, 19px); color: var(--gold-light); margin-bottom: 28px; letter-spacing: .01em; }
-.hero__title { font-family: var(--serif); font-weight: 400; font-size: clamp(2.6rem, 9.5vw, 144px); line-height: .9; letter-spacing: -.02em; text-shadow: 0 6px 36px rgba(0,0,0,.65), 0 1px 3px rgba(0,0,0,.5); }
+.hero__title { font-family: var(--display); font-weight: 400; font-size: clamp(2.6rem, 9.5vw, 144px); line-height: .9; letter-spacing: -.02em; text-shadow: 0 6px 36px rgba(0,0,0,.65), 0 1px 3px rgba(0,0,0,.5); }
 .hero__title em { font-style: italic; color: var(--gold-light); }
 .hero__cue { position: absolute; right: var(--gutter); bottom: 44px; color: #f6f1e6; font-family: var(--sans); font-size: 10px; letter-spacing: .3em; text-transform: uppercase; display: flex; align-items: center; gap: 14px; }
 .hero__cue span:first-child { opacity: .7; }
@@ -328,7 +333,7 @@ h1, h2, h3, p { margin: 0; }
 /* ---------- 11. Services grid ---------- */
 .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(28px, 3.4vw, 48px); align-items: start; }
 .service__num { font-family: var(--serif); font-style: italic; font-size: 26px; color: var(--gold); }
-.service__title { font-family: var(--serif); font-weight: 500; font-size: clamp(28px, 2.9vw, 38px); color: var(--ink); letter-spacing: -.01em; }
+.service__title { font-family: var(--display); font-weight: 500; font-size: clamp(28px, 2.9vw, 38px); color: var(--ink); letter-spacing: -.01em; }
 .service__head { display: flex; align-items: baseline; gap: 18px; margin-top: 26px; }
 .service p { margin-top: 16px; font-size: 15.5px; line-height: 1.7; color: var(--text); }
 /* gentle, intentional offset so the row isn't a flat box grid (middle drops, never overlaps the heading) */
@@ -498,8 +503,8 @@ body[data-page="about"] {
   --mn-rose:  #c9a27a;   /* rose-gold accent           */
   --mn-blush: #d8a7a0;   /* blush accent               */
   --mn-line:  rgba(201,162,122,.22);
-  --mn-serif: 'Bodoni Moda', 'Didot', 'Times New Roman', serif;
-  --mn-sans:  'Jost', system-ui, sans-serif;
+  --mn-serif: var(--display);
+  --mn-sans:  var(--sans);
   background: var(--mn-bg);
   color: var(--mn-mist);
 }
@@ -740,7 +745,7 @@ body[data-page="about"] .nav[data-scrolled="1"] .nav__link { color: var(--mn-mis
 .process { display: grid; gap: clamp(28px, 4vw, 56px); }
 .process-step { display: grid; grid-template-columns: auto 1fr; gap: clamp(20px, 3vw, 40px); align-items: start; padding-block: clamp(28px, 4vw, 44px); border-top: 1px solid var(--line); }
 .process-step__num { font-family: var(--serif); font-style: italic; font-size: clamp(40px, 6vw, 72px); color: var(--gold); line-height: .9; }
-.process-step__title { font-family: var(--serif); font-size: clamp(22px, 2.4vw, 30px); color: var(--ink); margin-bottom: 14px; }
+.process-step__title { font-family: var(--display); font-size: clamp(22px, 2.4vw, 30px); color: var(--ink); margin-bottom: 14px; }
 
 .checklist { list-style: none; padding: 0; margin: 0; display: grid; gap: 16px; }
 .checklist li { display: grid; grid-template-columns: auto 1fr; gap: 16px; font-size: 15px; line-height: 1.6; color: var(--text); }
@@ -1049,6 +1054,91 @@ body[data-page="about"] .nav[data-scrolled="1"] .nav__link { color: var(--mn-mis
   .rr-button { text-align: center; }
 }
 
+/* ---- Services — 1:1 clone of the reference "planning & design process" fluid-engine section ---- */
+.rr-comp { background: #f7f6ed; color: #133733; overflow: hidden; padding-block: calc(1vmax / 10); }
+.rr-grid--comp { --rows-m: 54; --rows-d: 35; }
+.rr-comp__head   { grid-area: 4/2/6/10;   z-index: 2; justify-content: flex-start; }
+.rr-comp__slides { grid-area: 6/2/27/10;  z-index: 3; justify-content: flex-start; }
+.rr-comp__img1   { grid-area: 27/2/37/6;  z-index: 4; justify-content: center; }
+.rr-comp__img2   { grid-area: 27/6/37/10; z-index: 5; justify-content: center; }
+.rr-comp__copy   { grid-area: 39/2/52/10; z-index: 1; justify-content: flex-start; }
+@media (min-width: 768px) {
+  .rr-comp__head   { grid-area: 3/2/7/12;   z-index: 3; }
+  .rr-comp__slides { grid-area: 8/2/var(--sl-end, 36)/12;  z-index: 2; }
+  /* setupRRFit() caps the 4:5 photo so its "Planning" name stays on screen (no cap = reference) */
+  .rr-comp__fig .rr-slideshow { max-height: var(--fig-max, none); }
+  /* row lines come from setupRRFit() so the text column fits the screen; fallbacks = reference geometry */
+  .rr-comp__img1   { grid-area: 3/13/var(--ph-end, 20)/19; z-index: 5; }
+  .rr-comp__img2   { grid-area: 3/20/var(--ph-end, 20)/26; z-index: 6; }
+  .rr-comp__copy   { grid-area: var(--tx-start, 22)/13/var(--tx-end, 31)/26; z-index: 1; }
+}
+/* two stacked scaled lines, each fit to the block width */
+.rr-comp__head .rr-scaled-container + .rr-scaled-container { margin-top: 0; }
+/* gallery slideshow: 4:5 stage (parent-ratio .8), slides stacked and crossfaded */
+.rr-slideshow { position: relative; width: 100%; aspect-ratio: 4 / 5; overflow: hidden; }
+.rr-slide {
+  position: absolute; inset: 0; overflow: hidden;
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity .85s cubic-bezier(.165, .84, .44, 1), visibility 0s linear .85s;
+}
+.rr-slide.is-active { opacity: 1; visibility: visible; transition: opacity .85s cubic-bezier(.165, .84, .44, 1), visibility 0s; }
+.rr-slide img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; display: block; }
+/* text block pre: size value 1.3 (21.18px @1440, 19.04px @390 portrait) so its 1em top margin matches */
+.rr-comp .rr-pre {
+  margin: 1em 0 0; text-align: start;
+  font-size: min(calc((1.3 - 1) * 1.2vw + 1rem), max(calc((1.3 - 1) * 0.012 * 1600px + 1rem), calc(1.3 * 1rem)));
+}
+.rr-comp .rr-pre a,
+.rr-comp .rr-pre a:hover {
+  text-decoration: underline; text-decoration-thickness: 1px; text-decoration-color: #133733;
+  text-underline-offset: .2em;
+}
+.rr-comp .rr-h3 { text-align: start; }
+/* service names inside the paragraph: quiet links that keep the line breaks */
+.rr-link {
+  color: inherit; text-decoration: underline; text-decoration-thickness: 1px;
+  text-underline-offset: .14em; text-decoration-color: rgba(19, 55, 51, .45);
+  transition: color .25s ease, text-decoration-color .25s ease;
+}
+.rr-link:hover { color: #728763; text-decoration-color: #728763; }
+/* script service names straddling each photo's bottom edge — cream on the photo, green on the
+   paper below (same split as .chero__title). The box is centred on the edge so the 50% stop lands on it. */
+.rr-comp__fig { position: relative; }
+.rr-comp__img1, .rr-comp__img2 { overflow: visible; }   /* .rr-img inside still clips the photo */
+.rr-comp__tag {
+  /* script glyphs sit low in their line box: lift the box so the photo edge crosses the
+     middle of the lowercase letters, and move the colour split down by the same amount */
+  --lift: .12em;
+  position: absolute; left: 50%; bottom: 0; z-index: 2;
+  transform: translate(-50%, calc(50% - var(--lift)));
+  padding: .06em .15em; white-space: nowrap; text-decoration: none;
+  font-family: var(--script); font-weight: 400; line-height: 1;
+  font-size: min(5.2vw, 80px);
+  background: linear-gradient(to bottom,
+    #f7f6ed 0%, #f7f6ed calc(50% + var(--lift)), #133733 calc(50% + var(--lift)), #133733 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+  transition: opacity .25s ease;
+}
+.rr-comp__tag:hover { opacity: .8; }
+/* soft shade along each photo's bottom edge so the cream half of the name reads on light floors */
+.rr-comp__fig .rr-slideshow::after,
+.rr-comp__img1 .rr-img::after,
+.rr-comp__img2 .rr-img::after {
+  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(to top, rgba(10, 22, 20, .55) 0%, rgba(10, 22, 20, .22) 14%, rgba(10, 22, 20, 0) 30%);
+}
+@media (max-width: 767px) {
+  .rr-comp__tag { font-size: 10.4vw; }
+}
+@media screen and (max-width: 767px) and (orientation: portrait) {
+  .rr-comp .rr-pre { font-size: calc((1.3 - 1) * calc(.012 * min(100vh, 900px)) + 1rem); }
+}
+/* reference hides the closing line on mobile but keeps its space */
+@media screen and (max-width: 767px) {
+  .rr-comp__copy .rr-h3 + .rr-h3 { opacity: 0; }
+}
+
 /* festive draped bunting (toran swag) — hung corner to corner */
 .section--bunting { padding-top: clamp(96px, 12vw, 160px); }
 .bunting {
@@ -1186,7 +1276,7 @@ body[data-page="about"] .nav[data-scrolled="1"] .nav__link { color: var(--mn-mis
 }
 .galx-eyebrow::before { content: ""; width: 26px; height: 2px; background: var(--accent); border-radius: 2px; }
 .galx-title {
-  font-family: var(--serif); font-weight: 500; color: var(--ink);
+  font-family: var(--display); font-weight: 500; color: var(--ink);
   font-size: clamp(2rem, 4.6vw, 58px); line-height: 1.02; letter-spacing: -.012em;
   margin-top: 16px;
 }
@@ -1350,7 +1440,7 @@ body[data-page="about"] .nav[data-scrolled="1"] .nav__link { color: var(--mn-mis
 }
 .contact-info__eyebrow { color: var(--gold-light); }
 .contact-info__title {
-  font-family: var(--serif); font-weight: 500; color: #fff;
+  font-family: var(--display); font-weight: 500; color: #fff;
   font-size: clamp(26px, 3vw, 34px); line-height: 1.1; margin-top: 14px;
 }
 .contact-info__intro {
@@ -1386,7 +1476,7 @@ a.channel__value:hover { color: var(--gold-light); }
 
 /* ----- right: form panel ----- */
 .contact-form { padding: clamp(34px, 4vw, 56px); }
-.contact-form__title { font-family: var(--serif); font-weight: 500; color: var(--ink); font-size: clamp(22px, 2.4vw, 30px); }
+.contact-form__title { font-family: var(--display); font-weight: 500; color: var(--ink); font-size: clamp(22px, 2.4vw, 30px); }
 .contact-form__hint { font-family: var(--sans); font-size: 13.5px; color: var(--muted); margin-top: 8px; }
 .contact-form .form { margin-top: 30px; gap: 24px; }
 .contact-form .field input,
@@ -1538,7 +1628,7 @@ body[data-page="testimonials"] .chero__title {
 
 .svc-lead__eyebrow { color: var(--svc-accent); filter: saturate(1.1) brightness(.9); }
 .svc-lead__title {
-  font-family: var(--serif); font-weight: 500; color: var(--ink);
+  font-family: var(--display); font-weight: 500; color: var(--ink);
   font-size: clamp(28px, 4vw, 50px); line-height: 1.04; letter-spacing: -.01em;
   margin: 18px 0 22px;
 }
@@ -1585,7 +1675,7 @@ body[data-page="testimonials"] .chero__title {
 /* ---- Offerings: numbered editorial cards ---- */
 .svc-offer__head { max-width: 720px; margin: 0 auto clamp(34px, 4vw, 56px); text-align: center; }
 .svc-offer__title {
-  font-family: var(--serif); font-weight: 500; color: var(--ink);
+  font-family: var(--display); font-weight: 500; color: var(--ink);
   font-size: clamp(26px, 3.4vw, 44px); line-height: 1.06; margin-top: 16px;
 }
 .svc-offer__title em { font-style: italic; color: var(--svc-accent); }
@@ -1626,7 +1716,7 @@ body[data-page="testimonials"] .chero__title {
   transition: opacity .35s ease;
 }
 .svc-acc__title {
-  font-family: var(--serif); font-weight: 500; font-size: clamp(21px, 2.7vw, 34px);
+  font-family: var(--display); font-weight: 500; font-size: clamp(21px, 2.7vw, 34px);
   color: var(--ink); letter-spacing: -.01em; line-height: 1.06; transition: color .35s ease;
 }
 .svc-acc__icon { position: relative; width: 22px; height: 22px; flex: none; opacity: .55; transition: opacity .35s ease; }
@@ -1688,7 +1778,7 @@ body[data-page="testimonials"] .chero__title {
 .svc-tl__step[data-active="1"] .svc-tl__no { color: var(--gold-light); }
 .svc-tl__body { opacity: .42; transform: translateY(12px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
 .svc-tl__step[data-active="1"] .svc-tl__body { opacity: 1; transform: translateY(0); }
-.svc-tl__title { font-family: var(--serif); font-size: clamp(22px, 2.5vw, 30px); color: var(--cream); margin-bottom: 12px; }
+.svc-tl__title { font-family: var(--display); font-size: clamp(22px, 2.5vw, 30px); color: var(--cream); margin-bottom: 12px; }
 .svc-tl__copy { font-size: clamp(14.5px, 1.1vw, 16px); line-height: 1.74; color: rgba(246,241,230,.74); max-width: 54ch; }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1745,7 +1835,7 @@ body[data-page="testimonials"] .chero__title {
   color: var(--rose);
 }
 .tfan-heading {
-  margin-top: 18px; font-family: var(--serif); font-weight: 600; color: var(--ink);
+  margin-top: 18px; font-family: var(--display); font-weight: 600; color: var(--ink);
   font-size: clamp(2rem, 5.4vw, 56px); line-height: 1.02; letter-spacing: -.01em;
 }
 .tfan-note {
@@ -1818,7 +1908,7 @@ body[data-page="testimonials"] .chero__title {
   line-height: 1.55; color: #f3ece1; flex: 1;
 }
 .tcard__sign {
-  font-family: 'Dancing Script', cursive; font-weight: 600;
+  font-family: var(--serif); font-style: italic; font-weight: 400;
   font-size: 28px; color: var(--gold-light); line-height: 1; margin-top: 8px;
 }
 .tcard__date {
@@ -1900,11 +1990,11 @@ body[data-page="testimonials"] .chero__title {
   color: var(--gold-light);
 }
 .tcare__title {
-  margin-top: 18px; font-family: var(--serif); font-weight: 600; color: #fbf2e6;
+  margin-top: 18px; font-family: var(--display); font-weight: 600; color: #fbf2e6;
   font-size: clamp(2rem, 5.2vw, 54px); line-height: 1.04; letter-spacing: -.01em;
 }
 .tcare__script {
-  font-family: 'Dancing Script', cursive; font-weight: 700; font-style: normal;
+  font-family: var(--serif); font-weight: 400; font-style: italic;
   color: var(--gold-light); font-size: 1.15em; letter-spacing: 0;
 }
 .tcare__lede {
@@ -1930,7 +2020,7 @@ body[data-page="testimonials"] .chero__title {
   line-height: 1; opacity: .9;
 }
 .tcare-pillar__title {
-  margin-top: 16px; font-family: var(--serif); font-weight: 600;
+  margin-top: 16px; font-family: var(--display); font-weight: 600;
   font-size: clamp(18px, 1.5vw, 21px); color: #fbf2e6; line-height: 1.18;
 }
 .tcare-pillar__body {
@@ -1947,7 +2037,7 @@ body[data-page="testimonials"] .chero__title {
 }
 .tcare__band-stat { text-align: center; display: flex; flex-direction: column; gap: 6px; }
 .tcare__band-num {
-  font-family: var(--serif); font-weight: 600; font-size: clamp(34px, 4.6vw, 56px);
+  font-family: var(--display); font-weight: 600; font-size: clamp(34px, 4.6vw, 56px);
   color: #fbf2e6; line-height: 1;
 }
 .tcare__band-lab {
