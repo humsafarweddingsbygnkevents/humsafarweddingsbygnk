@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Allison&family=Cinzel:wght@500;600&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=32">
+  <link rel="stylesheet" href="css/style.css?v=51">
   <link rel="icon" href="images/hw-logo.png">
 </head>
 <body data-page="home" data-nav="dark">
@@ -176,50 +176,47 @@
   <!-- ============ GALLERY PREVIEW ============ -->
   <section class="section section--paper gallery-section">
     <div class="container">
-      <div class="split-head" style="margin-bottom:36px">
-        <div class="folio" data-reveal style="font-size:clamp(28px,3.6vw,36px); color:var(--green)">Our wedding album, <span class="gold">moment by moment</span>.</div>
-        <a class="eyebrow" data-reveal data-reveal-x="r" href="gallery.html" style="--rd:200ms; letter-spacing:.3em">View the full gallery →</a>
-      </div>
-      <h2 class="display display--lg" data-reveal style="margin-bottom:48px">
-        Photographs that hold the<br>
-        <em class="rainbow-text">colour</em>, the music,<br>
-        and every blessing.<span class="heart-pink" aria-hidden="true">♥</span>
-      </h2>
-
       <div class="mosaic">
-        <div data-reveal-fwd style="grid-column:1 / span 4; grid-row:1 / span 2">
+        <!-- heading: in the column above Haldi on desktop, full width above the photos on tablet/phone -->
+        <div class="gallery-intro" style="grid-column:1 / span 4; grid-row:1">
+          <div class="split-head" style="margin-bottom:36px">
+            <div class="folio gallery-head__meta" data-reveal style="color:var(--green)">Our wedding album, <span class="gold">moment by moment</span>.</div>
+            <a class="eyebrow gallery-head__meta" data-reveal data-reveal-x="r" href="gallery.html" style="--rd:200ms">View the full gallery →</a>
+          </div>
+          <h2 class="display gallery-head__title" data-reveal style="margin-bottom:24px">
+            Photographs that hold the<br>
+            <em class="rainbow-text">colour</em>, the music,<br>
+            and every blessing.<span class="heart-pink" aria-hidden="true">♥</span>
+          </h2>
+        </div>
+        <div class="mosaic__tall" data-reveal-fwd style="grid-column:1 / span 4; grid-row:2 / span 2">
           <figure class="frame" style="--h:520px"><img src="images/gallery/ADA00755.jpg" alt="A couple in yellow on a hand-painted rickshaw at their haldi, hands raised mid-celebration"></figure>
           <div class="gallery-cap">
             <span class="gallery-cap__tag">Haldi</span>
-            <p class="gallery-cap__msg">Turmeric on their hands, the whole street singing them in.</p>
           </div>
         </div>
-        <div data-reveal-fwd style="--rd:120ms; grid-column:5 / span 5; grid-row:1">
-          <figure class="frame" style="--h:340px"><img src="images/gallery/ADA00534.jpg" alt="Guests dancing under a canopy of greenery and hanging crystals at the sangeet"></figure>
+        <div data-reveal-fwd style="--rd:120ms; grid-column:5 / span 5; grid-row:1 / span 2">
+          <figure class="frame" style="--h:var(--fh1)"><img src="images/haldi-petals-web.jpg" alt="A laughing couple in sunglasses and embroidered white, arms flung wide as marigold petals shower down before a floral arch"></figure>
           <div class="gallery-cap">
-            <span class="gallery-cap__tag">Sangeet</span>
-            <p class="gallery-cap__msg">Under a sky of crystals, nobody sat down all night.</p>
+            <span class="gallery-cap__tag">Sangeet and Mehndi</span>
           </div>
         </div>
-        <div data-reveal-fwd style="--rd:200ms; grid-column:10 / span 3; grid-row:1">
-          <figure class="frame" style="--h:340px"><img src="images/gallery/ADA_8004.jpg" alt="Friends in evening black, laughing together on the reception dance floor"></figure>
+        <div data-reveal-fwd style="--rd:200ms; grid-column:10 / span 3; grid-row:1 / span 2">
+          <figure class="frame" style="--h:var(--fh1)"><img src="images/gallery/ADA_8004.jpg" alt="Friends in evening black, laughing together on the reception dance floor"></figure>
           <div class="gallery-cap">
             <span class="gallery-cap__tag">Reception</span>
-            <p class="gallery-cap__msg">The cousins' table — louder than the band, by design.</p>
           </div>
         </div>
-        <div data-reveal-fwd style="--rd:280ms; grid-column:5 / span 3; grid-row:2">
-          <figure class="frame" style="--h:320px"><img src="images/gallery/ADA01195.jpg" alt="The groom in an ivory sherwani on a white mare during the baraat, hand raised"></figure>
+        <div data-reveal-fwd style="--rd:280ms; grid-column:5 / span 3; grid-row:3">
+          <figure class="frame" style="--h:var(--fh2)"><img src="images/cocktail-party-web.jpg" alt="Three friends in embroidered lehengas raising martini glasses together at a cocktail party"></figure>
           <div class="gallery-cap">
-            <span class="gallery-cap__tag">Baraat</span>
-            <p class="gallery-cap__msg">One finger to the sky, the mare in step, the dhol behind.</p>
+            <span class="gallery-cap__tag">Cocktail</span>
           </div>
         </div>
-        <div data-reveal-fwd style="--rd:360ms; grid-column:8 / span 5; grid-row:2">
-          <figure class="frame" style="--h:320px"><img src="images/gallery/ADA01444.jpg" alt="The groom's procession beneath ceremonial red-and-gold umbrellas at night"></figure>
+        <div data-reveal-fwd style="--rd:360ms; grid-column:8 / span 5; grid-row:3">
+          <figure class="frame" style="--h:var(--fh2)"><img src="images/vivaah-sparklers-web.jpg" alt="A smiling bride in a red lehenga and groom in an ivory sherwani walking hand in hand between fountains of sparks"></figure>
           <div class="gallery-cap">
-            <span class="gallery-cap__tag">The entrance</span>
-            <p class="gallery-cap__msg">In under the phoolon ki chaadar, to a wall of sound.</p>
+            <span class="gallery-cap__tag">Vivaah</span>
           </div>
         </div>
       </div>
@@ -229,11 +226,8 @@
   <section class="section section--cream locales-section">
     <div class="container">
       <div class="locales__head">
-        <span class="eyebrow" data-reveal>Where we work</span>
-        <h2 class="folio locales__title" data-reveal style="--rd:80ms; margin-top:14px">
-          Currently operating in
-        </h2>
-        <p class="prose" data-reveal style="--rd:160ms; margin-top:10px">Bringing your celebration to life across these regions.</p>
+        <pre class="rr-pre locales__eyebrow" data-reveal><code>Where we work</code></pre>
+        <h2 class="rr-head locales__title" data-reveal style="--rd:80ms">Currently operating in</h2>
       </div>
       <div class="locales">
         <div class="locale" data-reveal-fwd>
@@ -242,16 +236,17 @@
           </div>
           <span class="locale__name">Delhi NCR</span>
         </div>
-<div class="locale" data-reveal-fwd style="--rd:240ms">
+        <div class="locale" data-reveal-fwd style="--rd:240ms">
           <div class="locale__disc">
             <img src="images/loc-jimcorbett.png" alt="Tiger of Jim Corbett" loading="lazy">
           </div>
           <span class="locale__name">Jim Corbett</span>
         </div>
       </div>
+      <p class="rr-large locales__sub" data-reveal style="--rd:320ms">Bringing your celebration to life across these regions.</p>
     </div>
   </section>
 
-  <script src="js/main.js?v=26"></script>
+  <script src="js/main.js?v=33"></script>
 </body>
 </html>

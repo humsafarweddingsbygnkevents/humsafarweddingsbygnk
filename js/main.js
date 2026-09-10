@@ -23,33 +23,26 @@
   ];
   var NAV_RIGHT = [
     { label: "Testimonials", href: "testimonials.html", page: "testimonials" },
-    { label: "Contact", href: "contact.html", page: "contact" }
+    { label: "Contact", children: [
+      { label: "Client", href: "contact.html", page: "contact", desc: "Plan your wedding with us" },
+      { label: "Vendor", href: "vendor.html", page: "vendor", desc: "Partner with our team" },
+      { label: "Career", href: "career.html", page: "career", desc: "Join the Humsafar crew" }
+    ] }
   ];
   var WORDMARK = "HUMSAFAR WEDDINGS";
   var TAGLINE = "By GNK Events";
 
   /* ---- Footer config: edit links + contact here, once ---- */
-  var FOOTER_SERVICES = [
-    { label: "Wedding Planning", href: "service-wedding-planning.html" },
-    { label: "Decoration", href: "service-decoration.html" },
-    { label: "Entertainment", href: "service-entertainment.html" }
-  ];
-  var FOOTER_EXPLORE = [
-    { label: "About", href: "about.html" },
-    { label: "Gallery", href: "gallery.html" },
-    { label: "Testimonials", href: "testimonials.html" },
-    { label: "Contact", href: "contact.html" }
-  ];
   var CONTACT = {
-    email: "hello@humsafargnk.com",
-    phoneLabel: "+91 98 1100 4422",
-    whatsapp: "https://wa.me/919811004422",
-    studio: "Hauz Khas, New Delhi"
+    email: "info@humsafarweddingbygnk.in",
+    phoneLabel: "+91 93545 71642",
+    whatsapp: "https://wa.me/919354571642",
+    studio: "#18, Outside Corbett Platinum Heritage hotel, Peerumadara, Ramnagar, Uttarakhand"
   };
   var SOCIAL = [
-    { label: "Instagram", href: "https://instagram.com/humsafar.gnk" },
-    { label: "WhatsApp", href: "https://wa.me/919811004422" },
-    { label: "Email", href: "mailto:hello@humsafargnk.com" }
+    { label: "Instagram", href: "https://www.instagram.com/humsafarweddingsbygnkevents/" },
+    { label: "WhatsApp", href: "https://wa.me/919354571642" },
+    { label: "Email", href: "mailto:info@humsafarweddingbygnk.in" }
   ];
 
   var body = document.body;
@@ -60,6 +53,8 @@
   function linkHtml(item) {
     var current = item.page === currentPage ? ' aria-current="page"' : "";
     if (item.children && item.children.length) {
+      var childCurrent = item.children.some(function (c) { return c.page && c.page === currentPage; });
+      if (childCurrent) current = ' aria-current="page"';
       var menu = item.children.map(function (c) {
         return '<a class="nav__menu-link" href="' + c.href + '">' +
                  '<span class="nav__menu-title">' + c.label + "</span>" +
@@ -69,7 +64,7 @@
       var trigger = item.href
         ? '<a class="nav__link" href="' + item.href + '"' + current + ">" + item.label +
             '<span class="nav__caret" aria-hidden="true"></span></a>'
-        : '<span class="nav__link nav__link--trigger" role="button" tabindex="0" aria-haspopup="true">' +
+        : '<span class="nav__link nav__link--trigger" role="button" tabindex="0" aria-haspopup="true"' + current + ">" +
             item.label + '<span class="nav__caret" aria-hidden="true"></span></span>';
       return '<span class="nav__item">' +
                trigger +
@@ -100,75 +95,46 @@
   }
 
   /* ---------- Shared footer ---------- */
-  function footerLink(item) {
-    var ext = /^https?:|^mailto:/.test(item.href);
-    var attrs = ext ? ' target="_blank" rel="noopener"' : "";
-    return '<li><a class="footer__link" href="' + item.href + '"' + attrs + ">" + item.label + "</a></li>";
-  }
-
   function buildFooter() {
     var footer = document.createElement("footer");
     footer.className = "footer";
     var year = new Date().getFullYear();
+    var instagram = SOCIAL.filter(function (s) { return s.label === "Instagram"; })[0];
 
     footer.innerHTML =
       '<div class="container">' +
 
-        /* ---- main grid ---- */
-        '<div class="footer__main">' +
-
-          /* brand */
-          '<div class="footer__brand">' +
-            '<a class="footer__wordmark" href="index.html">' +
-              '<img class="footer__logo" src="images/hw-logo.png" alt="Humsafar Wedding by GNK">' +
-              '<span class="footer__brand-text">' +
-                '<span class="footer__brand-main">' + WORDMARK + "</span>" +
-                '<span class="footer__brand-sub">' + TAGLINE + "</span>" +
-              "</span>" +
-            "</a>" +
-            '<p class="footer__blurb">An Indian heart, a foreign polish — planning, decoration and entertainment for couples who want a celebration in two registers at once.</p>' +
-            '<div class="footer__social">' +
-              SOCIAL.map(function (s) {
-                return '<a class="footer__social-link" href="' + s.href + '" target="_blank" rel="noopener">' + s.label + "</a>";
-              }).join('<span class="footer__social-dot">·</span>') +
-            "</div>" +
+        /* ---- row 1: brand lockup + one invitation ---- */
+        '<div class="footer__top">' +
+          '<a class="footer__wordmark" href="index.html">' +
+            '<img class="footer__logo" src="images/hw-logo.png" alt="">' +
+            '<span class="footer__brand-text">' +
+              '<span class="footer__brand-main">' + WORDMARK + "</span>" +
+              '<span class="footer__brand-sub">' + TAGLINE + "</span>" +
+            "</span>" +
+          "</a>" +
+          '<div class="footer__invite">' +
+            '<p class="footer__invite-line">Tell us about your wedding.</p>' +
+            '<a class="footer__cta" href="contact.html">Begin a conversation</a>' +
           "</div>" +
-
-          /* explore */
-          '<nav class="footer__col" aria-label="Site">' +
-            '<div class="footer__col-head">Explore</div>' +
-            "<ul class=\"footer__list\">" + FOOTER_EXPLORE.map(footerLink).join("") + "</ul>" +
-          "</nav>" +
-
-          /* services */
-          '<nav class="footer__col" aria-label="Services">' +
-            '<div class="footer__col-head">Services</div>' +
-            "<ul class=\"footer__list\">" + FOOTER_SERVICES.map(footerLink).join("") + "</ul>" +
-          "</nav>" +
-
-          /* contact */
-          '<div class="footer__col footer__col--contact">' +
-            '<div class="footer__col-head">Get in touch</div>' +
-            '<ul class="footer__list footer__list--contact">' +
-              '<li><span class="footer__contact-label">Letters</span><a class="footer__link" href="mailto:' + CONTACT.email + '">' + CONTACT.email + "</a></li>" +
-              '<li><span class="footer__contact-label">WhatsApp</span><a class="footer__link" href="' + CONTACT.whatsapp + '" target="_blank" rel="noopener">' + CONTACT.phoneLabel + "</a></li>" +
-              '<li><span class="footer__contact-label">Studio</span><span class="footer__contact-value">' + CONTACT.studio + "</span></li>" +
-            "</ul>" +
-            '<a class="footer__cta" href="contact.html">Begin a conversation →</a>' +
-          "</div>" +
-
         "</div>" +
 
-        /* ---- bottom bar ---- */
+        /* ---- row 2: direct contact ---- */
+        '<div class="footer__mid">' +
+          '<address class="footer__reach">' +
+            '<a class="footer__link" href="mailto:' + CONTACT.email + '">' + CONTACT.email + "</a>" +
+            '<a class="footer__link" href="' + CONTACT.whatsapp + '" target="_blank" rel="noopener">' + CONTACT.phoneLabel + "</a>" +
+            (instagram ? '<a class="footer__link" href="' + instagram.href + '" target="_blank" rel="noopener">Instagram</a>' : "") +
+          "</address>" +
+        "</div>" +
+
+        /* ---- row 3: legal ---- */
         '<div class="footer__bottom">' +
-          '<div class="footer__legal">© ' + year + " Humsafar Wedding by GNK · All rights reserved</div>" +
-          '<div class="footer__sub-links">' +
+          '<p class="footer__legal">© ' + year + " Humsafar Wedding by GNK</p>" +   // address lives on the contact page only
+          '<nav class="footer__sub-links" aria-label="Legal">' +
             '<a class="footer__link" href="contact.html">Privacy</a>' +
-            '<span class="footer__social-dot">·</span>' +
             '<a class="footer__link" href="contact.html">Terms</a>' +
-            '<span class="footer__social-dot">·</span>' +
-            '<span class="footer__credit">A GNK Events house · New Delhi</span>' +
-          "</div>" +
+          "</nav>" +
         "</div>" +
 
       "</div>";
@@ -382,7 +348,7 @@
       var endpoint = form.getAttribute("action");
       // No real endpoint wired yet → don't pretend it sent.
       if (!endpoint || /YOUR_FORM_ID/.test(endpoint)) {
-        setNote("This form isn’t connected yet — please email hello@humsafargnk.com for now.", "error");
+        setNote("This form isn’t connected yet — please email info@humsafarweddingbygnk.in for now.", "error");
         return;
       }
 
@@ -401,12 +367,12 @@
           return res.json().then(function (data) {
             var msg = (data && data.errors && data.errors.length)
               ? data.errors.map(function (x) { return x.message; }).join(", ")
-              : "Something went wrong. Please email hello@humsafargnk.com instead.";
+              : "Something went wrong. Please email info@humsafarweddingbygnk.in instead.";
             setNote(msg, "error");
           });
         }
       }).catch(function () {
-        setNote("Network error — please check your connection or email hello@humsafargnk.com.", "error");
+        setNote("Network error — please check your connection or email info@humsafarweddingbygnk.in.", "error");
       }).then(function () {
         if (btn) { btn.disabled = false; }
       });
@@ -881,6 +847,22 @@
     window.addEventListener("scroll", function () { if (navHeight() !== lastNavH) fit(); }, { passive: true });
   }
 
+  /* ---------- --nav-h: compact nav height for one-screen sections ---------- */
+  function setupNavHeightVar() {
+    var nav = document.querySelector(".nav");
+    if (!nav) return;
+    var last = -1;
+    function set() {
+      if (window.scrollY <= 40) return; // sections are viewed with the compact (scrolled) nav pinned on top
+      var h = nav.offsetHeight;
+      if (h !== last) { last = h; document.documentElement.style.setProperty("--nav-h", h + "px"); }
+    }
+    set();
+    window.addEventListener("scroll", set, { passive: true });
+    window.addEventListener("resize", function () { last = -1; set(); });
+    nav.addEventListener("transitionend", set);
+  }
+
   /* ---------- Init ---------- */
   function init() {
     var nav = buildNav();
@@ -899,6 +881,7 @@
     setupTextShapes();
     setupRRSlideshow();
     setupRRFit();
+    setupNavHeightVar();
   }
 
   if (document.readyState === "loading") {
