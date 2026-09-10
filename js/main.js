@@ -612,6 +612,198 @@
     }
   }
 
+  /* ---------- Drawn text shapes (underlineCurve) ----------
+     Port of the reference "TextShape" highlight: one absolutely-positioned node per
+     text row, an SVG path built from 4 anchor points with Catmull-Rom style control
+     points (tensions .5/.5/.5/.1), drawn left-to-right over 0.5s (quad ease-out)
+     250ms after the block enters the viewport. */
+  function setupTextShapes() {
+    var spans = document.querySelectorAll(".rr-hl");
+    if (!spans.length) return;
+
+    var reduceMotion = window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function angleLen(p, q) {
+      var dx = q[0] - p[0], dy = q[1] - p[1];
+      return { length: Math.sqrt(dx * dx + dy * dy), angle: Math.atan2(dy, dx) };
+    }
+    function ctrl(t) {
+      return function (cur, prev, next, reverse) {
+        var a = angleLen(prev || cur, next || cur);
+        var ang = a.angle + (reverse ? Math.PI : 0);
+        var len = a.length * 0.5 * t;
+        return [cur[0] + Math.cos(ang) * len, cur[1] + Math.sin(ang) * len];
+      };
+    }
+    function underlineCurve(w, h) {
+      var pts = [[0, h * 0.99], [w * 0.5, h * 0.88], [w, h * 0.89], [w * 0.98, h * 0.92]];
+      var tens = [0.5, 0.5, 0.5, 0.1];
+      var d = "M " + pts[0][0] + "," + pts[0][1];
+      for (var i = 1; i < pts.length; i++) {
+        var c = ctrl(tens[i]), prev = pts[i - 1];
+        var cp1 = c(prev, pts[i - 2], pts[i]);
+        var cp2 = c(pts[i], prev, pts[i + 1], true);
+        d += " c " + (cp1[0] - prev[0]) + "," + (cp1[1] - prev[1]) +
+             " "  + (cp2[0] - prev[0]) + "," + (cp2[1] - prev[1]) +
+             " "  + (pts[i][0] - prev[0]) + "," + (pts[i][1] - prev[1]);
+      }
+      return d;
+    }
+    function easeOutQuad(t) { return -1 * t * (t - 2); }
+
+    function rowRects(el) {
+      var range = document.createRange();
+      range.selectNodeContents(el);
+      var list = range.getClientRects(), rows = [];
+      for (var i = 0; i < list.length; i++) {
+        var r = list[i];
+        if (!r.width || !r.height) continue;
+        var row = null;
+        for (var j = 0; j < rows.length; j++) {
+          if (Math.abs(rows[j].top - r.top) < 2) { row = rows[j]; break; }
+        }
+        if (row) {
+          var left = Math.min(row.left, r.left), right = Math.max(row.right, r.right);
+          var top = Math.min(row.top, r.top), bottom = Math.max(row.bottom, r.bottom);
+          row.left = left; row.right = right; row.top = top; row.bottom = bottom;
+          row.width = right - left; row.height = bottom - top;
+        } else {
+          rows.push({ left: r.left, right: r.right, top: r.top, bottom: r.bottom, width: r.width, height: r.height });
+        }
+      }
+      return rows;
+    }
+
+    function Shape(span) {
+      this.span = span;
+      this.host = span.closest(".rr-shape-host") || span.parentNode;
+      this.thicknessEm = parseFloat(span.getAttribute("data-hl-thickness")) || 0.1;
+      this.color = span.getAttribute("data-hl-color") || "currentcolor";
+      this.progress = -1;           // direction "right": -1 = hidden, 0 = drawn
+      this.nodes = [];
+      this.tween = null;
+      this.readyTimer = null;
+      this.layout();
+    }
+    Shape.prototype.layout = function () {
+      var self = this;
+      this.nodes.forEach(function (n) { n.node.remove(); });
+      this.nodes = [];
+      var fontSize = parseFloat(window.getComputedStyle(this.span).fontSize);
+      var thickness = fontSize * this.thicknessEm;
+      var nt = thickness - fontSize * 0.25;
+      var hostRect = this.host.getBoundingClientRect();
+      rowRects(this.span).forEach(function (r) {
+        var w = Math.round(r.width - nt), h = Math.round(r.height);
+        var node = document.createElement("div");
+        node.className = "rr-shape";
+        node.style.setProperty("--stroke", self.color);
+        node.style.setProperty("--stroke-width", self.thicknessEm + "em");
+        node.style.fontSize = fontSize + "px";
+        node.style.width = w + "px";
+        node.style.height = h + "px";
+        node.style.left = Math.round(r.left - hostRect.left + nt * 0.5) + "px";
+        node.style.top = Math.round(r.top - hostRect.top) + "px";
+        node.innerHTML = '<svg><path d="' + underlineCurve(w, h) + '" /></svg>';
+        self.host.appendChild(node);
+        var path = node.querySelector("path");
+        var len = 0;
+        try { len = path.getTotalLength(); } catch (e) { len = w * 1.05; }
+        self.nodes.push({ node: node, path: path, len: len });
+      });
+      this.render();
+    };
+    Shape.prototype.render = function () {
+      var p = this.progress;
+      this.nodes.forEach(function (n) {
+        var L = Math.ceil(n.len);
+        if (!L) return;
+        n.path.setAttribute("stroke-dasharray", L);
+        n.path.setAttribute("stroke-dashoffset", L * 2 + p * -L);
+      });
+    };
+    Shape.prototype.stopTween = function () {
+      if (this.tween) { cancelAnimationFrame(this.tween); this.tween = null; }
+      if (this.readyTimer) { clearTimeout(this.readyTimer); this.readyTimer = null; }
+    };
+    Shape.prototype.reset = function () {
+      this.stopTween();
+      this.progress = reduceMotion ? 0 : -1;
+      this.render();
+    };
+    Shape.prototype.ready = function () {
+      var self = this;
+      this.reset();
+      if (reduceMotion) return;
+      this.readyTimer = setTimeout(function () { self.animateTo(0, 0.5); }, 250);
+    };
+    Shape.prototype.animateTo = function (to, duration) {
+      var self = this, from = this.progress, start = null;
+      this.stopTween();
+      function tick(now) {
+        if (start === null) start = now;
+        var t = Math.min((now - start) / 1000 / duration, 1);
+        self.progress = from + (to - from) * easeOutQuad(t);
+        self.render();
+        if (t < 1) self.tween = requestAnimationFrame(tick);
+        else self.tween = null;
+      }
+      this.tween = requestAnimationFrame(tick);
+    };
+
+    var shapes = [];
+    for (var i = 0; i < spans.length; i++) shapes.push(new Shape(spans[i]));
+
+    // (re)layout when fonts arrive or the viewport changes; keep current progress
+    function relayoutAll() { shapes.forEach(function (s) { s.layout(); }); }
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(relayoutAll);
+    var resizeTimer;
+    window.addEventListener("resize", function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(relayoutAll, 80);
+    });
+
+    // draw when the host block enters the viewport, hide again when it leaves
+    if ("IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          shapes.forEach(function (s) {
+            if (s.host !== entry.target) return;
+            if (entry.isIntersecting) s.ready(); else s.reset();
+          });
+        });
+      }, { threshold: 0 });
+      var hosts = [];
+      shapes.forEach(function (s) { if (hosts.indexOf(s.host) < 0) hosts.push(s.host); });
+      hosts.forEach(function (h) { io.observe(h); });
+    } else {
+      shapes.forEach(function (s) { s.progress = 0; s.render(); });
+    }
+  }
+
+  /* ---------- Scaled text (= sqsrte-scaled-text) ----------
+     The heading's font-size is scaled so the single line exactly fills its container,
+     the same way the reference measures container/text width and multiplies. */
+  function setupScaledText() {
+    var items = document.querySelectorAll(".rr-scaled");
+    if (!items.length) return;
+    function fit(el) {
+      var container = el.parentNode;
+      container.classList.remove("loaded");
+      var cw = Math.round(container.offsetWidth), tw = Math.round(el.offsetWidth);
+      if (!cw || !tw) return;
+      var f = parseFloat(window.getComputedStyle(el).fontSize);
+      el.style.fontSize = Math.max(1, Math.round((cw / tw) * f * 10) / 10) + "px";
+      container.classList.add("loaded");
+    }
+    function fitAll() { for (var i = 0; i < items.length; i++) fit(items[i]); }
+    fitAll();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitAll);
+    var t;
+    window.addEventListener("resize", function () { clearTimeout(t); t = setTimeout(fitAll, 40); });
+  }
+
   /* ---------- Init ---------- */
   function init() {
     var nav = buildNav();
@@ -626,6 +818,8 @@
     setupForm();
     setupLightbox();
     setupTestimonialFan();
+    setupScaledText();
+    setupTextShapes();
   }
 
   if (document.readyState === "loading") {

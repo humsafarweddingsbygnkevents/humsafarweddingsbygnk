@@ -880,68 +880,173 @@ body[data-page="about"] .nav[data-scrolled="1"] .nav__link { color: var(--mn-mis
 .about__corner--br { bottom: 18px; right: 18px;   border-bottom: 2px solid var(--gold);border-right: 2px solid var(--gold); }
 .about__figure .frame__caption { margin-top: 18px; color: var(--gold-dark); }
 
-/* ---- Intro hero statement (centered, no side image, flat bg — no decorative glow/petals) ---- */
-.about-section--ivory { background: #f6f2e6; }
-.about-intro { max-width: 1320px; margin-inline: auto; text-align: center; }
-.about-intro__eyebrow {
-  font-family: var(--sans); font-weight: 700; font-size: 13px; letter-spacing: .12em;
-  text-transform: uppercase; color: var(--ink);
+/* ---- Intro statement — 1:1 clone of the reference Squarespace fluid-engine section ----
+   Palette (from the reference theme): bg hsl(54,38.46%,94.9%) = #f7f6ed,
+   text hsl(173.33,48.65%,14.51%) = #133733, underline hsl(95,15.38%,45.88%) = #728763.
+   Fonts: Newsreader 300 ≈ Beaufort Light (headings), EB Garamond ≈ Allrounder Antiqua /
+   Adobe Garamond Pro (p), Jost 500 ≈ futura-pt (pre>code). */
+.rr-intro { background: #f7f6ed; color: #133733; overflow: hidden; }
+
+/* fluid-engine grid: mobile = 8 cols, desktop = 24 cols; rows per section via --rows-m / --rows-d */
+.rr-grid--intro  { --rows-m: 25; --rows-d: 16; }
+.rr-grid--recipe { --rows-m: 47; --rows-d: 36; }
+.rr-grid {
+  --grid-gutter: 6vw;
+  --cell-max-width: calc(1600px / 8);
+  display: grid; position: relative;
+  grid-template-rows: repeat(var(--rows-m), minmax(24px, auto));
+  grid-template-columns:
+    minmax(var(--grid-gutter), 1fr)
+    repeat(8, minmax(0, var(--cell-max-width)))
+    minmax(var(--grid-gutter), 1fr);
+  row-gap: 0; column-gap: 0;
+  overflow-x: hidden; overflow-x: clip;
 }
-.about-intro__head {
-  margin-top: 18px;
-  font-size: clamp(2.2rem, 5vw, 62px);
-  line-height: 1.16; letter-spacing: normal;
-}
-.about-intro__u { text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 8px; }
-.about-intro__lede {
-  margin-top: 26px; max-width: 56ch; margin-inline: auto;
-  font-family: var(--serif); font-style: normal;
-  font-size: clamp(17px, 1.6vw, 21px); line-height: 1.5; color: var(--ink);
-}
-.about-intro__whisper {
-  margin-top: 26px; font-family: var(--serif); font-style: italic;
-  font-size: clamp(16px, 1.7vw, 19px); line-height: 1.7; color: var(--green);
-}
-.about-intro__cta {
-  display: inline-block; margin-top: 22px;
-  font-family: var(--sans); font-weight: 700; font-size: 12px; letter-spacing: .14em;
-  text-transform: uppercase; color: var(--ink);
-  text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 6px;
+@media (min-width: 768px) {
+  .rr-grid {
+    --grid-gutter: 2vw;
+    --cell-max-width: calc(1600px / 24);
+    --row-height-scaling-factor: 0.0215;
+    --container-width: min(1600px, calc(100vw - 2vw * 2));
+    grid-template-rows: repeat(var(--rows-d), minmax(calc(var(--container-width) * var(--row-height-scaling-factor)), auto));
+    grid-template-columns:
+      minmax(var(--grid-gutter), 1fr)
+      repeat(24, minmax(0, var(--cell-max-width)))
+      minmax(var(--grid-gutter), 1fr);
+  }
 }
 
-/* ---- Our tarika (full-bleed photo + copy split, no card/frame) ---- */
-.recipe-section { background: #f6f2e6; }
-.recipe {
-  display: grid; grid-template-columns: 1fr 1fr; align-items: stretch;
-  min-height: clamp(560px, 82vh, 880px);
+/* blocks (= .fe-block > .sqs-block): flex column, no padding, own stacking context */
+.rr-block {
+  display: flex; flex-direction: column; height: 100%; width: 100%;
+  box-sizing: border-box; padding: 0;
+  position: relative; isolation: isolate;
 }
-.recipe__media { position: relative; overflow: hidden; }
-.recipe__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.recipe__copy {
-  padding: clamp(40px, 5vw, 72px) var(--gutter) clamp(56px, 6vw, 88px);
-  display: flex; flex-direction: column; justify-content: flex-start;
+.rr-block--eyebrow { grid-area: 4/2/5/10;  z-index: 12; justify-content: flex-end; }
+.rr-block--head    { grid-area: 6/2/16/10; z-index: 11; justify-content: flex-start; }
+.rr-block--body    { grid-area: 17/2/24/10; z-index: 6; justify-content: flex-start; }
+@media (min-width: 768px) {
+  .rr-block--eyebrow { grid-area: 3/10/4/18; z-index: 4; justify-content: center; }
+  .rr-block--head    { grid-area: 4/5/8/23;  z-index: 3; justify-content: center; }
+  .rr-block--body    { grid-area: 9/8/16/20; z-index: 2; justify-content: flex-start; }
 }
-.recipe__head {
-  font-size: clamp(3.2rem, 7.4vw, 132px);
-  line-height: .92; letter-spacing: -.02em;
-  margin: 0 0 28px;
+/* = .sqs-html-content */
+.rr-block__inner { min-height: 23px; outline: none; }
+.rr-block__inner > *:first-child { margin-top: 0; }
+.rr-block__inner > *:last-child  { margin-bottom: 0; }
+.rr-shape-host { position: relative; }
+
+/* heading 1: size value 3.8, line-height 1.1em * (1 + (1 - 3.8)/25), weight 400 */
+.rr-head {
+  font-family: 'Newsreader', 'Cormorant Garamond', 'Times New Roman', serif; font-optical-sizing: auto;
+  font-weight: 300; font-style: normal; letter-spacing: 0em; text-transform: none;
+  color: #133733; margin: 0; text-align: center; white-space: pre-wrap;
+  line-height: calc(1.1em * (1 + (1 - 3.8) / 25));
+  font-size: min(calc((3.8 - 1) * 1.2vw + 1rem), max(calc((3.8 - 1) * 0.012 * 1600px + 1rem), calc(3.8 * 1rem)));
 }
-.recipe__inset { margin-bottom: 28px; max-width: 420px; }
-.recipe__inset img { width: 100%; display: block; }
-.recipe__prose {
-  font-family: var(--serif); font-size: clamp(17px, 1.6vw, 21px); line-height: 1.6;
-  color: var(--text); max-width: 46ch; margin: 0 0 18px;
+/* paragraph (large): size value 1.2, line-height 1.2em, letter-spacing .01em */
+.rr-large {
+  font-family: 'EB Garamond', 'Cormorant Garamond', 'Times New Roman', serif;
+  font-weight: 400; font-style: normal; letter-spacing: .01em; text-transform: none;
+  color: #133733; margin: 1rem 0; text-align: center; white-space: pre-wrap;
+  line-height: 1.2em;
+  font-size: min(calc((1.2 - 1) * 1.2vw + 1rem), max(calc((1.2 - 1) * 0.012 * 1600px + 1rem), calc(1.2 * 1rem)));
 }
-.recipe__cta {
-  display: inline-block; margin-top: 10px;
-  background: #7c8a5f; color: #fff;
-  font-family: var(--sans); font-size: 12px; letter-spacing: .22em; text-transform: uppercase;
-  padding: 18px 38px; text-decoration: none; transition: background .35s ease;
+.rr-large em { font-style: italic; font-weight: normal; }
+/* pre > code (eyebrow + CTA): meta font, size value 1, .07em tracking, uppercase, pre line-height .7em */
+.rr-pre {
+  font-family: monospace, serif; font-size: 1rem; line-height: .7em; white-space: pre-wrap;
+  margin: 1em 0; text-align: center; color: #133733;
 }
-.recipe__cta:hover { background: #66714c; }
-@media (max-width: 860px) {
-  .recipe { grid-template-columns: 1fr; }
-  .recipe__media { height: 68vw; min-height: 320px; }
+.rr-pre code {
+  font-family: 'Jost', 'Futura', 'Mulish', system-ui, sans-serif;
+  font-style: normal; font-weight: 500; line-height: 1.3em; letter-spacing: .07em;
+  text-transform: uppercase;
+  font-size: calc((1 - 1) * 1.2vw + 1rem);
+}
+.rr-pre a { color: #133733; text-decoration: none; background-image: none; }
+.rr-pre a:hover { color: #133733; text-decoration: none; }
+@media screen and (max-width: 767px) and (orientation: portrait) {
+  .rr-head  { font-size: calc((3.8 - 1) * calc(.012 * min(100vh, 900px)) + 1rem); }
+  .rr-large { font-size: calc((1.2 - 1) * calc(.012 * min(100vh, 900px)) + 1rem); }
+  .rr-pre code { font-size: calc((1 - 1) * calc(.012 * min(100vh, 900px)) + 1rem); }
+}
+@media screen and (max-width: 767px) {
+  .rr-block--eyebrow .rr-pre, .rr-block--eyebrow .rr-pre code { font-size: .9em !important; }
+}
+
+/* drawn text shapes (= .TextShape-node) */
+.rr-hl { text-decoration: none !important; }
+.rr-shape {
+  --stroke: currentcolor; --stroke-width: 1px; --stroke-linecap: square; --stroke-linejoin: bevel;
+  --opacity: 1;
+  position: absolute; display: block; top: 0; left: 0;
+  pointer-events: none; z-index: -1; user-select: none; -webkit-user-select: none;
+  opacity: 1; visibility: visible;
+}
+.rr-shape svg {
+  position: absolute; display: block; top: 0; left: 0; width: 100%; height: 100%;
+  overflow: visible; fill: none;
+  stroke: var(--stroke); stroke-width: max(1px, var(--stroke-width));
+  stroke-linecap: var(--stroke-linecap); stroke-linejoin: var(--stroke-linejoin);
+  opacity: var(--opacity);
+}
+
+/* ---- Our Recipe — 1:1 clone of the reference "Our Recipe?" fluid-engine section ---- */
+.rr-recipe { background: #f7f6ed; color: #133733; overflow: hidden; }
+.rr-recipe__img1 { grid-area: 1/2/20/10;  z-index: 2; justify-content: center; }
+.rr-recipe__img2 { grid-area: 22/2/34/10; z-index: 3; justify-content: center; }
+.rr-recipe__head { grid-area: 21/1/25/10; z-index: 4; justify-content: flex-start; }
+.rr-recipe__copy { grid-area: 35/2/43/10; z-index: 1; justify-content: flex-start; }
+.rr-recipe__btn  { grid-area: 44/2/47/10; z-index: 5; justify-content: center; }
+@media (min-width: 768px) {
+  .rr-recipe__img1 { grid-area: 1/2/35/14;  z-index: 4; }
+  .rr-recipe__img2 { grid-area: 9/15/18/23; z-index: 1; }
+  .rr-recipe__head { grid-area: 3/12/8/25;  z-index: 5; justify-content: center; }
+  .rr-recipe__copy { grid-area: 18/15/25/26; z-index: 2; justify-content: flex-end; }
+  .rr-recipe__btn  { grid-area: 26/15/28/21; z-index: 3; justify-content: center; }
+}
+/* stretched fluid image blocks: fill the grid area, object-fit cover at the focal point */
+.rr-block--img { min-height: 0; min-width: 0; overflow: hidden; }
+.rr-img { position: relative; width: 100%; height: 100%; overflow: hidden; }
+.rr-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; display: block; }
+.rr-img--focal img { object-position: 50% 80.8%; }
+/* scaled text: font-size is set by JS so the line exactly fills the block width */
+.rr-scaled-container { display: block; width: 100%; }
+.rr-scaled { display: inline-block; white-space: nowrap; line-height: 1; font-size: 100px; }
+.rr-h1 {
+  font-family: 'Newsreader', 'Cormorant Garamond', 'Times New Roman', serif; font-optical-sizing: auto;
+  font-weight: 300; font-style: normal; letter-spacing: 0em; text-transform: none;
+  color: #133733; margin: 0; padding: 0; line-height: 1; font-size: inherit !important;
+  white-space: nowrap !important; position: relative; text-align: start;
+}
+/* heading 3: size value 1.8, line-height 1.1em * (1 + (1 - 1.8)/25), margin 2rem 0 */
+.rr-h3 {
+  font-family: 'Newsreader', 'Cormorant Garamond', 'Times New Roman', serif; font-optical-sizing: auto;
+  font-weight: 300; font-style: normal; letter-spacing: 0em; text-transform: none;
+  color: #133733; margin: 2rem 0; text-align: start; white-space: pre-wrap;
+  line-height: calc(1.1em * (1 + (1 - 1.8) / 25));
+  font-size: min(calc((1.8 - 1) * 1.2vw + 1rem), max(calc((1.8 - 1) * 0.012 * 1600px + 1rem), calc(1.8 * 1rem)));
+}
+/* primary button, medium: 1.2rem/2.4rem padding, futura-pt-style 1rem uppercase, .02em, square */
+.rr-button-container { display: flex; justify-content: flex-start; text-align: left; }
+.rr-button {
+  display: block; box-sizing: border-box;
+  font-family: 'Jost', 'Futura', 'Mulish', system-ui, sans-serif;
+  font-size: calc((1 - 1) * 1.2vw + 1rem); font-weight: 400; font-style: normal;
+  letter-spacing: .02em; line-height: 1.16; text-transform: uppercase; text-align: left;
+  padding: 1.2rem 2.4rem; border: 0 solid #f7f6ed; border-radius: 0;
+  background-color: #728763; color: #f7f6ed; text-decoration: none; cursor: pointer;
+  transition: opacity .25s ease;
+}
+.rr-button:hover { color: #f7f6ed; opacity: .85; }
+@media screen and (max-width: 767px) and (orientation: portrait) {
+  .rr-h3 { font-size: calc((1.8 - 1) * calc(.012 * min(100vh, 900px)) + 1rem); }
+}
+@media screen and (max-width: 767px) {
+  .rr-recipe .rr-block__inner, .rr-recipe .rr-h1, .rr-recipe .rr-h3 { text-align: center; }
+  .rr-button-container { flex-direction: column; align-content: flex-end; }
+  .rr-button { text-align: center; }
 }
 
 /* festive draped bunting (toran swag) — hung corner to corner */

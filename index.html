@@ -7,8 +7,8 @@
   <meta name="description" content="Humsafar Wedding by GNK is an Indian wedding planning house with an Indian heart and a foreign polish — planning, decoration and entertainment for couples who want a celebration in two registers at once.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=24">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Mulish:wght@300;400;500;600;700&family=Newsreader:opsz,wght@6..72,300&family=EB+Garamond:ital,wght@0,400;1,400&family=Jost:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=25">
   <link rel="icon" href="images/hw-logo.png">
 </head>
 <body data-page="home" data-nav="dark">
@@ -55,55 +55,73 @@
   </div>
 
   <!-- ============ INTRO ============ -->
-  <section class="section section--tight about-section about-section--ivory">
+  <!-- Geometry cloned from the reference fluid-engine section: 24-col grid (8 on mobile),
+       row height = container-width * 0.0215, eyebrow rows 3 / cols 10-17, headline rows 4-7 /
+       cols 5-22, body rows 9-15 / cols 8-19. Underlines are drawn "underlineCurve" shapes. -->
+  <section class="rr-intro" aria-label="Introduction">
+    <div class="rr-grid rr-grid--intro">
 
-    <!-- hero statement (static, no scroll/typewriter animation) -->
-    <div class="container about-intro">
-      <p class="about-intro__eyebrow">A wedding planned in two languages</p>
+      <div class="rr-block rr-block--eyebrow">
+        <div class="rr-block__inner">
+          <pre class="rr-pre"><code>A wedding planned in two languages.&nbsp;</code></pre>
+        </div>
+      </div>
 
-      <h2 class="display about-intro__head">You want a wedding that feels rooted,<br>radiant, and <span class="about-intro__u">unmistakably yours</span>.</h2>
+      <div class="rr-block rr-block--head">
+        <div class="rr-block__inner rr-shape-host">
+          <h2 class="rr-head">You want a wedding that feels rooted, radiant, and <span class="rr-hl" data-hl-thickness="0.05" data-hl-color="#728763">unmistakably yours</span>.&nbsp;</h2>
+        </div>
+      </div>
 
-      <p class="about-intro__lede">
-        A celebration built on ritual and detail — the dhol at the baraat, the haldi that turns
-        everyone golden, the hush before the pheras — held to the same discipline as a world-class
-        production.
-      </p>
+      <div class="rr-block rr-block--body">
+        <div class="rr-block__inner rr-shape-host">
+          <p class="rr-large">A celebration built on ritual and detail — the dhol at the baraat, the haldi that turns everyone golden, the hush before the pheras — held to the same discipline as a world-class production.</p>
+          <p class="rr-large"><br><em>You’ve found your safar.<br>We’ll walk every step of it with you.</em></p>
+          <pre class="rr-pre"><code><span class="rr-hl" data-hl-thickness="0.1" data-hl-color="#133733"><a href="contact.html">Let’s begin</a></span></code></pre>
+        </div>
+      </div>
 
-      <p class="about-intro__whisper">
-        <em>You've found your safar.</em><br>
-        <em>We'll walk every step of it with you.</em>
-      </p>
-
-      <a class="about-intro__cta" href="contact.html">Let's begin</a>
     </div>
   </section>
 
-  <!-- ============ OUR TARIKA ============ -->
-  <section class="recipe-section">
-    <div class="recipe">
-      <div class="recipe__media" data-reveal data-reveal-x="l">
-        <img src="images/about-pegasus.jpg" alt="A crystal pegasus beneath a canopy of greenery and mirror balls — décor by Humsafar Weddings">
+  <!-- ============ OUR RECIPE ============ -->
+  <!-- Geometry cloned from the reference "Our Recipe?" fluid-engine section (36 rows desktop /
+       47 mobile): photo cols 2-13 rows 1-34, scaled heading cols 12-24 rows 3-7, inset photo
+       cols 15-22 rows 9-17, two h3s bottom-aligned cols 15-25 rows 18-24, button cols 15-20 rows 26-27. -->
+  <section class="rr-recipe" aria-label="Our recipe">
+    <div class="rr-grid rr-grid--recipe">
+
+      <div class="rr-block rr-block--img rr-recipe__img1">
+        <div class="rr-img">
+          <img src="images/recipe-bride.jpg" alt="A bride in a red embroidered lehenga and kundan jewellery, smiling as her dupatta is adjusted">
+        </div>
       </div>
 
-      <div class="recipe__copy" data-reveal style="--rd:200ms">
-        <h2 class="display recipe__head">Our <em>tarika</em>?</h2>
-
-        <div class="recipe__inset">
+      <div class="rr-block rr-block--img rr-recipe__img2">
+        <div class="rr-img rr-img--focal">
           <img src="images/svc-decor-photo.jpg" alt="Décor detail from a Humsafar wedding">
         </div>
-
-        <p class="recipe__prose">
-          Vendor curation, run-of-show timelines, and decor built in-house — executed with the
-          discipline of a world-class production, by a team fluent in both Indian ritual and
-          international hospitality.
-        </p>
-        <p class="recipe__prose">
-          Delivered across Delhi, Jim Corbett, Moradabad, and beyond — wherever your family calls
-          home.
-        </p>
-
-        <a class="recipe__cta" href="#services">Explore our services</a>
       </div>
+
+      <div class="rr-block rr-recipe__head">
+        <div class="rr-block__inner">
+          <div class="rr-scaled-container"><span class="rr-scaled"><h2 class="rr-h1">&nbsp;Our Recipe?</h2></span></div>
+        </div>
+      </div>
+
+      <div class="rr-block rr-recipe__copy">
+        <div class="rr-block__inner">
+          <h3 class="rr-h3">Vendor curation, run-of-show timelines, and decor built in-house. Executed flawlessly, by a team fluent in both Indian ritual and international hospitality. </h3>
+          <h3 class="rr-h3">Delivered across Delhi, Jim Corbett, Moradabad, and beyond.</h3>
+        </div>
+      </div>
+
+      <div class="rr-block rr-recipe__btn">
+        <div class="rr-button-container">
+          <a class="rr-button" href="#services">Explore our services</a>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -240,6 +258,6 @@
     </div>
   </section>
 
-  <script src="js/main.js?v=20"></script>
+  <script src="js/main.js?v=21"></script>
 </body>
 </html>
