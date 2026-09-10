@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=18">
+  <link rel="stylesheet" href="css/style.css?v=24">
   <link rel="icon" href="images/hw-logo.png">
 </head>
 <body data-page="home" data-nav="dark">
@@ -55,54 +55,60 @@
   </div>
 
   <!-- ============ INTRO ============ -->
-  <section class="section section--paper section--tight about-section">
-    <span class="about-glow" aria-hidden="true"></span>
-    <span class="about-petal about-petal--1" aria-hidden="true">❀</span>
-    <span class="about-petal about-petal--2" aria-hidden="true">✿</span>
-    <div class="container split split--5-7 about">
-      <!-- words -->
-      <div class="about__copy">
-        <div class="ornament" data-reveal aria-hidden="true">
-          <span class="ornament__line"></span><span class="ornament__mark">✦</span><span class="ornament__line"></span>
-        </div>
+  <section class="section section--tight about-section about-section--ivory">
 
-        <h2 class="display about__head" data-typewriter aria-label="An Indian heart, a foreign polish."><span class="tw">An Indian heart,</span><br><span class="tw">a </span><em>foreign</em><span class="tw"> polish.</span></h2>
+    <!-- hero statement (static, no scroll/typewriter animation) -->
+    <div class="container about-intro">
+      <p class="about-intro__eyebrow">A wedding planned in two languages</p>
 
-        <p class="lede about__lede" data-reveal style="--rd:240ms">
-          Humsafar is a wedding-planning house built for couples who want a celebration that feels
-          <span class="about__hl">unmistakably theirs</span> — warm, rooted, and quietly world-class.
-        </p>
+      <h2 class="display about-intro__head">You want a wedding that feels rooted,<br>radiant, and <span class="about-intro__u">unmistakably yours</span>.</h2>
 
-        <p class="prose about__prose" data-reveal style="--rd:300ms">
-          We plan in two languages at once. One is the language of home — the dhol at the baraat,
-          the haldi that turns everyone golden, the hush of the mandap just before the pheras. The
-          other is the language of detail — light, restraint, and a frame your family will keep for
-          forty years. Together they make a wedding that looks like you and remembers everything.
-        </p>
+      <p class="about-intro__lede">
+        A celebration built on ritual and detail — the dhol at the baraat, the haldi that turns
+        everyone golden, the hush before the pheras — held to the same discipline as a world-class
+        production.
+      </p>
 
-        <div class="founders about__founders" data-reveal style="--rd:380ms">
-          <div class="founder"><div class="founder__name">Aarman Sharma</div><div class="founder__role">Founder</div></div>
-          <div class="founder"><div class="founder__name">Kapil Tomar</div><div class="founder__role">Co-Founder</div></div>
-          <div class="founder"><div class="founder__name">Arnav Khanna</div><div class="founder__role">Co-Founder</div></div>
-        </div>
+      <p class="about-intro__whisper">
+        <em>You've found your safar.</em><br>
+        <em>We'll walk every step of it with you.</em>
+      </p>
+
+      <a class="about-intro__cta" href="contact.html">Let's begin</a>
+    </div>
+  </section>
+
+  <!-- ============ OUR TARIKA ============ -->
+  <section class="recipe-section">
+    <div class="recipe">
+      <div class="recipe__media" data-reveal data-reveal-x="l">
+        <img src="images/about-pegasus.jpg" alt="A crystal pegasus beneath a canopy of greenery and mirror balls — décor by Humsafar Weddings">
       </div>
 
-      <!-- portrait -->
-      <aside class="about__figure" data-reveal data-reveal-rot style="--rd:260ms">
-        <figure class="frame frame-card about__frame">
-          <img src="images/about-pegasus.jpg" alt="A crystal pegasus beneath a canopy of greenery and mirror balls — décor by Humsafar Weddings">
-          <span class="about__corner about__corner--tl" aria-hidden="true"></span>
-          <span class="about__corner about__corner--tr" aria-hidden="true"></span>
-          <span class="about__corner about__corner--bl" aria-hidden="true"></span>
-          <span class="about__corner about__corner--br" aria-hidden="true"></span>
-        </figure>
-        <div class="frame__caption" style="text-align:center">— a reception we built · New Delhi</div>
-      </aside>
+      <div class="recipe__copy" data-reveal style="--rd:200ms">
+        <h2 class="display recipe__head">Our <em>tarika</em>?</h2>
+
+        <div class="recipe__inset">
+          <img src="images/svc-decor-photo.jpg" alt="Décor detail from a Humsafar wedding">
+        </div>
+
+        <p class="recipe__prose">
+          Vendor curation, run-of-show timelines, and decor built in-house — executed with the
+          discipline of a world-class production, by a team fluent in both Indian ritual and
+          international hospitality.
+        </p>
+        <p class="recipe__prose">
+          Delivered across Delhi, Jim Corbett, Moradabad, and beyond — wherever your family calls
+          home.
+        </p>
+
+        <a class="recipe__cta" href="#services">Explore our services</a>
+      </div>
     </div>
   </section>
 
   <!-- ============ SERVICES ============ -->
-  <section class="section section--cream">
+  <section class="section section--cream" id="services">
     <div class="container">
       <div class="split-head" style="margin-bottom:40px">
         <div>
@@ -234,6 +240,6 @@
     </div>
   </section>
 
-  <script src="js/main.js?v=16"></script>
+  <script src="js/main.js?v=20"></script>
 </body>
 </html>

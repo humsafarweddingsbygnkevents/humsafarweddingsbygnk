@@ -9,8 +9,8 @@
   /* Colour — greens + light gold (logo-driven) */
   --ink:        #1f2e25;  /* deep green, primary dark        */
   --green:      #3e5b3a;  /* mid green, accents              */
-  --paper:      #efe9d8;  /* main page background            */
-  --cream:      #f6f1e6;  /* lighter section background      */
+  --paper:      #ffffff;  /* main page background            */
+  --cream:      #ffffff;  /* lighter section background      */
   --gold:       #b8954a;  /* primary gold                    */
   --gold-light: #e6c98a;  /* gold on dark backgrounds        */
   --gold-dark:  #7a6234;  /* labels / eyebrows               */
@@ -839,7 +839,6 @@ body[data-page="about"] .nav[data-scrolled="1"] .nav__link { color: var(--mn-mis
 .about__hl {
   font-style: italic;
   color: var(--gold-dark);
-  background: linear-gradient(transparent 62%, rgba(184,149,74,.28) 0);
 }
 
 /* ---- Founders: aligned, with a gold accent rule ---- */
@@ -880,6 +879,70 @@ body[data-page="about"] .nav[data-scrolled="1"] .nav__link { color: var(--mn-mis
 .about__corner--bl { bottom: 18px; left: 18px;    border-bottom: 2px solid var(--gold);border-left: 2px solid var(--gold); }
 .about__corner--br { bottom: 18px; right: 18px;   border-bottom: 2px solid var(--gold);border-right: 2px solid var(--gold); }
 .about__figure .frame__caption { margin-top: 18px; color: var(--gold-dark); }
+
+/* ---- Intro hero statement (centered, no side image, flat bg — no decorative glow/petals) ---- */
+.about-section--ivory { background: #f6f2e6; }
+.about-intro { max-width: 1320px; margin-inline: auto; text-align: center; }
+.about-intro__eyebrow {
+  font-family: var(--sans); font-weight: 700; font-size: 13px; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--ink);
+}
+.about-intro__head {
+  margin-top: 18px;
+  font-size: clamp(2.2rem, 5vw, 62px);
+  line-height: 1.16; letter-spacing: normal;
+}
+.about-intro__u { text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 8px; }
+.about-intro__lede {
+  margin-top: 26px; max-width: 56ch; margin-inline: auto;
+  font-family: var(--serif); font-style: normal;
+  font-size: clamp(17px, 1.6vw, 21px); line-height: 1.5; color: var(--ink);
+}
+.about-intro__whisper {
+  margin-top: 26px; font-family: var(--serif); font-style: italic;
+  font-size: clamp(16px, 1.7vw, 19px); line-height: 1.7; color: var(--green);
+}
+.about-intro__cta {
+  display: inline-block; margin-top: 22px;
+  font-family: var(--sans); font-weight: 700; font-size: 12px; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--ink);
+  text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 6px;
+}
+
+/* ---- Our tarika (full-bleed photo + copy split, no card/frame) ---- */
+.recipe-section { background: #f6f2e6; }
+.recipe {
+  display: grid; grid-template-columns: 1fr 1fr; align-items: stretch;
+  min-height: clamp(560px, 82vh, 880px);
+}
+.recipe__media { position: relative; overflow: hidden; }
+.recipe__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.recipe__copy {
+  padding: clamp(40px, 5vw, 72px) var(--gutter) clamp(56px, 6vw, 88px);
+  display: flex; flex-direction: column; justify-content: flex-start;
+}
+.recipe__head {
+  font-size: clamp(3.2rem, 7.4vw, 132px);
+  line-height: .92; letter-spacing: -.02em;
+  margin: 0 0 28px;
+}
+.recipe__inset { margin-bottom: 28px; max-width: 420px; }
+.recipe__inset img { width: 100%; display: block; }
+.recipe__prose {
+  font-family: var(--serif); font-size: clamp(17px, 1.6vw, 21px); line-height: 1.6;
+  color: var(--text); max-width: 46ch; margin: 0 0 18px;
+}
+.recipe__cta {
+  display: inline-block; margin-top: 10px;
+  background: #7c8a5f; color: #fff;
+  font-family: var(--sans); font-size: 12px; letter-spacing: .22em; text-transform: uppercase;
+  padding: 18px 38px; text-decoration: none; transition: background .35s ease;
+}
+.recipe__cta:hover { background: #66714c; }
+@media (max-width: 860px) {
+  .recipe { grid-template-columns: 1fr; }
+  .recipe__media { height: 68vw; min-height: 320px; }
+}
 
 /* festive draped bunting (toran swag) — hung corner to corner */
 .section--bunting { padding-top: clamp(96px, 12vw, 160px); }
