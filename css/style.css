@@ -969,12 +969,13 @@ h1, h2, h3, p { margin: 0; }
 .ra-sec--l { padding-block: 10vmax; }
 
 /* type scale: --s = size value − 1  →  (size−1)·1.2vw + 1rem, capped at 1600px; portrait phones scale with vh */
+/* --fit: glyph-size correction where our stand-in font draws bigger/smaller than the reference font at the same px */
 .ra-t {
   --s: .2;
-  font-size: min(calc(var(--s) * 1.2vw + 1rem), max(calc(var(--s) * 19.2px + 1rem), calc((var(--s) + 1) * 1rem)));
+  font-size: calc(var(--fit, 1) * min(calc(var(--s) * 1.2vw + 1rem), max(calc(var(--s) * 19.2px + 1rem), calc((var(--s) + 1) * 1rem))));
 }
 @media screen and (max-width: 767px) and (orientation: portrait) {
-  .ra-t { font-size: calc(var(--s) * .012 * min(100vh, 900px) + 1rem); }
+  .ra-t { font-size: calc(var(--fit, 1) * (var(--s) * .012 * min(100vh, 900px) + 1rem)); }
 }
 .ra-h1 { --s: 2.8; }
 .ra-h2 { --s: 1.8; }
@@ -1051,6 +1052,8 @@ h1, h2, h3, p { margin: 0; }
 }
 @media (min-width: 768px) { .ra-meet__apart { padding: 4.56vw 5.1vw; } }
 .ra-meet__apart .ra-script, .ra-meet__apart .ra-body { color: #f7f6ed; text-align: center; }
+/* EB Garamond draws ~1.19× smaller than the reference's Allrounder Antiqua at the same px (glyph width 6221 vs 7409 @100px) — scale up to match its visible size */
+.ra-meet__apart .ra-body { --fit: 1.19; }
 
 /* ---- s1–s3: Meet the Team ---- */
 .ra-team__head { grid-area: 3/2/5/10; z-index: 1; justify-content: flex-start; }
@@ -1061,6 +1064,16 @@ h1, h2, h3, p { margin: 0; }
 .ra-a__name,  .ra-b__name,  .ra-c__name  { z-index: 3; justify-content: flex-end; }
 .ra-a__quote, .ra-b__quote, .ra-c__quote { z-index: 4; justify-content: flex-start; }
 .ra-a__bio,   .ra-b__bio,   .ra-c__bio   { z-index: 5; justify-content: flex-start; }
+/* match the reference's visible type size (canvas glyph width @100px, ours vs theirs):
+   name Newsreader 300 5303 vs Beaufort 4964 → .936; quote EB Garamond italic 4417 vs Allrounder Italic 5130 → 1.16; bio Newsreader 300 5303 vs Allrounder 5525 → 1.042 */
+.ra-a__name .ra-t, .ra-b__name .ra-t, .ra-c__name .ra-t { --fit: .936; }
+.ra-a__quote .ra-quote, .ra-b__quote .ra-quote, .ra-c__quote .ra-quote { font-size: 1.16rem; }
+/* bios use the homepage "Three desks" copy face (.rr-h3: Newsreader 300); user asked for bigger than the reference-matched 1.042 */
+.ra-a__bio .ra-body, .ra-b__bio .ra-body, .ra-c__bio .ra-body {
+  --fit: 1.2;
+  font-family: 'Newsreader', 'Cormorant Garamond', 'Times New Roman', serif; font-optical-sizing: auto;
+  font-weight: 400; letter-spacing: normal; /* 300 read paler than the EB Garamond 400 copy in the other sections */
+}
 .ra-a__photo { grid-area: 6/2/20/10; }
 .ra-a__name  { grid-area: 20/2/22/10; }
 .ra-a__quote { grid-area: 22/2/25/10; }
@@ -1075,15 +1088,15 @@ h1, h2, h3, p { margin: 0; }
   .ra-a__photo { grid-area: 6/4/18/11; }
   .ra-a__name  { grid-area: 6/12/8/25; }
   .ra-a__quote { grid-area: 7/12/9/23; }
-  .ra-a__bio   { grid-area: 9/12/16/24; }
+  .ra-a__bio   { grid-area: 9/12/18/24; } /* bios end on the photo's bottom row so text + photo finish level */
   .ra-b__photo { grid-area: 1/17/14/24; }
   .ra-b__name  { grid-area: 1/4/3/17; }
   .ra-b__quote { grid-area: 2/4/3/15; }
-  .ra-b__bio   { grid-area: 4/4/10/15; }
+  .ra-b__bio   { grid-area: 4/4/14/15; }
   .ra-c__photo { grid-area: 2/4/14/11; }
   .ra-c__name  { grid-area: 2/12/3/25; }
   .ra-c__quote { grid-area: 3/12/4/23; }
-  .ra-c__bio   { grid-area: 4/12/12/23; }
+  .ra-c__bio   { grid-area: 4/12/14/23; }
 }
 .rr-about .ra-h3 { color: #133733; text-align: left; margin: 0; }
 /* no real headshots yet — framed initials stand in for the photo block, same footprint */
@@ -1104,8 +1117,8 @@ h1, h2, h3, p { margin: 0; }
   .ra-close__img  { grid-area: 1/2/15/12; }
   .ra-close__copy { grid-area: 1/14/16/26; }
 }
-.ra-close .ra-h2 { color: #133733; text-align: left; }
-.ra-close .ra-body { color: #133733; }
+.ra-close .ra-h2 { color: #133733; text-align: left; --fit: .936; }  /* Newsreader draws ~7% bigger than the reference's Beaufort */
+.ra-close .ra-body { color: #133733; --fit: 1.19; }                  /* EB Garamond draws ~1.19× smaller than Allrounder Antiqua */
 .ra-cta { text-align: left; }
 .rr-about .ra-cta a {
   color: #133733; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .2em;
@@ -1114,12 +1127,14 @@ h1, h2, h3, p { margin: 0; }
 
 /* ---- s9: testimonial on a full-bleed photo ---- */
 .ra-quote-sec { background: #133733; color: #fff; }
-/* photo stays untinted (like the reference offerings hero): only the lower part gets a soft shade,
-   and the quote sits at the bottom over it so white type stays legible */
+/* black tint over the whole photo (user: "put the black tint behind this img so text is fully visible"),
+   deepening toward the bottom where the quote sits over the white drapes and sofas */
 .ra-quote-sec .ra-bg img { object-position: 50% 100%; } /* keep the dark lawn under the quote */
 .ra-quote-sec .ra-bg::after {
   content: ""; position: absolute; inset: 0;
-  background: linear-gradient(to bottom, rgba(10, 22, 20, 0) 40%, rgba(10, 22, 20, .5) 65%, rgba(10, 22, 20, .85) 100%);
+  background:
+    linear-gradient(to bottom, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, .5) 55%, rgba(0, 0, 0, .7) 100%),
+    rgba(0, 0, 0, .5); /* .38 base still left the quote faint over the white drapes */
 }
 .ra-quote__text { grid-area: 10/2/20/10; z-index: 1; justify-content: flex-end; }
 @media (min-width: 768px) { .ra-quote__text { grid-area: 9/5/16/23; } }
@@ -1165,11 +1180,13 @@ h1, h2, h3, p { margin: 0; }
 .ra-values__text { grid-area: 7/3/18/9;  z-index: 3; justify-content: flex-start; }
 @media (min-width: 768px) {
   .ra-values__box  { grid-area: 2/6/15/22; }
-  .ra-values__mark { grid-area: 4/13/7/15; }
+  .ra-values__mark { grid-area: 3/12/7/16; } /* user: "make the logo bigger" (was 4/13/7/15) */
   .ra-values__text { grid-area: 7/8/11/20; }
 }
 .ra-values__mark .rr-img img { object-fit: contain; }
 .rr-about .ra-values .ra-h3 { color: #f7f6ed; text-align: center; }
+/* reference box uses Beaufort 400 (licensed); Gowun Batang is the closest free match — light, wide, low-contrast, tiny serifs */
+.rr-about .ra-values .ra-h3 { font-family: 'Gowun Batang', 'Newsreader', serif; font-weight: 400; --fit: .92; } /* glyph width 5397 vs Beaufort 4964 @100px */
 
 /* festive draped bunting (toran swag) — hung corner to corner */
 .section--bunting { padding-top: clamp(96px, 12vw, 160px); }
