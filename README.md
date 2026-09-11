@@ -1,11 +1,9 @@
 # Humsafar Wedding by GNK — Website
 
-A standalone, editable website built from the Claude Design **V1 "Quiet Editorial"** direction.
-No build step, no framework, no dependencies — just open the HTML files in a browser.
+A static website: plain HTML, CSS and JavaScript. No build step, no framework, no dependencies.
+Deployed on Vercel straight from this folder.
 
 ## Run it
-
-Open `index.html` directly, or serve the folder for clean relative paths:
 
 ```bash
 # from this folder
@@ -18,55 +16,64 @@ python3 -m http.server 8000
 | File | Page |
 |---|---|
 | `index.html` | Homepage |
-| `about.html` | About Us |
-| `services.html` | Our Services (parent) |
+| `about.html` | About |
 | `service-wedding-planning.html` | Services → Wedding Planning |
 | `service-decoration.html` | Services → Decoration |
 | `service-entertainment.html` | Services → Entertainment |
 | `gallery.html` | Gallery |
-| `testimonials.html` | Testimonials (wooden tri-stand) |
-| `contact.html` | Contact (with form) |
+| `testimonials.html` | Testimonials |
+| `contact.html` | Contact → Client (enquiry form, studio address, map) |
+| `vendor.html` | Contact → Vendor (placeholder page) |
+| `career.html` | Contact → Career (placeholder page) |
 
-## Project structure
+## Folder layout
 
 ```
-css/style.css   ← the whole design system (colours, type, components, responsive)
-js/main.js      ← shared nav + footer, scroll reveal, parallax, mobile menu, form
-images/         ← haldi.jpg, hw-logo.png  (add your photos here)
-*.html          ← one file per page
+*.html           ← one file per page (must stay at the root — Vercel serves them from here)
+css/style.css    ← the whole design system: tokens, type, sections, responsive rules
+js/main.js       ← shared nav + footer, scroll reveal, one-screen section fitting, contact form
+images/          ← web-ready images used by the pages (gallery/ and testimonials/ subfolders)
+vercel.json      ← cache + security headers
+.vercelignore    ← keeps everything below out of deploys
+
+docs/            ← design brief and service notes (not deployed)
+archive/         ← original Claude Design export (git-ignored, not deployed)
+source-assets/   ← git-ignored raw material, not deployed:
+  photos/            original photos and downloads (the -web.jpg files in images/ are made from these)
+  screenshots/       early reference screenshots
+  reference/         reference-site research
+  unused-web-copies/ web copies no page uses any more
 ```
 
 ## How to make changes
 
-- **Colours & fonts:** edit the tokens at the top of `css/style.css` (`:root`) — they retune the whole site.
-- **Nav links / brand name:** edit the `NAV_LEFT`, `NAV_RIGHT`, `WORDMARK` arrays at the top of `js/main.js`. The header and footer are injected from there, so you change them in one place.
-- **Text:** edit directly in each `.html` file. Content reads top to bottom.
-- **Per-page nav style:** `<body data-nav="dark|paper|solid">` — `dark` = transparent over a hero image (homepage), `solid` = green bar (inner pages).
+- **Colours & fonts:** edit the tokens at the top of `css/style.css` (`:root`).
+- **Nav, footer, contact details:** edit the config at the top of `js/main.js` — `NAV_LEFT`, `NAV_RIGHT`,
+  `WORDMARK`, `TAGLINE`, `CONTACT`, `SOCIAL`. The header and footer are injected from there on every page.
+- **Text:** edit directly in each `.html` file.
+- **Per-page nav style:** `<body data-nav="dark|paper|solid">` — `dark` = transparent over a hero image
+  (homepage), `solid` = green bar (inner pages).
+- **Cache-busting:** after changing `style.css` or `main.js`, bump the `?v=` number on the
+  `<link>` / `<script>` tag in **every** page.
 
-### Swapping in real photos
+### Adding a photo
 
-Image placeholders are `<figure class="frame">` blocks. To drop in a real photo, add an `<img>`:
+Keep the original in `source-assets/photos/`, and put a web-sized copy in `images/`:
 
-```html
-<!-- before (placeholder) -->
-<figure class="frame" style="--h:380px"><span class="frame__label">Planning frame</span></figure>
-
-<!-- after (your photo) -->
-<figure class="frame" style="--h:380px"><img src="images/your-photo.jpg" alt="Description"></figure>
+```bash
+sips -Z 1800 -s formatOptions 80 source-assets/photos/original.jpg --out images/name-web.jpg
 ```
 
-The label hides automatically once an image is present. Adjust the slot height with `--h`.
+(Skip the resize if the original is already under ~1800px.)
 
-### Wiring the contact form
+### Contact form
 
-`js/main.js` currently shows a thank-you message on submit (front-end only). To actually receive
-messages, point the `<form data-contact-form>` in `contact.html` at a backend or a service like
-Formspree, or replace the handler in `setupForm()` in `js/main.js`.
+The form in `contact.html` posts to Formspree. Replace `YOUR_FORM_ID` in its `action`
+(`https://formspree.io/f/YOUR_FORM_ID`) with your real form ID from formspree.io — until then the
+form shows a "not connected yet" message.
 
 ## Notes
 
-- `Humsafar Homepage.dc.html`, `support.js`, `image-slot.js` are the **original Claude Design export**
-  and the other two unused directions (V2 Scrapbook, V3 Magazine). Kept for reference — not used by the
-  live site. Safe to delete once you're happy with V1.
-- Fonts (Bodoni Moda, Cinzel, Manrope) load from Google Fonts.
+- Fonts load from Google Fonts: Newsreader (headings), EB Garamond (body serif), Jost (labels/UI),
+  Cinzel (logo wordmark), Allison (script stand-in until the licensed Kallimata Script file is added).
 - Animations respect `prefers-reduced-motion`.

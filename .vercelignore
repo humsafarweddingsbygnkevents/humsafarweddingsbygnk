@@ -1,0 +1,9 @@
+# Only the site itself is deployed: *.html, css/, js/, images/, vercel.json.
+# Raw material, reference files and tooling stay out of deploys (matters for `vercel deploy` from this folder).
+source-assets/
+archive/
+docs/
+README.md
+.claude/
+.gstack/
+.DS_Store

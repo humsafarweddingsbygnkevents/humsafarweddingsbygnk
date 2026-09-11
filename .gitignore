@@ -12,8 +12,6 @@ Thumbs.db
 # gstack tooling
 .gstack/
 
-# Raw source material (not needed for deploy)
+# Raw source material, originals and reference files (not needed for deploy)
 source-assets/
 archive/
-/ADA01661.jpg
-/ADA09612.JPG
