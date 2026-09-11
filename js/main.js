@@ -14,11 +14,7 @@
   /* ---- Site config: edit nav + brand here, once ---- */
   var NAV_LEFT = [
     { label: "About", href: "about.html", page: "about" },
-    { label: "Offerings", href: "offerings.html", page: "offerings", children: [
-      { label: "Wedding Planning", href: "offerings.html#planning", desc: "The whole celebration, conducted" },
-      { label: "Decoration", href: "offerings.html#decoration", desc: "Sets that earn the camera" },
-      { label: "Entertainment", href: "offerings.html#entertainment", desc: "The sound of the night" }
-    ] },
+    { label: "Offerings", href: "offerings.html", page: "offerings" },
     { label: "Gallery", href: "gallery.html", page: "gallery" }
   ];
   var NAV_RIGHT = [

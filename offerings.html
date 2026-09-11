@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Allison&family=Cinzel:wght@500;600&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=78">
+  <link rel="stylesheet" href="css/style.css?v=92">
   <link rel="icon" href="images/hw-logo.png">
 </head>
 <body data-page="offerings" data-nav="solid">
@@ -40,7 +40,7 @@
   <main class="svc">
 
     <!-- ================= 01 · WEDDING PLANNING ================= -->
-    <div class="off-chapter" id="planning" style="--svc-accent: var(--gold)">
+    <div class="off-chapter">
       <!-- ===== Full-service approach — clone of the reference /offerings second section =====
            48 rows desktop / 64 mobile, no gaps: scaled h1 lines 7/2/13/22, text 14/2/47/14, photo 9/15/44/26
            (mobile: photo 2/2/22/10, h1 lines 23/2/25/10, text 26/2/64/10) -->
@@ -147,68 +147,78 @@
       </section>
     </div>
 
-    <!-- ================= 02 · DECORATION ================= -->
-    <div class="off-chapter" id="decoration" style="--svc-accent: var(--peacock)">
-      <section class="section section--paper svc-intro">
-        <div class="container">
-          <div class="svc-intro__grid svc-intro__grid--flip">
-            <figure class="svc-figure" data-reveal data-reveal-x="r">
-              <img src="images/svc-decor-photo.jpg" alt="A candlelit garden walkway with hanging florals and brass diya stands at night">
-              <figcaption class="svc-figure__tag">One world, entrance to stage</figcaption>
-            </figure>
-            <div class="svc-lead" data-reveal data-reveal-x="l" style="--rd:120ms">
-              <div class="eyebrow svc-lead__eyebrow">02 — Decoration</div>
-              <h2 class="svc-lead__title" data-typewriter aria-label="The first thing a guest feels, the last thing they forget."><span class="tw">The first thing a guest feels, the last thing they </span><em>forget</em><span class="tw">.</span></h2>
-              <p>We design every set in the wedding as one continuous world — a single palette that travels from the entrance, through the mandap, to the table you sit at for dinner.</p>
-              <p>Our own crews build and rig on site, often overnight, with flowers sourced close to the venue so they open the morning of the event and never arrive a day late off a truck.</p>
-              <div class="svc-lead__rule"><b>Built by our hands, on your ground</b><span></span></div>
+    <!-- ===== Kind words — clone of the reference /offerings "KIND WORDS" section (measured @1470 + 390) =====
+         21 rows desktop / 35 mobile, 11px gaps, 5.6vmax padding: shape 3/2/19/16, photo 1/15/22/26, monogram 5/8/8/10,
+         eyebrow 7/3/9/15, quote 9/3/16/15, names 16/3/18/15
+         (mobile: shape 1/2/35/10, photo 3/3/14/9, monogram 15/4/18/8, eyebrow 18/2/20/10, quote 20/3/31/9, names 31/2/33/10) -->
+    <section class="ro-kind" aria-label="Kind words">
+      <div class="rr-grid ra-grid ro-kind__grid">
+        <div class="rr-block ro-kind__shape" aria-hidden="true"></div>
+        <div class="rr-block rr-block--img ro-kind__img">
+          <div class="rr-img"><img src="images/aisle-petals-web.jpg" alt="A bride in a pink lehenga and groom in an ivory sherwani walking hand in hand under a shower of rose petals, jasmine strings and fairy lights behind them" loading="lazy"></div>
+        </div>
+        <div class="rr-block rr-block--img ro-kind__mark">
+          <img src="images/hw-logo.png" alt="" loading="lazy">
+        </div>
+        <div class="rr-block ro-kind__eyebrow">
+          <div class="rr-block__inner"><pre class="rr-pre"><code>KIND WORDS</code></pre></div>
+        </div>
+        <div class="rr-block ro-kind__quote">
+          <div class="rr-block__inner"><h2 class="ra-t ra-serif ra-h2 ro-kind__q">“We have received so many compliments and the consistent theme has been that it was the most beautiful wedding anyone has ever attended in their lives.”</h2></div>
+        </div>
+        <div class="rr-block ro-kind__names">
+          <div class="rr-block__inner"><p class="ro-kind__by">— Bhumika &amp; Aditya —</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Planning / Decoration / Entertainment — three clones of the reference /offerings "DITCH THE ANXIETY" section
+         (measured @1470 + 390). 31 rows desktop / 49 mobile, no gaps, .1vmax padding: photo 3/2/30/14, oval mark 8/17/13/23,
+         eyebrow 14/16/15/24, h3 + p 16/15/27/25 (--flip mirrors them: photo right, text left).
+         Mobile (all three): photo 3/2/24/10, mark 26/2/32/10, eyebrow 33/2/34/10, h3 + p 35/2/48/10 -->
+
+    <!-- ================= 01 · WEDDING PLANNING ================= -->
+    <div class="off-chapter" id="planning">
+      <section class="ro-svc ra-sec" aria-label="Wedding planning">
+        <div class="rr-grid ro-svc__grid">
+          <div class="rr-block rr-block--img ro-svc__img">
+            <div class="rr-img"><img src="images/planning-mandap-web.jpg" alt="A flower-wrapped mandap with crystal chandeliers and gold chairs, facing rows of chairs draped in blush fabric on a lawn" loading="lazy"></div>
+          </div>
+          <div class="rr-block ro-svc__title">
+            <div class="rr-block__inner"><h2 class="ra-t ra-serif ra-h2 ro-svc__t">Planning</h2></div>
+          </div>
+          <div class="rr-block ro-svc__mark" aria-hidden="true"><span class="ro-svc__logo"></span></div>
+          <div class="rr-block ro-svc__eyebrow">
+            <div class="rr-block__inner"><pre class="rr-pre"><code>End to end, every day of it</code></pre></div>
+          </div>
+          <div class="rr-block ro-svc__text">
+            <div class="rr-block__inner">
+              <h3 class="ra-t ra-serif ra-h3 ro-svc__h">From the very first conversation to the last goodbye at the gate, we walk beside you through every day of it, carrying the venues, the vendors and a thousand quiet details, so all you ever have to hold is the <strong>joy</strong> of the day.</h3>
+              <p class="ra-t ra-body ro-svc__p">Your parents get to be guests, not coordinators. Your friends get to dance instead of chasing vendors. And the two of you get to look up, take each other’s hand, and feel every moment of a day you have waited a lifetime for.</p>
             </div>
           </div>
         </div>
       </section>
+    </div>
 
-      <section class="section section--cream svc-offer">
-        <div class="container">
-          <div class="svc-offer__head">
-            <div class="eyebrow svc-lead__eyebrow" data-reveal>What we handle</div>
-            <h2 class="svc-offer__title" data-reveal style="--rd:120ms">From sketch <em>to</em> set.</h2>
+    <!-- ================= 02 · DECORATION ================= -->
+    <div class="off-chapter" id="decoration">
+      <section class="ro-svc ro-svc--flip ra-sec" aria-label="Decoration">
+        <div class="rr-grid ro-svc__grid">
+          <div class="rr-block rr-block--img ro-svc__img">
+            <div class="rr-img"><img src="images/gallery/web/ADA08612.jpg" alt="A flower-covered swing framed by floral pillars and two rose flamingos under hanging greenery" loading="lazy"></div>
           </div>
-          <div class="svc-acc" data-accordion data-reveal>
-            <div class="svc-acc__row" data-acc-item>
-              <button class="svc-acc__head" type="button" aria-expanded="false">
-                <span class="svc-acc__no">01</span><span class="svc-acc__title">Art direction</span><span class="svc-acc__icon" aria-hidden="true"></span>
-              </button>
-              <div class="svc-acc__panel"><div class="svc-acc__inner"><p class="svc-acc__copy">One colour story for the whole wedding, drawn from your families, the venue and the season.</p></div></div>
-            </div>
-            <div class="svc-acc__row" data-acc-item>
-              <button class="svc-acc__head" type="button" aria-expanded="false">
-                <span class="svc-acc__no">02</span><span class="svc-acc__title">Mandaps &amp; stages</span><span class="svc-acc__icon" aria-hidden="true"></span>
-              </button>
-              <div class="svc-acc__panel"><div class="svc-acc__inner"><p class="svc-acc__copy">Entrances, mandaps and reception stages designed, built and rigged by our own team.</p></div></div>
-            </div>
-            <div class="svc-acc__row" data-acc-item>
-              <button class="svc-acc__head" type="button" aria-expanded="false">
-                <span class="svc-acc__no">03</span><span class="svc-acc__title">Florals, fresh</span><span class="svc-acc__icon" aria-hidden="true"></span>
-              </button>
-              <div class="svc-acc__panel"><div class="svc-acc__inner"><p class="svc-acc__copy">Sourced near the venue and arranged on site, at their peak, never trucked across the country.</p></div></div>
-            </div>
-            <div class="svc-acc__row" data-acc-item>
-              <button class="svc-acc__head" type="button" aria-expanded="false">
-                <span class="svc-acc__no">04</span><span class="svc-acc__title">Light design</span><span class="svc-acc__icon" aria-hidden="true"></span>
-              </button>
-              <div class="svc-acc__panel"><div class="svc-acc__inner"><p class="svc-acc__copy">Lit for the eye and the lens — golden-hour warmth held steady all evening long.</p></div></div>
-            </div>
-            <div class="svc-acc__row" data-acc-item>
-              <button class="svc-acc__head" type="button" aria-expanded="false">
-                <span class="svc-acc__no">05</span><span class="svc-acc__title">Tablescapes</span><span class="svc-acc__icon" aria-hidden="true"></span>
-              </button>
-              <div class="svc-acc__panel"><div class="svc-acc__inner"><p class="svc-acc__copy">Linen, signage, seating and the small details guests photograph without being asked.</p></div></div>
-            </div>
-            <div class="svc-acc__row" data-acc-item>
-              <button class="svc-acc__head" type="button" aria-expanded="false">
-                <span class="svc-acc__no">06</span><span class="svc-acc__title">Build &amp; strike</span><span class="svc-acc__icon" aria-hidden="true"></span>
-              </button>
-              <div class="svc-acc__panel"><div class="svc-acc__inner"><p class="svc-acc__copy">We raise it and we take it down, and hand the venue back exactly as we found it.</p></div></div>
+          <div class="rr-block ro-svc__title">
+            <div class="rr-block__inner"><h2 class="ra-t ra-serif ra-h2 ro-svc__t">Decoration</h2></div>
+          </div>
+          <div class="rr-block ro-svc__mark" aria-hidden="true"><span class="ro-svc__logo"></span></div>
+          <div class="rr-block ro-svc__eyebrow">
+            <div class="rr-block__inner"><pre class="rr-pre"><code>Built by our hands, on your ground</code></pre></div>
+          </div>
+          <div class="rr-block ro-svc__text">
+            <div class="rr-block__inner">
+              <h3 class="ra-t ra-serif ra-h3 ro-svc__h">Every flower is placed by hand and every mandap is raised by our own crew, often through the night, on the ground where you will say your vows, so that when you walk in, the space feels as if it was <strong>always</strong> meant to be yours.</h3>
+              <p class="ra-t ra-body ro-svc__p">We choose blooms that open on the morning of your wedding, colours drawn from your families and your story, and light that softens as the evening falls, until every corner holds a memory your guests will carry home long after the last petal has fallen.</p>
             </div>
           </div>
         </div>
@@ -216,116 +226,67 @@
     </div>
 
     <!-- ================= 03 · ENTERTAINMENT ================= -->
-    <div class="off-chapter" id="entertainment" style="--svc-accent: var(--rose)">
-      <section class="section section--paper svc-intro">
-        <div class="container">
-          <div class="svc-intro__grid">
-            <figure class="svc-figure" data-reveal data-reveal-x="l">
-              <img src="images/svc-ent-photo.jpg" alt="A performer in a black suit centre-stage under beams of light with a live band">
-              <figcaption class="svc-figure__tag">The sound of the night</figcaption>
-            </figure>
-            <div class="svc-lead" data-reveal data-reveal-x="r" style="--rd:120ms">
-              <div class="eyebrow svc-lead__eyebrow">03 — Entertainment</div>
-              <h2 class="svc-lead__title" data-typewriter aria-label="The music is what people carry home."><span class="tw">The music is what people </span><em>carry home</em><span class="tw">.</span></h2>
-              <p>We programme the whole arc of the celebration — the easy hours of the mehndi, the roar of the sangeet, and the headline act that turns a reception into a concert.</p>
-              <p>Every artist is booked, briefed and tied to a cue sheet that follows your run of show, so the energy lifts on schedule and never drops in the gaps between moments.</p>
-              <div class="svc-lead__rule"><b>Booked, briefed and on cue</b><span></span></div>
-            </div>
+    <div class="off-chapter" id="entertainment">
+      <section class="ro-svc ra-sec" aria-label="Entertainment">
+        <div class="rr-grid ro-svc__grid">
+          <div class="rr-block rr-block--img ro-svc__img">
+            <div class="rr-img"><img src="images/svc-ent-photo.jpg" alt="A performer in a black suit centre-stage under beams of light with a live band" loading="lazy"></div>
           </div>
-        </div>
-      </section>
-
-      <section class="section section--cream svc-offer">
-        <div class="container">
-          <div class="svc-offer__head">
-            <div class="eyebrow svc-lead__eyebrow" data-reveal>What we handle</div>
-            <h2 class="svc-offer__title" data-reveal style="--rd:120ms">Cued to the <em>minute</em>.</h2>
+          <div class="rr-block ro-svc__title">
+            <div class="rr-block__inner"><h2 class="ra-t ra-serif ra-h2 ro-svc__t">Entertainment</h2></div>
           </div>
-          <div class="svc-acc" data-accordion data-reveal>
-            <div class="svc-acc__row" data-acc-item>
-              <button class="svc-acc__head" type="button" aria-expanded="false">
-                <span class="svc-acc__no">01</span><span class="svc-acc__title">Sangeet choreography</span><span class="svc-acc__icon" aria-hidden="true"></span>
-              </button>
-              <div class="svc-acc__panel"><div class="svc-acc__inner"><p class="svc-acc__copy">Rehearsed with the families and paced for every age that's going to be on the floor.</p></div></div>
-            </div>
-            <div class="svc-acc__row" data-acc-item>
-              <button class="svc-acc__head" type="button" aria-expanded="false">
-                <span class="svc-acc__no">02</span><span class="svc-acc__title">Live ensembles</span><span class="svc-acc__icon" aria-hidden="true"></span>
-              </button>
-              <div class="svc-acc__panel"><div class="svc-acc__inner"><p class="svc-acc__copy">Qawwali, dhol, classical and brass, matched to each ceremony and its mood.</p></div></div>
-            </div>
-            <div class="svc-acc__row" data-acc-item>
-              <button class="svc-acc__head" type="button" aria-expanded="false">
-                <span class="svc-acc__no">03</span><span class="svc-acc__title">Headline acts</span><span class="svc-acc__icon" aria-hidden="true"></span>
-              </button>
-              <div class="svc-acc__panel"><div class="svc-acc__inner"><p class="svc-acc__copy">Singers and bands booked and managed, from an intimate set to a full stage show.</p></div></div>
-            </div>
-            <div class="svc-acc__row" data-acc-item>
-              <button class="svc-acc__head" type="button" aria-expanded="false">
-                <span class="svc-acc__no">04</span><span class="svc-acc__title">DJ &amp; sound</span><span class="svc-acc__icon" aria-hidden="true"></span>
-              </button>
-              <div class="svc-acc__panel"><div class="svc-acc__inner"><p class="svc-acc__copy">Curated sets, clean sound design and a hard stop you will actually keep.</p></div></div>
-            </div>
-            <div class="svc-acc__row" data-acc-item>
-              <button class="svc-acc__head" type="button" aria-expanded="false">
-                <span class="svc-acc__no">05</span><span class="svc-acc__title">Hosts &amp; emcees</span><span class="svc-acc__icon" aria-hidden="true"></span>
-              </button>
-              <div class="svc-acc__panel"><div class="svc-acc__inner"><p class="svc-acc__copy">Anchors who carry the room without ever taking it over.</p></div></div>
-            </div>
-            <div class="svc-acc__row" data-acc-item>
-              <button class="svc-acc__head" type="button" aria-expanded="false">
-                <span class="svc-acc__no">06</span><span class="svc-acc__title">Stage &amp; AV</span><span class="svc-acc__icon" aria-hidden="true"></span>
-              </button>
-              <div class="svc-acc__panel"><div class="svc-acc__inner"><p class="svc-acc__copy">Stage, lighting and sound, fully produced and cue-sheeted to the minute.</p></div></div>
+          <div class="rr-block ro-svc__mark" aria-hidden="true"><span class="ro-svc__logo"></span></div>
+          <div class="rr-block ro-svc__eyebrow">
+            <div class="rr-block__inner"><pre class="rr-pre"><code>Booked, briefed and on cue</code></pre></div>
+          </div>
+          <div class="rr-block ro-svc__text">
+            <div class="rr-block__inner">
+              <h3 class="ra-t ra-serif ra-h3 ro-svc__h">Every artist we bring is booked, briefed and waiting for their cue, so the first beat drops exactly as you step onto the floor, the whole room rises to meet you, and the night you have <strong>dreamed</strong> of begins right on time.</h3>
+              <p class="ra-t ra-body ro-svc__p">From the gentle songs of the mehndi to the roar of the sangeet and the last dance of the reception, we shape the music around your families, so grandparents, cousins and friends find their way onto the same floor, singing the same words, together.</p>
             </div>
           </div>
         </div>
       </section>
     </div>
 
-    <!-- ===== Process (shared by all three) ===== -->
-    <section class="section section--ink">
-      <div class="spotlight"></div>
-      <div class="container">
-        <div class="eyebrow eyebrow--ink" data-reveal>How it unfolds</div>
-        <h2 class="display display--sm display--ink-light" data-reveal style="--rd:150ms; margin:22px 0 64px">
-          Four <em style="color:var(--gold-light)">movements</em>.
-        </h2>
-        <div class="svc-tl" data-timeline>
-          <span class="svc-tl__spine" aria-hidden="true"><span class="svc-tl__fill"></span></span>
-          <div class="svc-tl__step" data-tl-step>
-            <span class="svc-tl__dot" aria-hidden="true"></span>
-            <div class="svc-tl__body"><span class="svc-tl__no">01</span><h3 class="svc-tl__title">The listening</h3><p class="svc-tl__copy">We start with a long conversation — the families, the non-negotiables, the one image you keep returning to. No spreadsheets yet, just listening.</p></div>
+    <!-- ===== Custom proposal — clone of the reference /offerings "INQUIRE FOR A CUSTOM PROPOSAL" section (measured @1470 + 390) =====
+         32 rows desktop / 36 mobile, no gaps, no padding: eyebrow 5/8/6/20, h1 + h3 7/6/28/22 (centred), italic note 29/8/33/20
+         (mobile: eyebrow 2/2/3/10, h1 + h3 4/2/28/10, note 30/2/35/10) -->
+    <section class="ro-prop" aria-label="Inquire for a custom proposal">
+      <div class="rr-grid ro-prop__grid">
+        <div class="rr-block ro-prop__eyebrow">
+          <div class="rr-block__inner"><pre class="rr-pre"><code>inquire for a custom proposal</code></pre></div>
+        </div>
+        <div class="rr-block ro-prop__text">
+          <div class="rr-block__inner rr-shape-host">
+            <h1 class="ra-t ra-serif ra-h1 ro-prop__h">Humsafar Wedding by GNK is exclusively a <span class="rr-hl" data-hl-thickness="0.0518" data-hl-color="#728763">full-service</span> planning, design, and production firm because exceptional events deserve nothing less.</h1>
+            <h3 class="ra-t ra-serif ra-h3 ro-prop__h"><br> We don’t believe in one-size-fits-all packages or partial levels of service. Every proposal is custom-<span class="ro-prop__snug">crafted and meticulously tailored to</span> your event’s vision, scale, and complexity. No templates. No tiers of service. Just a bespoke experience designed to exceed expectations at every turn.</h3>
           </div>
-          <div class="svc-tl__step" data-tl-step>
-            <span class="svc-tl__dot" aria-hidden="true"></span>
-            <div class="svc-tl__body"><span class="svc-tl__no">02</span><h3 class="svc-tl__title">The blueprint</h3><p class="svc-tl__copy">A written plan: the look, the schedule, the vendors, the budget. One document everyone can hold and trust.</p></div>
-          </div>
-          <div class="svc-tl__step" data-tl-step>
-            <span class="svc-tl__dot" aria-hidden="true"></span>
-            <div class="svc-tl__body"><span class="svc-tl__no">03</span><h3 class="svc-tl__title">The build</h3><p class="svc-tl__copy">Months of quiet work — confirmations, fittings, tastings, walkthroughs — so the week itself feels effortless.</p></div>
-          </div>
-          <div class="svc-tl__step" data-tl-step>
-            <span class="svc-tl__dot" aria-hidden="true"></span>
-            <div class="svc-tl__body"><span class="svc-tl__no">04</span><h3 class="svc-tl__title">The day</h3><p class="svc-tl__copy">We run the clock and the crew. You are present for every moment and responsible for none of the logistics.</p></div>
-          </div>
+        </div>
+        <div class="rr-block ro-prop__note">
+          <div class="rr-block__inner"><p class="ra-t ra-body ro-prop__p"><em>In order to provide comprehensive service to our clients, we only accept a limited number of weddings and social events each year.</em></p></div>
         </div>
       </div>
     </section>
 
-    <!-- ===== CTA ===== -->
-    <section class="section section--paper" style="text-align:center">
-      <div class="container">
-        <div class="ornament" data-reveal style="margin:0 auto; max-width:220px">
-          <span class="ornament__line"></span><span class="ornament__mark">✦</span><span class="ornament__line"></span>
+    <!-- ===== Ready to begin — clone of the reference /offerings "Are you ready to begin?" section (measured @1470 + 390) =====
+         7 rows desktop / 5 mobile, 11px gaps, 3.3vmax padding, min-height 33vh with the content centred:
+         scaled script line 1/9/4/19, button 4/10/6/18 (mobile 1/2/3/10 and 3/2/6/10) -->
+    <section class="ro-begin ra-sec--s" aria-label="Are you ready to begin?">
+      <div class="rr-grid ra-grid ro-begin__grid">
+        <div class="rr-block ro-begin__head">
+          <div class="rr-block__inner">
+            <div class="rr-scaled-container"><span class="rr-scaled"><p class="rr-h1"><strong>Are you ready to begin?</strong></p></span></div>
+          </div>
         </div>
-        <h2 class="display display--md" data-reveal style="--rd:80ms; margin:18px 0 36px">Ready when<br>you <em>are</em>.</h2>
-        <a class="btn" href="contact.html" data-reveal style="--rd:200ms">Begin a conversation</a>
+        <div class="rr-block ro-begin__cta">
+          <div class="rr-button-container"><a class="rr-button" href="contact.html">Connect with our team</a></div>
+        </div>
       </div>
     </section>
 
   </main>
 
-  <script src="js/main.js?v=36"></script>
+  <script src="js/main.js?v=37"></script>
 </body>
 </html>

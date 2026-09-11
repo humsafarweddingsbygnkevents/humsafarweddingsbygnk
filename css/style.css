@@ -2274,6 +2274,211 @@ body[data-page="testimonials"] .chero__title {
 @media (prefers-reduced-motion: reduce) {
   .ro-acc__icon > span { transition: none; }
 }
+
+/* ---- Kind words: clone of the reference /offerings "KIND WORDS" section (measured @1470 + 390) ----
+   cream, 5.6vmax padding, 11px-gap grid 21 rows (35 phone); terracotta #d39567 shape laid over the photo's
+   left edge (phone: shape behind everything, photo inside it), cream monogram + eyebrow, white quote at h2 size */
+.ro-kind { position: relative; background: #f7f6ed; color: #fff; padding-block: 5.6vmax; overflow: hidden; }
+.ro-kind__grid { --rows-m: 35; --rows-d: 21; }
+.ro-kind__shape   { grid-area: 1/2/35/10;  z-index: 1; background: #d39567; }
+.ro-kind__img     { grid-area: 3/3/14/9;   z-index: 6; }
+.ro-kind__mark    { grid-area: 15/4/18/8;  z-index: 4; }
+.ro-kind__eyebrow { grid-area: 18/2/20/10; z-index: 2; justify-content: flex-end; }
+.ro-kind__quote   { grid-area: 20/3/31/9;  z-index: 5; justify-content: flex-start; }
+.ro-kind__names   { grid-area: 31/2/33/10; z-index: 3; justify-content: flex-start; }
+@media (min-width: 768px) {
+  .ro-kind__shape   { grid-area: 3/2/19/16;  z-index: 2; }
+  .ro-kind__img     { grid-area: 1/15/22/26; z-index: 1; }
+  .ro-kind__mark    { grid-area: 5/8/8/10;   z-index: 5; }
+  .ro-kind__eyebrow { grid-area: 7/3/9/15;   z-index: 4; }
+  .ro-kind__quote   { grid-area: 9/3/16/15;  z-index: 3; }
+  .ro-kind__names   { grid-area: 16/3/18/15; z-index: 6; }
+}
+/* monogram: contained in its block, tinted cream like the hero's */
+.ro-kind__mark img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: contain; object-position: 50% 50%;
+  filter: brightness(0) invert(96%) sepia(10%);
+}
+/* couple centred in the visible photo: the source is taller than the frame, so plain cover never crops sideways.
+   The image is scaled past cover and shifted so the pair (40% across the source) lands on --cx, and sits 55% down
+   the spare height. Width stays >= cx/.4 (no gap at the left) and >= frame height/1.5 (no gap at the bottom). */
+.ro-kind__img .rr-img { container-type: size; }
+.ro-kind__img .rr-img img {
+  --cx: 50cqw;
+  --w: max(calc(var(--cx) / .4), calc(100cqh / 1.5));
+  inset: auto; max-width: none;
+  width: var(--w); height: calc(var(--w) * 1.5);
+  left: calc(var(--cx) - .4 * var(--w));
+  top: calc((100cqh - var(--w) * 1.5) * .55);
+}
+@media (min-width: 768px) {
+  /* the terracotta box covers the photo's left ~7.5%, so centre on what is left visible */
+  .ro-kind__img .rr-img img { --cx: 53.75cqw; }
+}
+/* "KIND WORDS": pre at paragraph size 1.3, cream */
+.ro-kind .rr-pre {
+  color: #f7f6ed; margin: 0;
+  font-size: min(calc(.3 * 1.2vw + 1rem), max(calc(.3 * 19.2px + 1rem), 1.3rem));
+}
+@media screen and (max-width: 767px) and (orientation: portrait) {
+  .ro-kind .rr-pre { font-size: calc(.3 * .012 * min(100vh, 900px) + 1rem); }
+}
+/* quote = size 1.8 (47.75px @1470, 34.23px @390), white, centred; .975 = Beau / Newsreader 300 width ratio,
+   line box held at the reference's 1.0208em */
+.ro-kind__q {
+  --fit: .975; margin: 0; color: #fff; text-align: center;
+  line-height: calc(1.1em * (1 - var(--s) / 25) / var(--fit));
+}
+/* names: 16px italic ("All-It"), line-height 19.2px; 1.16rem because EB Garamond italic draws smaller */
+.ro-kind__by {
+  font-family: 'EB Garamond', 'Cormorant Garamond', 'Times New Roman', serif;
+  font-style: italic; font-weight: 400; font-size: 1.16rem; line-height: 19.2px; letter-spacing: .21px;
+  color: #f7f6ed; text-align: center; margin: 0;
+}
+/* ---- Custom proposal: clone of the reference /offerings "INQUIRE FOR A CUSTOM PROPOSAL" section (measured @1470 + 390) ----
+   cream, no padding, 0-gap grid 32 rows (36 phone); h1 size 3.8 + h3 size 1.8 centred in one block (2rem between),
+   sage hand-drawn underline under "full-service" (.05em), italic paragraph note below */
+.ro-prop { position: relative; background: #f7f6ed; color: #133733; overflow: hidden; }
+.ro-prop__grid { --rows-m: 36; --rows-d: 32; }
+.ro-prop__eyebrow { grid-area: 2/2/3/10;   z-index: 12; justify-content: flex-start; }
+.ro-prop__text    { grid-area: 4/2/28/10;  z-index: 11; justify-content: center; }
+.ro-prop__note    { grid-area: 30/2/35/10; z-index: 6;  justify-content: flex-start; }
+@media (min-width: 768px) {
+  .ro-prop__eyebrow { grid-area: 5/8/6/20;   z-index: 4; }
+  .ro-prop__text    { grid-area: 7/6/28/22;  z-index: 3; }
+  .ro-prop__note    { grid-area: 29/8/33/20; z-index: 2; }
+}
+/* eyebrow: pre at paragraph size 1.3 (code = Jost 500 1rem .07em uppercase) */
+.ro-prop .rr-pre {
+  margin: 0; color: #133733;
+  font-size: min(calc(.3 * 1.2vw + 1rem), max(calc(.3 * 19.2px + 1rem), 1.3rem));
+}
+@media screen and (max-width: 767px) and (orientation: portrait) {
+  .ro-prop .rr-pre { font-size: calc(.3 * .012 * min(100vh, 900px) + 1rem); }
+}
+/* h1 65.39px / h3 30.11px @1470 (44.36 / 24.10 @390); .975 = measured string-width ratio Beau / Newsreader 300,
+   line boxes held at the reference's */
+.ro-prop__h {
+  --fit: .975; color: #133733; text-align: center;
+  line-height: calc(1.1em * (1 - var(--s) / 25) / var(--fit));
+}
+/* the underline nodes are appended after the h3, so :last-child no longer zeroes its bottom margin */
+.ro-prop__h + .ro-prop__h { margin-bottom: 0; }
+/* underline: Newsreader's shorter line box puts the curve ~.02em lower under the baseline than on the reference;
+   stroke .0518em (in the HTML) = the reference's 3.25px at its rounded 65px */
+.ro-prop .rr-shape { transform: translateY(-.02em); }
+/* width ratios measured by setting the reference's own lines in these elements (Newsreader's optical sizing makes
+   them size-dependent): h1 .963 / h3 1.011 / note 1.16 on desktop. Portrait phones: h1 1.015; h3 and note are held
+   ~1% under their measured 1.032 / 1.164 so the reference's line breaks ("…tailored to", "…a limited number") fit */
+.ro-prop h1.ro-prop__h { --fit: .963; }
+.ro-prop h3.ro-prop__h { --fit: 1.011; }
+.ro-prop .ro-prop__p { --fit: 1.16; }
+@media screen and (max-width: 767px) and (orientation: portrait) {
+  .ro-prop h1.ro-prop__h { --fit: 1.015; }
+  .ro-prop h3.ro-prop__h { --fit: 1.024; }
+  .ro-prop .ro-prop__p { --fit: 1.15; }
+  /* no single h3 scale reproduces all nine reference breaks (below 1.022 "all" joins line 1, above it "to" drops
+     from line 4), so line 4 alone is tracked in by .005em (~.12px a letter) */
+  .ro-prop__snug { letter-spacing: -.005em; }
+}
+/* note: paragraph size 1.2 italic (19.53px @1470, 18.03 @390), line-height 1.2em, .21px tracking;
+   1.16 because EB Garamond italic draws smaller than Allrounder italic */
+.ro-prop__p {
+  --fit: 1.16; color: #133733; text-align: center;
+  line-height: calc(1.2em / var(--fit)); letter-spacing: calc(.0109em / var(--fit));
+}
+
+/* ---- Ready to begin: clone of the reference /offerings "Are you ready to begin?" section (measured @1470 + 390) ----
+   cream, 3.3vmax padding, min-height 33vh (border-box) with the content centred, 11px-gap grid 7 rows (5 phone);
+   script line JS-scaled to fill its block (line-height 1), sage medium button centred in its block */
+.ro-begin {
+  position: relative; box-sizing: border-box; min-height: 33vh;
+  display: flex; flex-direction: column; justify-content: center;
+  background: #f7f6ed; color: #133733;
+}
+.ro-begin__grid { --rows-m: 5; --rows-d: 7; width: 100%; }
+.ro-begin__head { grid-area: 1/2/3/10; z-index: 1; justify-content: flex-start; }
+.ro-begin__cta  { grid-area: 3/2/6/10; z-index: 2; justify-content: center; }
+@media (min-width: 768px) {
+  .ro-begin__head { grid-area: 1/9/4/19; }
+  .ro-begin__cta  { grid-area: 4/10/6/18; }
+}
+.ro-begin .rr-h1, .ro-begin .rr-h1 strong { font-family: var(--script); font-weight: 400; color: #133733; }
+/* Allison's swashes ink ~2.7% past the scaled text box and sit higher than Kallimata's; scale the drawn line back to the
+   reference's ink width (582px @1470, 342 @390) and centre it on the reference ink (measured from screenshots).
+   A transform leaves the width the scaling script measures untouched */
+.ro-begin .rr-h1 { transform: translateY(.066em) scale(.973); transform-origin: 50% 50%; }
+/* button: reference futura-pt 16px uppercase .32px, 19.2px / 38.4px padding, 19px line box (273.1 × 57.4), centred —
+   also on phones, where the shared container rule would stack and stretch it. Jost inks ~5% bigger than futura-pt at
+   the same px (204 × 12 vs 194 × 11 for this label), so 15.2px reproduces the reference's drawn text and button width */
+.ro-begin .rr-button-container { flex-direction: row; justify-content: center; text-align: center; }
+.ro-begin .rr-button { font-size: 15.2px; letter-spacing: .32px; line-height: 19px; text-align: center; }
+
+/* ---- Planning / Decoration / Entertainment: clones of the reference /offerings "DITCH THE ANXIETY" section (measured @1470 + 390) ----
+   cream, .1vmax padding, 0-gap grid 31 rows (49 phone): photo, oval mark, eyebrow, h3 size 1.8 with one script word and a
+   paragraph size 1.2 below it. --flip mirrors the desktop columns (photo right, text left); phones stack the same way for all */
+.ro-svc { position: relative; background: #f7f6ed; color: #133733; overflow: hidden; }
+.ro-svc__grid { --rows-m: 49; --rows-d: 31; }
+.ro-svc__img     { grid-area: 3/2/24/10;  z-index: 18; justify-content: center; }
+.ro-svc__mark    { grid-area: 26/2/32/10; z-index: 19; justify-content: center; align-items: center; }
+.ro-svc__eyebrow { grid-area: 33/2/34/10; z-index: 10; justify-content: flex-start; }
+.ro-svc__text    { grid-area: 35/2/48/10; z-index: 8;  justify-content: flex-start; }
+@media (min-width: 768px) {
+  .ro-svc__img     { grid-area: 3/2/30/14;   z-index: 3; }
+  .ro-svc__mark    { grid-area: 8/17/13/23;  z-index: 5; }
+  .ro-svc__eyebrow { grid-area: 14/16/15/24; z-index: 4; justify-content: center; }
+  .ro-svc__text    { grid-area: 16/15/27/25; z-index: 2; justify-content: center; }
+  .ro-svc--flip .ro-svc__img     { grid-area: 3/14/30/26; }
+  .ro-svc--flip .ro-svc__mark    { grid-area: 8/5/13/11; }
+  .ro-svc--flip .ro-svc__eyebrow { grid-area: 14/4/15/12; }
+  .ro-svc--flip .ro-svc__text    { grid-area: 16/3/27/13; }
+}
+/* section title above the monogram (added for Humsafar, not in the reference): heading size 1.8 like the process
+   accordion titles, Newsreader 300, centred on the text column, bottom-aligned one row above the logo (phone: in the
+   two rows between photo and logo) */
+.ro-svc__title { grid-area: 24/2/26/10; z-index: 20; justify-content: center; padding-block: 12px; }
+@media (min-width: 768px) {
+  .ro-svc__title { grid-area: 4/15/7/25; z-index: 6; justify-content: flex-end; padding-block: 0; }
+  .ro-svc--flip .ro-svc__title { grid-area: 4/3/7/13; }
+}
+.ro-svc__t {
+  --fit: .975; margin: 0; color: #133733; text-align: center;
+  line-height: calc(1.1em * (1 - var(--s) / 25) / var(--fit));
+}
+/* monogram in the reference's logo block (no oval ring, per the user): the Humsafar mark contained in the whole block
+   (≈251 × 151.6 @1470), ink #133733 */
+.ro-svc__logo {
+  display: block; width: 100%; height: 100%;
+  background: #133733;
+  -webkit-mask: url(../images/hw-logo.png) center / contain no-repeat; mask: url(../images/hw-logo.png) center / contain no-repeat;
+}
+/* eyebrow: reference scaled text, futura-pt 500 .07em uppercase, one line — 18.4px @1470 (1.2517vw), 13.4px @390 (3.436vw);
+   --eb-fit corrects Jost's drawn width to futura-pt's */
+.ro-svc .rr-pre { --eb-fit: .911; margin: 0; white-space: nowrap; line-height: 1em; font-size: calc(var(--eb-fit) * 1.2517vw); }
+.ro-svc .rr-pre code { font-size: 1em; line-height: 1em; }
+@media (max-width: 767px) {
+  .ro-svc .rr-pre { font-size: calc(var(--eb-fit) * 3.436vw); }
+}
+/* h3 30.11px / 32.06px @1470 (24.10 / 25.66 @390), centred, 2rem to the paragraph; script word at the same px in the
+   reference (Kallimata) — --script-fit scales Allison to the reference word's width, line-height 0 keeps the line box */
+/* fits measured by setting the reference's own lines in these elements at its px sizes:
+   h3 1.026 / p 1.201 / eyebrow .911 / script word 1.546 on desktop; h3 1.043 / p 1.209 on portrait phones */
+.ro-svc__h {
+  --fit: 1.026; --script-fit: 1.546; color: #133733; text-align: center;
+  line-height: calc(1.1em * (1 - var(--s) / 25) / var(--fit));
+}
+.ro-svc__h strong { font-family: var(--script); font-weight: 400; font-size: calc(var(--script-fit) * 1em); line-height: 0; }
+/* paragraph 19.53px / 23.43px, .21px tracking @1470 (18.03 / 21.63 @390), centred */
+.ro-svc__p {
+  --fit: 1.201; color: #133733; text-align: center;
+  line-height: calc(1.2em / var(--fit)); letter-spacing: calc(.0109em / var(--fit));
+}
+@media screen and (max-width: 767px) and (orientation: portrait) {
+  .ro-svc__h { --fit: 1.043; }
+  .ro-svc__p { --fit: 1.209; }
+}
+
 /* anchor jumps land below the fixed nav */
 .off-chapter { scroll-margin-top: var(--nav-h, 73px); }
 @media (min-width: 981px) {
