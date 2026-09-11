@@ -467,6 +467,37 @@
     });
   }
 
+  /* ---------- Offerings process accordion: reference behaviour (several may be open, 250ms height ease) ---------- */
+  function setupROAcc() {
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    [].slice.call(document.querySelectorAll("[data-ro-acc] .ro-acc__item")).forEach(function (item) {
+      var btn = item.querySelector(".ro-acc__btn");
+      var dd = item.querySelector(".ro-acc__dd");
+      var timer = 0;
+      btn.addEventListener("click", function () {
+        var open = item.getAttribute("data-open") !== "true";
+        clearTimeout(timer);
+        dd.style.removeProperty("transition");
+        dd.style.removeProperty("height");
+        var from, to;
+        if (open) { dd.classList.add("is-open"); from = 0; to = dd.getBoundingClientRect().height; }
+        else { from = dd.getBoundingClientRect().height; to = 0; }
+        item.setAttribute("data-open", open ? "true" : "false");
+        btn.setAttribute("aria-expanded", open ? "true" : "false");
+        if (reduce) { if (!open) dd.classList.remove("is-open"); return; }
+        dd.style.height = from + "px";
+        dd.getBoundingClientRect();
+        dd.style.transition = "height 250ms cubic-bezier(0.66, 0, 0.34, 1)";
+        dd.style.height = to + "px";
+        timer = setTimeout(function () {
+          if (!open) dd.classList.remove("is-open");
+          dd.style.removeProperty("height");
+          dd.style.removeProperty("transition");
+        }, 250);
+      });
+    });
+  }
+
   /* ---------- Scroll-activated timeline (How it unfolds) ---------- */
   function setupTimeline() {
     var lines = [].slice.call(document.querySelectorAll("[data-timeline]"));
@@ -887,6 +918,7 @@
     setupReveal();
     setupTypewriter();
     setupAccordion();
+    setupROAcc();
     setupTimeline();
     setupScroll(nav);
     setupNavGlass(nav);

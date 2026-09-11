@@ -2229,6 +2229,51 @@ body[data-page="testimonials"] .chero__title {
 .ro-full__list .rr-pre a:hover { color: #728763; }
 /* closing italic line: paragraph size 1.3, margin-top 1rem; ×1.19 because EB Garamond draws smaller than Allrounder */
 .ro-full__close { --fit: 1.19; color: #133733; }
+
+/* ---- Process accordion: clone of the reference /offerings third section (measured @1470 + 390) ----
+   cream, 3.3vmax padding, 11px-gap grid 15 rows (9 phone); Squarespace accordion block: 1px dividers and a
+   24px / 1px plus in rgb(82,118,114), 15px title padding, description margin 16px + 30px bottom, min 70% wide */
+.ro-acc { position: relative; background: #f7f6ed; color: #133733; }
+.ro-acc__grid { --rows-m: 9; --rows-d: 15; }
+.ro-acc__block { grid-area: 2/2/9/10; justify-content: flex-start; }
+@media (min-width: 768px) {
+  .ro-acc__block { grid-area: 1/2/16/26; }
+}
+.ro-acc__list { list-style: none; margin: 0; padding: 0; }
+.ro-acc__item { position: relative; margin: 0; padding: 0; border-bottom: 1px solid rgb(82,118,114); }
+.ro-acc__item:first-child { border-top: 1px solid rgb(82,118,114); }
+.ro-acc__h { margin: 0; padding: 0; font: inherit; }
+.ro-acc__btn {
+  display: flex; align-items: center; justify-content: space-between; width: 100%; box-sizing: border-box;
+  margin: 0; padding: 15px 0; background: transparent; border: 0; color: inherit; font: inherit;
+  text-align: left; cursor: pointer; touch-action: manipulation; -webkit-appearance: none; appearance: none;
+}
+.ro-acc__btn:focus-visible { outline: 2px solid currentColor; outline-offset: -2px; }
+/* title = size 1.8 (47.75px @1470); .975 = measured string-width ratio Beau / Newsreader 300;
+   line box held at the reference span's 54px (1.135× its size) */
+.ro-acc__title {
+  --fit: .975; flex: 1; overflow: hidden; margin: 0; padding-right: 24px;
+  color: #133733; white-space: normal; line-height: calc(1.135em / var(--fit));
+}
+.ro-acc__icon { position: relative; flex: none; width: 24px; height: 24px; color: rgb(82,118,114); }
+.ro-acc__icon > span {
+  position: absolute; left: 0; top: 50%; width: 100%; height: 1px; margin-top: -.5px;
+  background: currentColor; transition: transform .25s;
+}
+.ro-acc__icon > span + span { transform: rotate(90deg); }
+.ro-acc__item[data-open="true"] .ro-acc__icon > span + span { transform: rotate(0deg); }
+.ro-acc__dd { display: none; overflow: hidden; box-sizing: border-box; }
+.ro-acc__dd.is-open { display: block; }
+.ro-acc__desc { box-sizing: border-box; max-width: 300px; min-width: 70%; margin: 16px 0; padding: 0 0 30px; }
+/* paragraph = size 1.2 (19.53px @1470); 1.18 = measured string-width ratio All / EB Garamond;
+   line-height and tracking held at the reference's 23.43px / .21px */
+.ro-acc__desc .ra-body {
+  --fit: 1.18; margin: 0; color: #133733;
+  line-height: calc(1.2em / var(--fit)); letter-spacing: calc(.0109em / var(--fit));
+}
+@media (prefers-reduced-motion: reduce) {
+  .ro-acc__icon > span { transition: none; }
+}
 /* anchor jumps land below the fixed nav */
 .off-chapter { scroll-margin-top: var(--nav-h, 73px); }
 @media (min-width: 981px) {

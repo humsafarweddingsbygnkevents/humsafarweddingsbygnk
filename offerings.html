@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Allison&family=Cinzel:wght@500;600&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=76">
+  <link rel="stylesheet" href="css/style.css?v=78">
   <link rel="icon" href="images/hw-logo.png">
 </head>
 <body data-page="offerings" data-nav="solid">
@@ -79,49 +79,69 @@
         </div>
       </section>
 
-      <section class="section section--cream svc-offer">
-        <div class="container">
-          <div class="svc-offer__head">
-            <div class="eyebrow svc-lead__eyebrow" data-reveal>What we handle</div>
-            <h2 class="svc-offer__title" data-reveal style="--rd:120ms">Six desks, <em>one</em> standard.</h2>
-          </div>
-          <div class="svc-acc" data-accordion data-reveal>
-            <div class="svc-acc__row" data-acc-item>
-              <button class="svc-acc__head" type="button" aria-expanded="false">
-                <span class="svc-acc__no">01</span><span class="svc-acc__title">Vendor curation</span><span class="svc-acc__icon" aria-hidden="true"></span>
-              </button>
-              <div class="svc-acc__panel"><div class="svc-acc__inner"><p class="svc-acc__copy">Photographers, caterers, priests, designers and venues — vetted, negotiated, then managed to the contract.</p></div></div>
-            </div>
-            <div class="svc-acc__row" data-acc-item>
-              <button class="svc-acc__head" type="button" aria-expanded="false">
-                <span class="svc-acc__no">02</span><span class="svc-acc__title">Guest hospitality</span><span class="svc-acc__icon" aria-hidden="true"></span>
-              </button>
-              <div class="svc-acc__panel"><div class="svc-acc__inner"><p class="svc-acc__copy">Invitations, room blocks, airport pickups, welcome hampers and the cup of chai the moment they land.</p></div></div>
-            </div>
-            <div class="svc-acc__row" data-acc-item>
-              <button class="svc-acc__head" type="button" aria-expanded="false">
-                <span class="svc-acc__no">03</span><span class="svc-acc__title">Design direction</span><span class="svc-acc__icon" aria-hidden="true"></span>
-              </button>
-              <div class="svc-acc__panel"><div class="svc-acc__inner"><p class="svc-acc__copy">One look carried across every function, from the mehndi courtyard to the reception stage.</p></div></div>
-            </div>
-            <div class="svc-acc__row" data-acc-item>
-              <button class="svc-acc__head" type="button" aria-expanded="false">
-                <span class="svc-acc__no">04</span><span class="svc-acc__title">Budget, in the open</span><span class="svc-acc__icon" aria-hidden="true"></span>
-              </button>
-              <div class="svc-acc__panel"><div class="svc-acc__inner"><p class="svc-acc__copy">A single plainly-written budget. Every line agreed before it is spent, and nothing buried in the small print.</p></div></div>
-            </div>
-            <div class="svc-acc__row" data-acc-item>
-              <button class="svc-acc__head" type="button" aria-expanded="false">
-                <span class="svc-acc__no">05</span><span class="svc-acc__title">Run of show</span><span class="svc-acc__icon" aria-hidden="true"></span>
-              </button>
-              <div class="svc-acc__panel"><div class="svc-acc__inner"><p class="svc-acc__copy">Minute-by-minute timelines built around the muhurat, the meals and the families — never against them.</p></div></div>
-            </div>
-            <div class="svc-acc__row" data-acc-item>
-              <button class="svc-acc__head" type="button" aria-expanded="false">
-                <span class="svc-acc__no">06</span><span class="svc-acc__title">On-ground production</span><span class="svc-acc__icon" aria-hidden="true"></span>
-              </button>
-              <div class="svc-acc__panel"><div class="svc-acc__inner"><p class="svc-acc__copy">A planner in the room and a briefed crew on every function, so nothing on the day ever waits on you.</p></div></div>
-            </div>
+      <!-- ===== Process accordion — clone of the reference /offerings third section (measured @1470 + 390) =====
+           15 rows desktop / 9 mobile, 11px gaps, 3.3vmax padding: accordion 1/2/16/26 (mobile 2/2/9/10);
+           multiple items may be open, the first starts open -->
+      <section class="ro-acc ra-sec--s" aria-label="Our process">
+        <div class="rr-grid ra-grid ro-acc__grid">
+          <div class="rr-block ro-acc__block">
+            <ul class="ro-acc__list" data-ro-acc>
+              <li class="ro-acc__item" data-open="true">
+                <h2 class="ro-acc__h">
+                  <button class="ro-acc__btn" type="button" id="ro-acc-btn-1" aria-expanded="true" aria-controls="ro-acc-dd-1">
+                    <span class="ro-acc__title ra-t ra-serif ra-h2">01. Discovery &amp; Preparation</span>
+                    <span class="ro-acc__icon" aria-hidden="true"><span></span><span></span></span>
+                  </button>
+                </h2>
+                <div class="ro-acc__dd is-open" id="ro-acc-dd-1" role="region" aria-labelledby="ro-acc-btn-1">
+                  <div class="ro-acc__desc"><p class="ra-t ra-body">Our unique approach to planning and designing your wedding begins with getting to know the two of you. You bring your dreams, wishes, excitement (and worries!), thoughts, and ideas to the table and we’ll kindle a little spark that begins the process. Together we will define the parameters of your expectations and then our team will set out on a course to exceed them.</p></div>
+                </div>
+              </li>
+              <li class="ro-acc__item" data-open="false">
+                <h2 class="ro-acc__h">
+                  <button class="ro-acc__btn" type="button" id="ro-acc-btn-2" aria-expanded="false" aria-controls="ro-acc-dd-2">
+                    <span class="ro-acc__title ra-t ra-serif ra-h2">02. Research, Development, &amp; Sourcing</span>
+                    <span class="ro-acc__icon" aria-hidden="true"><span></span><span></span></span>
+                  </button>
+                </h2>
+                <div class="ro-acc__dd" id="ro-acc-dd-2" role="region" aria-labelledby="ro-acc-btn-2">
+                  <div class="ro-acc__desc"><p class="ra-t ra-body">No matter how grand or intimate the scope of your wedding, our work begins with the preparation of an itemized set of budget estimates that are grounded in our experience, our research, and your priorities. From there we’ll conduct extensive site research, source the talent, review/negotiate contracts, and ultimately curate a top-notch team of venue/vendor partners and professionals best suited to help us bring the vision to life.</p></div>
+                </div>
+              </li>
+              <li class="ro-acc__item" data-open="false">
+                <h2 class="ro-acc__h">
+                  <button class="ro-acc__btn" type="button" id="ro-acc-btn-3" aria-expanded="false" aria-controls="ro-acc-dd-3">
+                    <span class="ro-acc__title ra-t ra-serif ra-h2">03. Design &amp; Editing</span>
+                    <span class="ro-acc__icon" aria-hidden="true"><span></span><span></span></span>
+                  </button>
+                </h2>
+                <div class="ro-acc__dd" id="ro-acc-dd-3" role="region" aria-labelledby="ro-acc-btn-3">
+                  <div class="ro-acc__desc"><p class="ra-t ra-body">When you work with RRE, you’re not just working with a wedding planner. You’ll have one of the most comprehensively capable creative teams in the industry in your corner, and you’ll know that the same people conceptualizing every facet of your wedding design will have their hands on the end result. Our event design process doesn’t stop at sketches and ideas on a screen or notepad so that we can hand it off to someone else. We’ll actually bring it to life with our floral design team, original graphic design and print production, our vast network of suppliers and production partners, and a highly sophisticated creative process that leaves no detail left untouched.</p></div>
+                </div>
+              </li>
+              <li class="ro-acc__item" data-open="false">
+                <h2 class="ro-acc__h">
+                  <button class="ro-acc__btn" type="button" id="ro-acc-btn-4" aria-expanded="false" aria-controls="ro-acc-dd-4">
+                    <span class="ro-acc__title ra-t ra-serif ra-h2">04. Logistical Planning</span>
+                    <span class="ro-acc__icon" aria-hidden="true"><span></span><span></span></span>
+                  </button>
+                </h2>
+                <div class="ro-acc__dd" id="ro-acc-dd-4" role="region" aria-labelledby="ro-acc-btn-4">
+                  <div class="ro-acc__desc"><p class="ra-t ra-body">Lots of behind-the-scenes orchestration, good ole’ fashioned elbow grease, anticipation, and planning thousands of details – large and small. Emails, phone calls, meetings, and collaboration with some of the finest creative partners and talent our industry has to offer. You can expect that our team will likely devote upwards of 500-700 hours of focused expertise on your wedding, before we even reach the week of the wedding.</p></div>
+                </div>
+              </li>
+              <li class="ro-acc__item" data-open="false">
+                <h2 class="ro-acc__h">
+                  <button class="ro-acc__btn" type="button" id="ro-acc-btn-5" aria-expanded="false" aria-controls="ro-acc-dd-5">
+                    <span class="ro-acc__title ra-t ra-serif ra-h2">05. Orchestration &amp; Execution</span>
+                    <span class="ro-acc__icon" aria-hidden="true"><span></span><span></span></span>
+                  </button>
+                </h2>
+                <div class="ro-acc__dd" id="ro-acc-dd-5" role="region" aria-labelledby="ro-acc-btn-5">
+                  <div class="ro-acc__desc"><p class="ra-t ra-body">The weekend arrives, and all at once, those thousands of details fall into place – not by chance, but because we move mountains to ensure they do so with precision, grace, and a carefully choreographed cadence. We’ll bend over backward to give you the time of your lives, and we’ll be celebrating your marriage every single step of the way.</p></div>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
       </section>
@@ -306,6 +326,6 @@
 
   </main>
 
-  <script src="js/main.js?v=35"></script>
+  <script src="js/main.js?v=36"></script>
 </body>
 </html>
