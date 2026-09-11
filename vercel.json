@@ -2,6 +2,11 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": false,
   "trailingSlash": false,
+  "redirects": [
+    { "source": "/service-wedding-planning.html", "destination": "/offerings.html#planning", "permanent": true },
+    { "source": "/service-decoration.html", "destination": "/offerings.html#decoration", "permanent": true },
+    { "source": "/service-entertainment.html", "destination": "/offerings.html#entertainment", "permanent": true }
+  ],
   "headers": [
     {
       "source": "/(.*)\\.html",

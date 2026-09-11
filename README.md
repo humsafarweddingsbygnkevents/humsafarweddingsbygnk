@@ -17,9 +17,7 @@ python3 -m http.server 8000
 |---|---|
 | `index.html` | Homepage |
 | `about.html` | About |
-| `service-wedding-planning.html` | Services → Wedding Planning |
-| `service-decoration.html` | Services → Decoration |
-| `service-entertainment.html` | Services → Entertainment |
+| `offerings.html` | Offerings — Wedding Planning, Decoration and Entertainment on one page (`#planning`, `#decoration`, `#entertainment`; the old `service-*.html` URLs redirect here via `vercel.json`) |
 | `gallery.html` | Gallery |
 | `testimonials.html` | Testimonials |
 | `contact.html` | Contact → Client (enquiry form, studio address, map) |

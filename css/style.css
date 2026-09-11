@@ -194,6 +194,12 @@ h1, h2, h3, p { margin: 0; }
 .nav[data-scrolled="1"] .nav__wordmark { color: var(--gold-light); letter-spacing: .34em; }
 .nav[data-tone="solid"] .nav__link,
 .nav[data-scrolled="1"] .nav__link { color: #efe9d8; }
+/* see-through bar while a photo hero ([data-nav-glass]) is under it; back to solid green once the page below reaches the bar */
+.nav[data-glass="1"]:not([data-open="1"]) {
+  background-color: color-mix(in srgb, var(--ink) 35%, transparent);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  border-bottom-color: rgba(239,233,216,.14);
+}
 
 /* mobile menu button */
 .nav__toggle { display: none; background: none; border: 0; cursor: pointer; padding: 8px; color: inherit; }
@@ -2115,4 +2121,118 @@ body[data-page="testimonials"] .chero__title {
 @media (max-width: 520px) {
   .tcare__grid { grid-template-columns: 1fr; }
   .tcare__band-div { display: none; }
+}
+
+/* ============================================================
+   Offerings page — planning, decoration and entertainment on one page
+   (reuses the .svc-* blocks; each chapter sets its own --svc-accent)
+   ============================================================ */
+/* ---- Hero: clone of the reference /offerings first section (Playwright-measured @1470×923 + 390×844) ----
+   section = 100vh, padding 20vmax / 2vmax, content bottom-aligned, no photo tint (reference overlay opacity 0) */
+.ro-hero {
+  position: relative; isolation: isolate; overflow: hidden; box-sizing: border-box;
+  min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end;
+  padding-top: 20vmax; padding-bottom: 2vmax;
+  background: #133733; color: #fff;
+}
+.ro-hero__bg { position: absolute; inset: 0; z-index: -1; }
+.ro-hero__bg img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; display: block; }
+/* the reference text sits on dark water; our photo is bright at the bottom, so a soft bottom fade keeps the white text as legible */
+.ro-hero__bg::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(to top, rgba(8,16,14,.72) 0%, rgba(8,16,14,.45) 22%, rgba(8,16,14,0) 48%);
+}
+.ro-hero__grid { --rows-m: 9; --rows-d: 15; width: 100%; }
+.ro-hero__text    { grid-area: 1/2/3/10;  z-index: 15; display: none; }
+.ro-hero__mark    { grid-area: 3/5/9/7;   z-index: 14; }
+.ro-hero__eyebrow { grid-area: 8/2/10/10; z-index: 13; justify-content: center; }
+@media (min-width: 768px) {
+  .ro-hero__text    { grid-area: 11/18/16/26; z-index: 7; display: flex; }
+  .ro-hero__mark    { grid-area: 11/13/14/15; z-index: 6; }
+  .ro-hero__eyebrow { grid-area: 14/8/16/20;  z-index: 5; }
+}
+/* monogram: white, contained in its block (reference monogram is white) */
+.ro-hero__mark img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: contain; object-position: 50% 50%;
+  filter: brightness(0) invert(96%) sepia(10%); /* cream, like the reference monogram */
+}
+/* intro: small paragraph, line-height 19.2px (1.2 × 1rem), centred, white.
+   1.1rem matches the reference's drawn glyph width (7.5px/char) in EB Garamond */
+.ro-hero__p {
+  font-family: 'EB Garamond', 'Cormorant Garamond', 'Times New Roman', serif;
+  font-weight: 400; font-size: 1.1rem; line-height: 1.2rem; letter-spacing: .21px;
+  color: #fff; text-align: center; margin: 0;
+}
+/* "OUR OFFERINGS ⌄": pre at paragraph size 1.3 (line-height .7em), code = Jost 500 1rem .07em uppercase */
+.ro-hero .rr-pre {
+  color: #fff; margin: 0;
+  font-size: min(calc(.3 * 1.2vw + 1rem), max(calc(.3 * 19.2px + 1rem), 1.3rem));
+}
+@media screen and (max-width: 767px) and (orientation: portrait) {
+  .ro-hero .rr-pre { font-size: calc(.3 * .012 * min(100vh, 900px) + 1rem); }
+}
+@media (max-width: 767px) {
+  .ro-hero { padding-bottom: .925vmax; } /* reference phone: 7.8px @844 */
+}
+
+/* ---- Full-service approach: clone of the reference /offerings second section (measured @1470 + 390) ----
+   cream section, .1vmax padding, 0-gap fluid grid 48 rows (64 phone) */
+.ro-full { position: relative; background: #f7f6ed; color: #133733; padding-block: .1vmax; overflow: hidden; }
+.ro-full__grid { --rows-m: 64; --rows-d: 48; }
+.ro-full__img  { grid-area: 2/2/22/10;  z-index: 20; justify-content: center; }
+.ro-full__head { grid-area: 23/2/25/10; z-index: 3;  justify-content: flex-start; }
+.ro-full__text { grid-area: 26/2/64/10; z-index: 2;  justify-content: flex-start; }
+@media (min-width: 768px) {
+  .ro-full__img  { grid-area: 9/15/44/26; z-index: 2; }
+  .ro-full__head { grid-area: 7/2/13/22;  z-index: 3; }
+  .ro-full__text { grid-area: 14/2/47/14; z-index: 1; }
+}
+.ro-full .rr-block__inner > :first-child { margin-top: 0; }
+.ro-full .rr-block__inner > :last-child  { margin-bottom: 0; }
+/* scaled heading lines (JS fits each to the block width); the bold word is the script font */
+/* Allison draws ~2.9em wide for "Full-Service" vs the reference Kallimata's 4.25em, so it is enlarged 1.45×
+   (line-height 0 keeps the line box at the serif's height); the JS fit then brings the line back to ≈ the reference size */
+.ro-full .rr-h1 strong { font-family: var(--script); font-weight: 400; font-size: 1.45em; line-height: 0; }
+/* the enlarged script's top swash ran into line 1's descenders: small gap between the two lines */
+.ro-full__head .rr-scaled-container + .rr-scaled-container { margin-top: max(6px, 1.1vw); }
+/* desktop: "Approach" crosses the photo's top edge; the reference photo is a bright wall there, ours is dark foliage,
+   so a soft cream fade over the top of the photo keeps the ink-green letters readable */
+@media (min-width: 768px) {
+  .ro-full__img .rr-img::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(to bottom, rgba(247,246,237,.9) 0%, rgba(247,246,237,.72) 10%, rgba(247,246,237,0) 22%);
+  }
+}
+/* h2 47.8px / h3 30.1px @1470 (Beaufort → Newsreader 300, .936 glyph-width fit), margins 2rem */
+.ro-full .ra-serif { color: #133733; text-align: left; }
+.ro-full .ra-h2, .ro-full .ra-h3 { --fit: .936; }
+/* list: paragraph size 1.3 (21.3px @1470), 40px indent, disc bullets; items are pre > code
+   (Jost 500 1rem .07em uppercase, pre line-height .7em, .5em between items) */
+.ro-full__list {
+  --p13: min(calc(.3 * 1.2vw + 1rem), max(calc(.3 * 19.2px + 1rem), 1.3rem));
+  font-family: 'EB Garamond', 'Times New Roman', serif; font-size: var(--p13);
+  line-height: 1.2em; letter-spacing: .01em; color: #133733;
+  margin: 1em 0; padding: 0 0 0 40px; list-style: none;
+}
+@media screen and (max-width: 767px) and (orientation: portrait) {
+  .ro-full__list { --p13: calc(.3 * .012 * min(100vh, 900px) + 1rem); }
+}
+/* bullet drawn beside the first code line (a native marker adds its own line box and makes each item 5px taller) */
+.ro-full__list li { position: relative; margin: 0; padding: 0; }
+.ro-full__list li::before {
+  content: "\2022"; position: absolute; left: -24px; top: 0;
+  font-size: 1em; line-height: 20.8px; color: #133733;
+}
+.ro-full__list .rr-pre { font-size: 1em; margin: .5em 0; text-align: left; }
+.ro-full__list .rr-pre a { color: inherit; text-decoration: underline; text-underline-offset: .2em; text-decoration-thickness: 1px; }
+.ro-full__list .rr-pre a:hover { color: #728763; }
+/* closing italic line: paragraph size 1.3, margin-top 1rem; ×1.19 because EB Garamond draws smaller than Allrounder */
+.ro-full__close { --fit: 1.19; color: #133733; }
+/* anchor jumps land below the fixed nav */
+.off-chapter { scroll-margin-top: var(--nav-h, 73px); }
+@media (min-width: 981px) {
+  .svc-intro__grid--flip { grid-template-columns: 1fr 1.02fr; }
+  .svc-intro__grid--flip .svc-figure { order: 2; transform: rotate(1.1deg); }
+  .svc-intro__grid--flip .svc-figure:hover { transform: rotate(0deg) translateY(-6px); }
 }

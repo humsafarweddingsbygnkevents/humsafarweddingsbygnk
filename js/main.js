@@ -14,10 +14,10 @@
   /* ---- Site config: edit nav + brand here, once ---- */
   var NAV_LEFT = [
     { label: "About", href: "about.html", page: "about" },
-    { label: "Services", children: [
-      { label: "Wedding Planning", href: "service-wedding-planning.html", desc: "The whole celebration, conducted" },
-      { label: "Decoration", href: "service-decoration.html", desc: "Sets that earn the camera" },
-      { label: "Entertainment", href: "service-entertainment.html", desc: "The sound of the night" }
+    { label: "Offerings", href: "offerings.html", page: "offerings", children: [
+      { label: "Wedding Planning", href: "offerings.html#planning", desc: "The whole celebration, conducted" },
+      { label: "Decoration", href: "offerings.html#decoration", desc: "Sets that earn the camera" },
+      { label: "Entertainment", href: "offerings.html#entertainment", desc: "The sound of the night" }
     ] },
     { label: "Gallery", href: "gallery.html", page: "gallery" }
   ];
@@ -261,6 +261,23 @@
       if (!ticking) { window.requestAnimationFrame(onScroll); ticking = true; }
     }, { passive: true });
     onScroll();
+  }
+
+  /* ---------- See-through nav over a photo hero ([data-nav-glass]) ----------
+     translucent while the hero is still under the bar; solid again once the next section reaches it */
+  function setupNavGlass(nav) {
+    var hero = document.querySelector("[data-nav-glass]");
+    if (!hero) return;
+    var ticking = false;
+    function update() {
+      ticking = false;
+      nav.setAttribute("data-glass", hero.getBoundingClientRect().bottom > nav.offsetHeight ? "1" : "0");
+    }
+    window.addEventListener("scroll", function () {
+      if (!ticking) { ticking = true; window.requestAnimationFrame(update); }
+    }, { passive: true });
+    window.addEventListener("resize", update);
+    update();
   }
 
   /* ---------- Mobile menu ---------- */
@@ -872,6 +889,7 @@
     setupAccordion();
     setupTimeline();
     setupScroll(nav);
+    setupNavGlass(nav);
     setupMenu(nav);
     setupHeroSlideshow();
     setupForm();
