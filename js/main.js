@@ -27,6 +27,7 @@
   ];
   var WORDMARK = "HUMSAFAR WEDDINGS";
   var TAGLINE = "By GNK Events";
+  var FOOTER_TAGLINE = "By GnK Events"; // footer wordmark keeps mixed case (not uppercased)
 
   /* ---- Footer config: edit links + contact here, once ---- */
   var CONTACT = {
@@ -91,46 +92,78 @@
   }
 
   /* ---------- Shared footer ---------- */
+  var FOOTER_STRIP = [
+    { src: "images/gallery/web/ADA00716.jpg", alt: "Bride in a yellow lehenga before a marigold haldi backdrop" },
+    { src: "images/gallery/web/ADA00833.jpg", alt: "Bride and a young cousin in turbans and sunglasses at the haldi" },
+    { src: "images/gallery/web/ADA00823.jpg", alt: "Guests in yellow singing and clapping at the haldi ceremony" },
+    { src: "images/gallery/web/ADA08612.jpg", alt: "Whimsical floral mehndi decor with a swing and flamingo accents" },
+    { src: "images/gallery/web/ADA08736.jpg", alt: "A guest dancing in white before a floral dreamcatcher backdrop" },
+    { src: "images/gallery/web/ADA08746.jpg", alt: "Family exchanging blessings under hanging flowers" },
+    { src: "images/gallery/web/ADA08779.jpg", alt: "Crowd dancing with pink and yellow napkins under floral decor" },
+    { src: "images/gallery/web/ADA08704.jpg", alt: "Lounge seating with floral printed cushions in a tropical setting" },
+    { src: "images/gallery/web/ADA01554-hero.jpg", alt: "A bride and groom on a red-and-white floral wedding stage under chandeliers" }
+  ];
+  var FOOTER_NAV = [
+    [{ label: "Home", href: "index.html" }, { label: "Contact", href: "contact.html" }],
+    [{ label: "Offerings", href: "offerings.html" }, { label: "About", href: "about.html" }],
+    [{ label: "Gallery", href: "gallery.html" }, { label: "Testimonials", href: "testimonials.html" }]
+  ];
+  var ICONS = {
+    Instagram: '<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r=".9" fill="currentColor" stroke="none"/></svg>',
+    WhatsApp: '<svg viewBox="0 0 24 24"><path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 5 5L19 13l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>'
+  };
+
   function buildFooter() {
     var footer = document.createElement("footer");
     footer.className = "footer";
     var year = new Date().getFullYear();
     var instagram = SOCIAL.filter(function (s) { return s.label === "Instagram"; })[0];
+    var whatsapp = SOCIAL.filter(function (s) { return s.label === "WhatsApp"; })[0];
 
     footer.innerHTML =
+      /* ---- row 1: giant wordmark ---- */
+      '<div class="footer__top">' +
+        '<a class="footer__wordmark" href="index.html">' +
+          '<span class="footer__wordmark-main">' + WORDMARK + "</span>" +
+          '<span class="footer__wordmark-sub">' + FOOTER_TAGLINE + "</span>" +
+        "</a>" +
+      "</div>" +
+
+      /* ---- row 2: nine-photo strip ---- */
+      '<div class="footer__strip" aria-hidden="true">' +
+        FOOTER_STRIP.map(function (p) {
+          return '<div class="footer__frame"><img src="' + p.src + '" alt="' + p.alt + '" loading="lazy" decoding="async"></div>';
+        }).join("") +
+      "</div>" +
+
       '<div class="container">' +
 
-        /* ---- row 1: brand lockup + one invitation ---- */
-        '<div class="footer__top">' +
-          '<a class="footer__wordmark" href="index.html">' +
-            '<img class="footer__logo" src="images/hw-logo.png" alt="">' +
-            '<span class="footer__brand-text">' +
-              '<span class="footer__brand-main">' + WORDMARK + "</span>" +
-              '<span class="footer__brand-sub">' + TAGLINE + "</span>" +
-            "</span>" +
-          "</a>" +
-          '<div class="footer__invite">' +
-            '<p class="footer__invite-line">Tell us about your wedding.</p>' +
-            '<a class="footer__cta" href="contact.html">Begin a conversation</a>' +
-          "</div>" +
-        "</div>" +
-
-        /* ---- row 2: direct contact ---- */
+        /* ---- row 3: socials + email — nav grid ---- */
         '<div class="footer__mid">' +
-          '<address class="footer__reach">' +
-            '<a class="footer__link" href="mailto:' + CONTACT.email + '">' + CONTACT.email + "</a>" +
-            '<a class="footer__link" href="' + CONTACT.whatsapp + '" target="_blank" rel="noopener">' + CONTACT.phoneLabel + "</a>" +
-            (instagram ? '<a class="footer__link" href="' + instagram.href + '" target="_blank" rel="noopener">Instagram</a>' : "") +
-          "</address>" +
+          '<div class="footer__reach">' +
+            '<div class="footer__social">' +
+              (instagram ? '<a href="' + instagram.href + '" target="_blank" rel="noopener" aria-label="Instagram">' + ICONS.Instagram + "</a>" : "") +
+              (whatsapp ? '<a href="' + whatsapp.href + '" target="_blank" rel="noopener" aria-label="WhatsApp">' + ICONS.WhatsApp + "</a>" : "") +
+            "</div>" +
+            '<a class="footer__email" href="mailto:' + CONTACT.email + '">' + CONTACT.email + "</a>" +
+          "</div>" +
+          '<nav class="footer__nav" aria-label="Footer">' +
+            FOOTER_NAV.map(function (row) {
+              return '<div class="footer__nav-row">' +
+                row.map(function (item) {
+                  return '<a class="footer__nav-link" href="' + item.href + '"' +
+                    (item.page === currentPage ? ' aria-current="page"' : "") + ">" + item.label + "</a>";
+                }).join("") +
+              "</div>";
+            }).join("") +
+          "</nav>" +
         "</div>" +
 
-        /* ---- row 3: legal ---- */
+        /* ---- row 4: legal bar ---- */
         '<div class="footer__bottom">' +
-          '<p class="footer__legal">© ' + year + " Humsafar Wedding by GNK</p>" +   // address lives on the contact page only
-          '<nav class="footer__sub-links" aria-label="Legal">' +
-            '<a class="footer__link" href="contact.html">Privacy</a>' +
-            '<a class="footer__link" href="contact.html">Terms</a>' +
-          "</nav>" +
+          '<p class="footer__copy">© ' + year + "</p>" +
+          '<p class="footer__tagline">Delhi &amp; Jim Corbett wedding planners — available across India</p>' +
+          '<a class="footer__privacy" href="contact.html">Privacy Policy</a>' +
         "</div>" +
 
       "</div>";
@@ -320,30 +353,19 @@
       note.setAttribute("data-state", kind); // ok | error | sending
       note.style.display = "block";
     }
-    function fieldVal(name) {
-      var el = form.querySelector('[name="' + name + '"]');
-      return el ? el.value.trim() : "";
-    }
-    function markInvalid(name, bad) {
-      var el = form.querySelector('[name="' + name + '"]');
-      if (el) el.setAttribute("aria-invalid", bad ? "true" : "false");
-      return el;
-    }
-
-    // clear the invalid flag as the user fixes a field
-    ["name", "email", "message"].forEach(function (n) {
-      var el = form.querySelector('[name="' + n + '"]');
-      if (el) el.addEventListener("input", function () { el.setAttribute("aria-invalid", "false"); });
+    // clear the invalid flag as the user fixes a field — works for any [required] field,
+    // so this covers the contact, vendor and career forms alike without per-field wiring
+    var requiredFields = [].slice.call(form.querySelectorAll("[required]"));
+    requiredFields.forEach(function (el) {
+      el.addEventListener("input", function () { el.setAttribute("aria-invalid", "false"); });
     });
 
     function validate() {
       var firstBad = null;
-      [["name", fieldVal("name") !== ""],
-       ["email", EMAIL_RE.test(fieldVal("email"))],
-       ["message", fieldVal("message") !== ""]
-      ].forEach(function (pair) {
-        var ok = pair[1];
-        var el = markInvalid(pair[0], !ok);
+      requiredFields.forEach(function (el) {
+        var val = el.value.trim();
+        var ok = val !== "" && (el.type !== "email" || EMAIL_RE.test(val));
+        el.setAttribute("aria-invalid", ok ? "false" : "true");
         if (!ok && !firstBad) firstBad = el;
       });
       return firstBad;
@@ -353,7 +375,7 @@
       e.preventDefault();
       var firstBad = validate();
       if (firstBad) {
-        setNote("Please add your names, a valid email, and a short note.", "error");
+        setNote("Please fill in the required fields marked with *.", "error");
         firstBad.focus();
         return;
       }
