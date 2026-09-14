@@ -8,21 +8,157 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Allison&family=Cinzel:wght@500;600&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=92">
+  <link rel="stylesheet" href="css/style.css?v=96">
   <link rel="icon" href="images/hw-logo.png">
 </head>
 <body data-page="vendor" data-nav="solid">
 
-  <!-- ============ HERO (matches contact) — page content to come ============ -->
-  <section class="chero">
-    <div class="chero__photo">
-      <img src="images/contact-hero.jpg" alt="A gold-draped mandap under a grand chandelier — a wedding by Humsafar">
-      <div class="chero__scrim"></div>
-      <div class="chero__crumb" data-reveal><a href="index.html">Home</a><span>✦</span>Vendor</div>
+  <!-- ============ LET'S CONNECT — hero + vendor inquiry form, same template as /contact ============ -->
+  <section class="connect section--ink">
+    <div class="container">
+      <h1 class="connect__title" data-reveal>Let&rsquo;s Connect</h1>
+
+      <div class="connect__grid" data-reveal style="--rd:120ms">
+
+        <!-- left: photo -->
+        <div class="connect__photo">
+          <img src="images/vendor-hero-web.jpg" alt="A florist's market stall filled with peonies, lupins and stock flowers">
+        </div>
+
+        <!-- right: reach us + form -->
+        <div class="connect__content">
+          <p class="connect__reach">
+            <a href="mailto:info@humsafarweddingbygnk.in">INFO@HUMSAFARWEDDINGBYGNK.IN</a>
+            <span>|</span>
+            <a href="https://wa.me/919354571642" target="_blank" rel="noopener">+91 93545 71642</a>
+          </p>
+
+          <p class="connect__invite">We&rsquo;d love to hear from you! Whether you&rsquo;re planning your big day or have questions about our services, reach out to start capturing your unforgettable moments with Humsafar Wedding by GNK.</p>
+
+          <!-- Formspree: replace YOUR_FORM_ID with your real form ID (formspree.io → New Form).
+               action= is the no-JS fallback; main.js posts here via fetch when JS is on. -->
+          <form class="connect-form form" data-contact-form
+                action="https://formspree.io/f/YOUR_FORM_ID"
+                method="POST" novalidate>
+            <div class="form-row">
+              <div class="field">
+                <label for="v-business">Business Name</label>
+                <input id="v-business" name="business_name" type="text">
+              </div>
+              <div class="field">
+                <label for="v-contact">Contact Person</label>
+                <input id="v-contact" name="contact_person" type="text">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="field">
+                <label for="v-phone">Phone</label>
+                <input id="v-phone" name="phone" type="tel">
+              </div>
+              <div class="field">
+                <label for="v-email">Email</label>
+                <input id="v-email" name="email" type="email">
+              </div>
+            </div>
+            <div class="field">
+              <label for="v-category">Category</label>
+              <select id="v-category" name="category">
+                <option value="">Select a category</option>
+                <option>Venue</option>
+                <option>Décor &amp; Florals</option>
+                <option>Photography &amp; Films</option>
+                <option>Catering</option>
+                <option>Entertainment</option>
+                <option>Makeup &amp; Styling</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="v-city">City / Cities Served</label>
+              <input id="v-city" name="cities_served" type="text" placeholder="e.g. Delhi, Mumbai, Jaipur">
+            </div>
+            <div class="field">
+              <label for="v-portfolio">Portfolio or Instagram Link</label>
+              <input id="v-portfolio" name="portfolio" type="url" placeholder="https://">
+            </div>
+            <div class="field">
+              <label for="v-message">Message (Optional)</label>
+              <textarea id="v-message" name="message"></textarea>
+            </div>
+            <button class="btn connect-form__btn" type="submit">Send message</button>
+            <p class="form__note" data-form-note role="status" aria-live="polite" style="display:none"></p>
+          </form>
+        </div>
+      </div>
     </div>
-    <h1 class="chero__title" data-reveal>Vendor</h1>
   </section>
 
-  <script src="js/main.js?v=37"></script>
+  <!-- ============ CONTACT PANEL (Reach us) + MAP ============ -->
+  <section class="section section--paper">
+    <div class="container">
+      <div class="contact-split" data-reveal>
+
+        <!-- left: how to reach us -->
+        <div class="contact-info">
+          <div class="eyebrow contact-info__eyebrow">Reach us</div>
+          <h2 class="contact-info__title">Talk to a real person.</h2>
+          <p class="contact-info__intro">No call centres, no bots. You reach the people who will actually plan your wedding.</p>
+
+          <div class="channels">
+            <div class="channel">
+              <span class="channel__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 5 5L19 13l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></span>
+              <div>
+                <div class="channel__label">Phone &amp; WhatsApp</div>
+                <a class="channel__value" href="https://wa.me/919354571642" target="_blank" rel="noopener">+91 93545 71642</a>
+              </div>
+            </div>
+
+            <div class="channel">
+              <span class="channel__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+              <div>
+                <div class="channel__label">Email</div>
+                <a class="channel__value" href="mailto:info@humsafarweddingbygnk.in">info@humsafarweddingbygnk.in</a>
+              </div>
+            </div>
+
+            <div class="channel">
+              <span class="channel__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+              <div>
+                <div class="channel__label">Studio</div>
+                <span class="channel__value">#18, Outside Corbett Platinum Heritage hotel, Peerumadara, Ramnagar, Uttarakhand</span>
+              </div>
+            </div>
+
+            <div class="channel">
+              <span class="channel__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></span>
+              <div>
+                <div class="channel__label">Hours</div>
+                <span class="channel__value">Mon – Sat · 11am to 7pm · by appointment</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-info__social">
+            <a href="https://www.instagram.com/humsafarweddingsbygnkevents/" target="_blank" rel="noopener">Instagram</a>
+            <span>·</span>
+            <a href="https://wa.me/919354571642" target="_blank" rel="noopener">WhatsApp</a>
+            <span>·</span>
+            <a href="mailto:info@humsafarweddingbygnk.in">Email</a>
+          </div>
+        </div>
+
+        <!-- right: map -->
+        <div class="contact-map">
+          <iframe
+            title="Humsafar Wedding by GNK — studio location, Peerumadara, Ramnagar, Uttarakhand"
+            src="https://www.google.com/maps?q=%2318,+Outside+Corbett+Platinum+Heritage+hotel,+Peerumadara,+Ramnagar,+Uttarakhand&output=embed"
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <script src="js/main.js?v=38"></script>
 </body>
 </html>

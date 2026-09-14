@@ -1547,13 +1547,74 @@ a.channel__value:hover { color: var(--gold-light); }
 .contact-form .field textarea,
 .contact-form .field select { width: 100%; min-width: 0; max-width: 100%; }
 
-/* ----- map band ----- */
-.contact-map {
-  margin-top: clamp(40px, 5vw, 72px);
-  border: 1px solid var(--line); border-radius: 8px; overflow: hidden;
-  box-shadow: 0 1px 3px rgba(31,46,37,.06);
+/* ---- Let's Connect — hero + inquiry form, first section of /contact ---- */
+.connect { padding-top: clamp(48px, 6vw, 84px); padding-bottom: clamp(48px, 6vw, 84px); }
+.connect__title {
+  font-family: var(--script); font-weight: 400; color: #a6675e;
+  font-size: clamp(56px, 9vw, 128px); line-height: .9; text-align: left;
+  margin: 0 0 -0.12em;
 }
-.contact-map iframe { display: block; width: 100%; height: clamp(280px, 38vw, 420px); border: 0; filter: saturate(.9); }
+.connect__grid {
+  display: grid; grid-template-columns: .78fr 1fr; gap: clamp(28px, 4vw, 56px); align-items: start;
+}
+.connect__photo { border-radius: 4px; overflow: hidden; align-self: stretch; }
+.connect__photo img { width: 100%; height: 100%; min-height: 420px; object-fit: cover; display: block; }
+.connect__intro {
+  font-family: var(--serif); font-size: clamp(18px, 1.9vw, 22px); line-height: 1.55;
+  color: var(--cream); text-align: center; max-width: 46ch; margin: 0 auto;
+}
+.connect__u { text-decoration: underline; text-underline-offset: 4px; }
+.connect__reach {
+  margin-top: clamp(20px, 2.4vw, 28px); text-align: center;
+  font-family: var(--sans); font-size: 13px; font-weight: 600; letter-spacing: .14em;
+}
+.connect__reach a { color: var(--cream); text-decoration: none; }
+.connect__reach a:first-child { text-decoration: underline; text-underline-offset: 3px; }
+.connect__reach a:hover { color: var(--gold-light); }
+.connect__reach span { margin: 0 10px; color: #c9c3b3; }
+.connect__invite {
+  margin-top: clamp(20px, 2.4vw, 28px); text-align: center;
+  font-family: var(--serif); font-style: italic; font-size: clamp(16px, 1.6vw, 19px);
+  line-height: 1.6; color: #c9c3b3; max-width: 48ch; margin-left: auto; margin-right: auto;
+}
+
+/* form, restyled for the dark connect panel */
+.connect-form { margin-top: clamp(32px, 4vw, 48px); gap: 22px; }
+.connect-form .field label {
+  font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--gold-light);
+}
+.connect-form .field input,
+.connect-form .field textarea,
+.connect-form .field select {
+  font-family: var(--sans); font-size: 15px; width: 100%; min-width: 0; max-width: 100%;
+  margin-top: 8px; padding: 12px 14px; background: transparent; color: var(--cream);
+  border: 1px solid rgba(230,201,138,.4); border-radius: 3px;
+}
+.connect-form .field select option { color: #111; }
+.connect-form .field input::placeholder,
+.connect-form .field textarea::placeholder { color: #8d9088; }
+.connect-form .field input:focus,
+.connect-form .field textarea:focus,
+.connect-form .field select:focus { outline: none; border-color: var(--gold-light); }
+.connect-form .field textarea { min-height: 120px; resize: vertical; }
+.connect-form .field input[type="file"] { padding: 11px 14px; cursor: pointer; }
+.connect-form__btn {
+  display: inline-block; margin-top: 4px; padding: 15px 36px; border: 1px solid var(--gold-light);
+  border-radius: 3px; background: var(--gold-light); color: var(--ink);
+  font-family: var(--sans); font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+  cursor: pointer; transition: background .3s ease, color .3s ease;
+}
+.connect-form__btn:hover { background: transparent; color: var(--gold-light); }
+
+@media (max-width: 900px) {
+  .connect__grid { grid-template-columns: 1fr; }
+  .connect__photo img { min-height: 320px; }
+}
+
+/* ----- map, now the right-hand panel beside "Reach us" ----- */
+.contact-split .contact-map { height: 100%; }
+.contact-map iframe { display: block; width: 100%; height: 100%; min-height: clamp(280px, 38vw, 420px); border: 0; filter: saturate(.9); }
 
 @media (max-width: 900px) {
   .contact-split { grid-template-columns: 1fr; }
@@ -2485,4 +2546,47 @@ body[data-page="testimonials"] .chero__title {
   .svc-intro__grid--flip { grid-template-columns: 1fr 1.02fr; }
   .svc-intro__grid--flip .svc-figure { order: 2; transform: rotate(1.1deg); }
   .svc-intro__grid--flip .svc-figure:hover { transform: rotate(0deg) translateY(-6px); }
+}
+
+/* ---- "Enquire" card form — vendor + career pages, clone of the reference light-card form ---- */
+.enquire { padding: clamp(56px, 7vw, 96px) 0; }
+.enquire__card {
+  max-width: 980px; margin: 0 auto; padding: clamp(32px, 5vw, 64px);
+  background: var(--paper); border: 1px solid var(--line); border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(31,46,37,.06), 0 40px 70px -44px rgba(31,46,37,.4);
+}
+.enquire__title {
+  font-family: var(--display); font-weight: 500; color: var(--ink);
+  font-size: clamp(30px, 4vw, 46px); letter-spacing: .1em; text-transform: uppercase;
+  text-align: center; margin: 0 0 clamp(28px, 4vw, 44px);
+}
+.enquire-form { gap: 24px; }
+.enquire-form .field label {
+  display: block; font-family: var(--serif); font-size: 17px; color: #111; margin-bottom: 10px;
+}
+.enquire-form .field input,
+.enquire-form .field textarea,
+.enquire-form .field select {
+  width: 100%; min-width: 0; max-width: 100%; font-family: var(--sans); font-size: 15.5px;
+  padding: 13px 16px; background: var(--paper); color: var(--text);
+  border: 1px solid var(--line); border-radius: 6px;
+}
+.enquire-form .field input::placeholder,
+.enquire-form .field textarea::placeholder { color: var(--muted); }
+.enquire-form .field input:focus,
+.enquire-form .field textarea:focus,
+.enquire-form .field select:focus { outline: none; border-color: var(--ink); }
+.enquire-form .field textarea { min-height: 130px; resize: vertical; }
+.enquire-form .field input[type="file"] { padding: 12px; cursor: pointer; }
+.enquire-form__btn {
+  display: inline-flex; align-items: center; gap: 10px; justify-content: center;
+  margin-top: 4px; padding: 16px 40px; border: 0; border-radius: 4px;
+  background: var(--ink); color: #e1b3bd;
+  font-family: var(--sans); font-size: 13px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase;
+  cursor: pointer; transition: opacity .3s ease;
+}
+.enquire-form__btn:hover { opacity: .85; }
+
+@media (max-width: 480px) {
+  .enquire-form .form-row { grid-template-columns: 1fr; }
 }

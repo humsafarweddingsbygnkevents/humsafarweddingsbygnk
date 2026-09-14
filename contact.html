@@ -8,25 +8,81 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Allison&family=Cinzel:wght@500;600&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=92">
+  <link rel="stylesheet" href="css/style.css?v=96">
   <link rel="icon" href="images/hw-logo.png">
 </head>
 <body data-page="contact" data-nav="solid">
 
-  <!-- ============ HERO (matches gallery) ============ -->
-  <section class="chero">
-    <div class="chero__photo">
-      <img src="images/contact-hero.jpg" alt="A gold-draped mandap under a grand chandelier — a wedding by Humsafar">
-      <div class="chero__scrim"></div>
-      <div class="chero__crumb" data-reveal><a href="index.html">Home</a><span>✦</span>Contact</div>
+  <!-- ============ LET'S CONNECT — hero + inquiry form, clone of the reference /contact first section ============ -->
+  <section class="connect section--ink">
+    <div class="container">
+      <h1 class="connect__title" data-reveal>Let&rsquo;s Connect</h1>
+
+      <div class="connect__grid" data-reveal style="--rd:120ms">
+
+        <!-- left: photo -->
+        <div class="connect__photo">
+          <img src="images/contact-connect-web.jpg" alt="A groom helping the bride up during the wedding ceremony as guests shower them with rose petals">
+        </div>
+
+        <!-- right: intro + reach us + form -->
+        <div class="connect__content">
+          <p class="connect__reach">
+            <a href="mailto:info@humsafarweddingbygnk.in">INFO@HUMSAFARWEDDINGBYGNK.IN</a>
+            <span>|</span>
+            <a href="https://wa.me/919354571642" target="_blank" rel="noopener">+91 93545 71642</a>
+          </p>
+
+          <p class="connect__invite">We&rsquo;d love to hear from you! Whether you&rsquo;re planning your big day or have questions about our services, reach out to start capturing your unforgettable moments with Humsafar Wedding by GNK.</p>
+
+          <!-- Formspree: replace YOUR_FORM_ID with your real form ID (formspree.io → New Form).
+               action= is the no-JS fallback; main.js posts here via fetch when JS is on. -->
+          <form class="connect-form form" data-contact-form
+                action="https://formspree.io/f/YOUR_FORM_ID"
+                method="POST" novalidate>
+            <div class="form-row">
+              <div class="field">
+                <label for="name">Your names *</label>
+                <input id="name" name="name" type="text" placeholder="Aanya &amp; Ranveer" required>
+              </div>
+              <div class="field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="you@example.com">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="field">
+                <label for="phone">Phone / WhatsApp *</label>
+                <input id="phone" name="phone" type="tel" placeholder="+91 …" required>
+              </div>
+              <div class="field">
+                <label for="date">Wedding date</label>
+                <input id="date" name="date" type="text" placeholder="February 2026 / undecided">
+              </div>
+            </div>
+            <div class="field">
+              <label for="service">What you need</label>
+              <select id="service" name="service">
+                <option>The whole wedding</option>
+                <option>Wedding planning</option>
+                <option>Decoration</option>
+                <option>Entertainment</option>
+                <option>Not sure yet</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="message">Tell us about it</label>
+              <textarea id="message" name="message" placeholder="The city, the dates, and what matters most to you…"></textarea>
+            </div>
+            <button class="btn connect-form__btn" type="submit">Send message</button>
+            <p class="form__note" data-form-note role="status" aria-live="polite" style="display:none"></p>
+          </form>
+        </div>
+      </div>
     </div>
-    <h1 class="chero__title" data-reveal>Contact</h1>
-    <p class="chero__sub" data-reveal style="--rd:150ms">
-      One message is all it takes — call, WhatsApp, or send the note below. We reply within <em>two working days</em>, always a person.
-    </p>
   </section>
 
-  <!-- ============ CONTACT PANEL + FORM ============ -->
+  <!-- ============ CONTACT PANEL (Reach us) — pending: fold into or remove after section 1 is approved ============ -->
   <section class="section section--paper">
     <div class="container">
       <div class="contact-split" data-reveal>
@@ -80,67 +136,18 @@
           </div>
         </div>
 
-        <!-- right: the form -->
-        <div class="contact-form">
-          <h2 class="contact-form__title">Send us a note</h2>
-          <p class="contact-form__hint">Fields marked with * are required.</p>
-
-          <!-- Formspree: replace YOUR_FORM_ID with your real form ID (formspree.io → New Form).
-               action= is the no-JS fallback; main.js posts here via fetch when JS is on. -->
-          <form class="form" data-contact-form
-                action="https://formspree.io/f/YOUR_FORM_ID"
-                method="POST" novalidate>
-            <div class="form-row">
-              <div class="field">
-                <label for="name">Your names *</label>
-                <input id="name" name="name" type="text" placeholder="Aanya &amp; Ranveer" required>
-              </div>
-              <div class="field">
-                <label for="email">Email *</label>
-                <input id="email" name="email" type="email" placeholder="you@example.com" required>
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="field">
-                <label for="phone">Phone / WhatsApp</label>
-                <input id="phone" name="phone" type="tel" placeholder="+91 …">
-              </div>
-              <div class="field">
-                <label for="date">Wedding date</label>
-                <input id="date" name="date" type="text" placeholder="February 2026 / undecided">
-              </div>
-            </div>
-            <div class="field">
-              <label for="service">What you need</label>
-              <select id="service" name="service">
-                <option>The whole wedding</option>
-                <option>Wedding planning</option>
-                <option>Decoration</option>
-                <option>Entertainment</option>
-                <option>Not sure yet</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="message">Tell us about it</label>
-              <textarea id="message" name="message" placeholder="The city, the dates, and what matters most to you…"></textarea>
-            </div>
-            <button class="btn" type="submit">Send message</button>
-            <p class="form__note" data-form-note role="status" aria-live="polite" style="display:none"></p>
-          </form>
+        <!-- right: map -->
+        <div class="contact-map">
+          <iframe
+            title="Humsafar Wedding by GNK — studio location, Peerumadara, Ramnagar, Uttarakhand"
+            src="https://www.google.com/maps?q=%2318,+Outside+Corbett+Platinum+Heritage+hotel,+Peerumadara,+Ramnagar,+Uttarakhand&output=embed"
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
 
-      </div>
-
-      <!-- map -->
-      <div class="contact-map" data-reveal style="--rd:120ms">
-        <iframe
-          title="Humsafar Wedding by GNK — studio location, Peerumadara, Ramnagar, Uttarakhand"
-          src="https://www.google.com/maps?q=Corbett+Platinum+Heritage,+Peerumadara,+Ramnagar,+Uttarakhand&output=embed"
-          loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </div>
   </section>
 
-  <script src="js/main.js?v=37"></script>
+  <script src="js/main.js?v=38"></script>
 </body>
 </html>

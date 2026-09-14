@@ -20,9 +20,9 @@
   var NAV_RIGHT = [
     { label: "Testimonials", href: "testimonials.html", page: "testimonials" },
     { label: "Contact", children: [
-      { label: "Client", href: "contact.html", page: "contact", desc: "Plan your wedding with us" },
-      { label: "Vendor", href: "vendor.html", page: "vendor", desc: "Partner with our team" },
-      { label: "Career", href: "career.html", page: "career", desc: "Join the Humsafar crew" }
+      { label: "Client", href: "contact.html", page: "contact" },
+      { label: "Vendor", href: "vendor.html", page: "vendor" },
+      { label: "Career", href: "career.html", page: "career" }
     ] }
   ];
   var WORDMARK = "HUMSAFAR WEDDINGS";
