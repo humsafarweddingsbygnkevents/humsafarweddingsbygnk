@@ -1028,26 +1028,19 @@ h1, h2, h3, p { margin: 0; }
   .ra-meet { padding-top: calc(var(--nav-h, 146px) + 11px); }
   .ra-sec--l { padding-block: calc(10vmax + 11px); } /* reference phone: 95px @844 */
 }
-.ra-meet__photo { grid-area: 3/2/17/10;  z-index: 3; justify-content: center; }
+.ra-meet__photo { grid-area: 4/2/17/10;  z-index: 3; justify-content: center; }
 .ra-meet__head  { grid-area: 1/2/4/10;   z-index: 5; justify-content: flex-start; }
 .ra-meet__box   { grid-area: 17/1/42/11; z-index: 6; justify-content: flex-start; }
 .ra-meet__apart { grid-area: 42/2/44/10; z-index: 8; justify-content: flex-start; }
 @media (min-width: 768px) {
-  .ra-meet__photo { grid-area: 3/13/26/25; z-index: 1; }
-  .ra-meet__head  { grid-area: 2/4/6/24;   z-index: 3; }
-  .ra-meet__box   { grid-area: 6/3/28/14;  z-index: 2; justify-content: center; }
+  .ra-meet__photo { grid-area: 4/13/26/25; z-index: 1; }
+  .ra-meet__head  { grid-area: 2/4/4/24;   z-index: 3; }
+  .ra-meet__box   { grid-area: 4/3/28/14;  z-index: 2; justify-content: center; }
   .ra-meet__apart { grid-area: 26/4/40/24; z-index: 5; }
 }
 .ra-meet__title { --s: 6.684; color: #133733; line-height: 1; margin: 0; text-wrap: balance; }
-/* the script title straddles the team photo — a light scrim across the top of the photo
-   keeps the dark green line readable there without blurring the glyphs themselves */
-.ra-meet__photo .rr-img::before {
-  content: ""; position: absolute; inset: 0 0 auto 0; height: 40%; z-index: 2;
-  background: linear-gradient(to bottom, rgba(247,246,237,.92) 0%, rgba(247,246,237,.55) 55%, rgba(247,246,237,0) 100%);
-  pointer-events: none;
-}
-/* reference line fills its 20-col block; Allison runs wider than Kallimata, so size to the block width */
-@media (min-width: 768px) { .ra-meet__title { white-space: nowrap; font-size: min(8vw, 128px); } }
+/* reference line fills its 20-col block; Newsreader (readable serif, swapped in for the illegible script) runs wider than Allison, so size down to the block width */
+@media (min-width: 768px) { .ra-meet__title { white-space: nowrap; font-size: min(5.4vw, 88px); } }
 @media screen and (max-width: 767px) and (orientation: portrait) { .ra-meet__title { --s: 2.28; } }
 /* sage box: h3 size, padding 2.6em sides (measured 78px @1470, 63px @390) */
 .ra-meet__box {
@@ -1242,9 +1235,8 @@ h1, h2, h3, p { margin: 0; }
 /* ---- Filmstrip banner: five edge-to-edge photos (noonmoon-style) ---- */
 .galx-strip {
   position: relative; z-index: 1;
-  display: flex; gap: 4px;
+  display: flex; gap: 0;
   height: clamp(220px, 30vw, 440px);
-  padding: 4px;
   background: var(--ink);
 }
 .galx-strip__item { flex: 1; min-width: 0; margin: 0; overflow: hidden; position: relative; }
@@ -1272,6 +1264,11 @@ h1, h2, h3, p { margin: 0; }
 .galx-crumb--plain a:hover { opacity: 1; }
 .galx-crumb--plain span { opacity: .45; }
 .galx-titletop .ornament { margin: 18px auto 0; }
+.galx-titletop__icon {
+  display: block; margin: 0 auto;
+  width: clamp(64px, 9vw, 100px); height: auto;
+  opacity: .82;
+}
 .galx-kicker {
   display: block; margin-top: 20px;
   font-family: var(--sans); font-size: 11px; font-weight: 700;
@@ -1288,6 +1285,7 @@ h1, h2, h3, p { margin: 0; }
 }
 .galx-bigtitle--plain {
   margin: 14px 0 0;
+  font-optical-sizing: auto; font-weight: 300; letter-spacing: 0;
   font-size: clamp(2.6rem, 7.4vw, 104px); line-height: .96;
   background: none; -webkit-text-fill-color: currentColor; color: var(--ink);
   filter: none;
