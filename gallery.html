@@ -8,24 +8,41 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Allison&family=Cinzel:wght@500;600&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=107">
+  <link rel="stylesheet" href="css/style.css?v=108">
   <link rel="icon" href="images/hw-logo.png">
 </head>
 <body data-page="gallery" data-nav="solid">
 
-  <!-- ============ Hero banner with curved hem ============ -->
-  <header class="galx-hero">
-    <div class="galx-hero__bg"><img src="images/gallery/web/ADA01554-hero.jpg" alt="Humsafar wedding — a bride and groom on a red-and-white floral wedding stage under chandeliers"></div>
-    <div class="galx-hero__scrim"></div>
-    <div class="galx-hero__inner">
-      <div class="galx-crumb" data-reveal><a href="index.html">Home</a><span>·</span>Gallery</div>
-    </div>
+  <!-- ============ Filmstrip banner (five photos, noonmoon-style) ============ -->
+  <header class="galx-strip">
+    <figure class="galx-strip__item" data-reveal-fwd>
+      <img src="images/gallery/web/ADA00716.jpg" alt="Bride in a yellow lehenga before a marigold haldi backdrop" loading="eager" fetchpriority="high">
+    </figure>
+    <figure class="galx-strip__item" data-reveal-fwd style="--rd:60ms">
+      <img src="images/gallery/web/ADA08736.jpg" alt="A guest dancing in white before a floral dreamcatcher backdrop" loading="eager">
+    </figure>
+    <figure class="galx-strip__item" data-reveal-fwd style="--rd:120ms">
+      <img src="images/gallery/web/ADA00594.jpg" alt="A floral entrance pathway of marigold and orchid pillars" loading="eager">
+    </figure>
+    <figure class="galx-strip__item" data-reveal-fwd style="--rd:180ms">
+      <img src="images/gallery/web/ADA09714.jpg" alt="A reception hall strung with crystal chandeliers and hanging greenery" loading="eager">
+    </figure>
+    <figure class="galx-strip__item" data-reveal-fwd style="--rd:240ms">
+      <img src="images/gallery/web/ADA09608.jpg" alt="A reception hall of golden arches and chandeliers" loading="eager">
+    </figure>
   </header>
 
-  <!-- two-tone title straddling the photo's hem: cream above, green below -->
-  <div class="galx-titleband">
-    <h1 class="galx-bigtitle" data-reveal>The Album</h1>
-    <p class="galx-sub" data-reveal style="--rd:140ms">From the first <span class="galx-sub__hot">turmeric</span> morning to the last song under the <span class="galx-sub__gold">chandeliers</span> — kept the way you'd keep a family heirloom.</p>
+  <!-- ============ Title, on a plain page-coloured panel below the strip ============ -->
+  <div class="galx-titletop">
+    <div class="galx-crumb galx-crumb--plain" data-reveal><a href="index.html">Home</a><span>·</span>Gallery</div>
+    <div class="ornament" data-reveal style="--rd:60ms">
+      <span class="ornament__line"></span>
+      <span class="ornament__mark">✦</span>
+      <span class="ornament__line"></span>
+    </div>
+    <span class="galx-kicker" data-reveal style="--rd:100ms">Wedding Stories</span>
+    <h1 class="galx-bigtitle galx-bigtitle--plain" data-reveal style="--rd:160ms">The Album</h1>
+    <p class="galx-sub" data-reveal style="--rd:220ms">From the first <span class="galx-sub__hot">turmeric</span> morning to the last song under the <span class="galx-sub__gold">chandeliers</span> — kept the way you'd keep a family heirloom.</p>
   </div>
 
   <!-- ============ The album ============ -->
@@ -273,6 +290,6 @@
     </div>
   </main>
 
-  <script src="js/main.js?v=43"></script>
+  <script src="js/main.js?v=44"></script>
 </body>
 </html>
