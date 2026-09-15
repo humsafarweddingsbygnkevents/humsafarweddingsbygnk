@@ -1656,7 +1656,41 @@ a.channel__value:hover { color: var(--gold-light); }
 
 /* ----- map, now the right-hand panel beside "Reach us" ----- */
 .contact-split .contact-map { height: 100%; }
+.contact-map { position: relative; }
 .contact-map iframe { display: block; width: 100%; height: 100%; min-height: clamp(280px, 38vw, 420px); border: 0; filter: saturate(.9); }
+/* our own place card, laid over Google's coordinate card (top-left) so the pin reads as the studio */
+.contact-map__card {
+  position: absolute; top: 10px; left: 10px; z-index: 2;
+  width: min(390px, calc(100% - 20px)); min-height: 110px; box-sizing: border-box;
+  padding: 14px 16px 12px; background: #fff; border-radius: 2px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.3); font-family: Roboto, Arial, sans-serif; color: #202124;
+}
+.contact-map__name { margin: 0 0 4px; font-size: 15px; font-weight: 500; line-height: 1.3; }
+.contact-map__addr { margin: 0 0 8px; font-size: 12px; line-height: 1.4; color: #5f6368; }
+/* Google-style round icon buttons: open in Maps + directions, top-right of the card */
+.contact-map__card { padding-right: 104px; }
+.contact-map__actions { position: absolute; top: 14px; right: 12px; display: flex; gap: 8px; }
+.contact-map__icon {
+  display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%;
+  background: #f1f3f4; color: #1a73e8; transition: background .2s ease;
+}
+.contact-map__icon:hover { background: #e2e6ea; }
+/* name beside the pin: the embed is centred on the studio coordinates, so the pin tip sits at 50%/50% */
+.contact-map__pinlabel {
+  position: absolute; left: 50%; top: 50%; z-index: 1; pointer-events: none;
+  transform: translate(16px, -30px); white-space: nowrap;
+  font-family: Roboto, Arial, sans-serif; font-size: 14px; font-weight: 500; color: #c5221f;
+  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff, 0 0 3px #fff;
+}
+@media (max-width: 600px) {
+  .contact-map iframe { min-height: 360px; }
+  .contact-map__card { min-height: 0; width: auto; right: 10px; padding: 10px 100px 10px 12px; }
+  .contact-map__actions { top: 50%; transform: translateY(-50%); }
+  .contact-map__icon { width: 36px; height: 36px; }
+  .contact-map__addr { display: none; }
+  .contact-map__name { font-size: 14px; margin-bottom: 2px; }
+  .contact-map__pinlabel { font-size: 12px; transform: translate(-50%, 6px); }
+}
 
 @media (max-width: 900px) {
   .contact-split { grid-template-columns: 1fr; }
