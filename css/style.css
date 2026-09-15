@@ -2292,7 +2292,6 @@ body[data-page="testimonials"] .chero__title {
 .ro-hero__mark img {
   position: absolute; inset: 0; width: 100%; height: 100%;
   object-fit: contain; object-position: 50% 50%;
-  filter: brightness(0) invert(96%) sepia(10%); /* cream, like the reference monogram */
 }
 /* intro: small paragraph, line-height 19.2px (1.2 × 1rem), centred, white.
    1.1rem matches the reference's drawn glyph width (7.5px/char) in EB Garamond */
@@ -2442,7 +2441,6 @@ body[data-page="testimonials"] .chero__title {
 .ro-kind__mark img {
   position: absolute; inset: 0; width: 100%; height: 100%;
   object-fit: contain; object-position: 50% 50%;
-  filter: brightness(0) invert(96%) sepia(10%);
 }
 /* couple centred in the visible photo: the source is taller than the frame, so plain cover never crops sideways.
    The image is scaled past cover and shifted so the pair (40% across the source) lands on --cx, and sits 55% down
