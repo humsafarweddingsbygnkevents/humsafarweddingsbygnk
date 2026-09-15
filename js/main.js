@@ -18,7 +18,7 @@
     { label: "Gallery", href: "gallery.html", page: "gallery" }
   ];
   var NAV_RIGHT = [
-    { label: "Testimonials", href: "testimonials.html", page: "testimonials" },
+    { label: "Blog", href: "blog.html", page: "blog" },
     { label: "Contact", children: [
       { label: "Client", href: "contact.html", page: "contact" },
       { label: "Vendor", href: "vendor.html", page: "vendor" },
@@ -107,7 +107,7 @@
   var FOOTER_NAV = [
     [{ label: "Home", href: "index.html" }, { label: "Contact", href: "contact.html" }],
     [{ label: "Offerings", href: "offerings.html" }, { label: "About", href: "about.html" }],
-    [{ label: "Gallery", href: "gallery.html" }, { label: "Testimonials", href: "testimonials.html" }]
+    [{ label: "Gallery", href: "gallery.html" }, { label: "Blog", href: "blog.html" }]
   ];
   var ICONS = {
     Instagram: '<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r=".9" fill="currentColor" stroke="none"/></svg>',

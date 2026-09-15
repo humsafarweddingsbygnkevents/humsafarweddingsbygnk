@@ -7,3 +7,4 @@ README.md
 .claude/
 .gstack/
 .DS_Store
+.vercel-old-backup/

@@ -3,35 +3,70 @@
   "cleanUrls": false,
   "trailingSlash": false,
   "redirects": [
-    { "source": "/service-wedding-planning.html", "destination": "/offerings.html#planning", "permanent": true },
-    { "source": "/service-decoration.html", "destination": "/offerings.html#decoration", "permanent": true },
-    { "source": "/service-entertainment.html", "destination": "/offerings.html#entertainment", "permanent": true }
+    {
+      "source": "/service-wedding-planning.html",
+      "destination": "/offerings.html#planning",
+      "permanent": true
+    },
+    {
+      "source": "/service-decoration.html",
+      "destination": "/offerings.html#decoration",
+      "permanent": true
+    },
+    {
+      "source": "/service-entertainment.html",
+      "destination": "/offerings.html#entertainment",
+      "permanent": true
+    },
+    {
+      "source": "/testimonials.html",
+      "destination": "/blog.html",
+      "permanent": true
+    }
   ],
   "headers": [
     {
       "source": "/(.*)\\.html",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
       ]
     },
     {
       "source": "/images/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
     },
     {
       "source": "/(css|js)/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
     },
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "X-Frame-Options", "value": "SAMEORIGIN" }
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        }
       ]
     }
   ]
