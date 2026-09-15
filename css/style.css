@@ -2594,8 +2594,8 @@ body[data-page="testimonials"] .chero__title {
    (≈251 × 151.6 @1470), ink #133733 */
 .ro-svc__logo {
   display: block; width: 100%; height: 100%;
-  background: #133733;
-  -webkit-mask: url(../images/hw-logo.png) center / contain no-repeat; mask: url(../images/hw-logo.png) center / contain no-repeat;
+  /* green monogram with the logo's rose/leaf detail drawn in white lines (built from hw-logo.png) */
+  background: url(../images/hw-logo-lined.png) center / contain no-repeat;
 }
 /* eyebrow: reference scaled text, futura-pt 500 .07em uppercase, one line — 18.4px @1470 (1.2517vw), 13.4px @390 (3.436vw);
    --eb-fit corrects Jost's drawn width to futura-pt's */

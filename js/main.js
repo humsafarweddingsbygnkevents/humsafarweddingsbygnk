@@ -423,9 +423,18 @@
     var triggers = [].slice.call(document.querySelectorAll("[data-lightbox]"));
     if (!triggers.length) return;
 
-    var items = triggers.map(function (el) {
-      return { full: el.getAttribute("data-full") || el.getAttribute("src"), cap: el.getAttribute("data-cap") || "" };
-    });
+    var items = [];
+    /* next/prev follow what the eye sees: top-to-bottom, then left-to-right (masonry columns are
+       separate DOM lists, so DOM order would run down one column before the next) */
+    function buildItems() {
+      var sorted = triggers.slice().sort(function (a, b) {
+        var ra = a.getBoundingClientRect(), rb = b.getBoundingClientRect();
+        return Math.abs(ra.top - rb.top) > 8 ? ra.top - rb.top : ra.left - rb.left;
+      });
+      items = sorted.map(function (el) {
+        return { el: el, full: el.getAttribute("data-full") || el.getAttribute("src"), cap: el.getAttribute("data-cap") || "" };
+      });
+    }
 
     var box = document.createElement("div");
     box.className = "lightbox";
@@ -452,8 +461,11 @@
     function open(i) { show(i); box.setAttribute("data-open", "1"); document.documentElement.style.overflow = "hidden"; }
     function close() { box.removeAttribute("data-open"); document.documentElement.style.overflow = ""; }
 
-    triggers.forEach(function (el, i) {
-      el.addEventListener("click", function () { open(i); });
+    triggers.forEach(function (el) {
+      el.addEventListener("click", function () {
+        buildItems();
+        for (var i = 0; i < items.length; i++) if (items[i].el === el) return open(i);
+      });
     });
     box.querySelector(".lightbox__close").addEventListener("click", close);
     box.querySelector(".lightbox__btn--prev").addEventListener("click", function () { show(idx - 1); });
