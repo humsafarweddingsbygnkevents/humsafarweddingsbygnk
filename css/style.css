@@ -173,7 +173,7 @@ h1, h2, h3, p { margin: 0; }
 .nav__wordmark-sub { font-family: var(--sans); font-weight: 600; font-size: clamp(10px, 1vw, 13px); letter-spacing: .3em; text-transform: uppercase; color: var(--gold-light); }
 /* keep it readable on light/paper-tone nav */
 .nav[data-tone="paper"] .nav__wordmark-sub { color: var(--gold-dark); }
-.nav__link { font-family: var(--sans); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; transition: color .4s ease, opacity .3s ease; position: relative; }
+.nav__link { font-family: var(--sans); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; transition: color .4s ease, opacity .3s ease; position: relative; }
 .nav__link:hover { opacity: .65; }
 .nav__link[aria-current="page"]::after { content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 1px; background: currentColor; opacity: .6; }
 
@@ -808,7 +808,7 @@ h1, h2, h3, p { margin: 0; }
 @media (min-width: 768px) {
   .rr-recipe__img1 { grid-area: 1/2/35/14;  z-index: 4; }
   .rr-recipe__img2 { grid-area: 9/15/18/23; z-index: 1; }
-  .rr-recipe__head { grid-area: 3/12/8/25;  z-index: 5; justify-content: center; }
+  .rr-recipe__head { grid-area: 3/14/8/25;  z-index: 5; justify-content: center; }
   .rr-recipe__copy { grid-area: 18/15/25/26; z-index: 2; justify-content: flex-end; }
   .rr-recipe__btn  { grid-area: 26/15/28/21; z-index: 3; justify-content: center; }
 }
@@ -1005,7 +1005,8 @@ h1, h2, h3, p { margin: 0; }
   font-family: 'EB Garamond', 'Cormorant Garamond', 'Times New Roman', serif;
   font-weight: 400; letter-spacing: .01em; line-height: 1.2em; margin: 1rem 0; white-space: pre-wrap;
 }
-.ra-body--13 { --s: .3; }
+.ra-body--13 { --s: .7; color: #061210; }
+.ra-body--11 { --s: .5; color: #061210; }
 .ra-body em { font-style: italic; }
 .ra-quote {
   font-family: 'EB Garamond', 'Cormorant Garamond', serif; font-size: 1rem; line-height: 1.2em;
@@ -1057,7 +1058,7 @@ h1, h2, h3, p { margin: 0; }
   padding: 17px 20px;
 }
 @media (min-width: 768px) { .ra-meet__apart { padding: 4.56vw 5.1vw; } }
-.ra-meet__apart .ra-script, .ra-meet__apart .ra-body { color: #f7f6ed; text-align: center; }
+.ra-meet__apart .ra-script, .ra-meet__apart .ra-body, .ra-meet__apart .ra-body--13, .ra-meet__apart .ra-body--11 { color: #f7f6ed; text-align: center; }
 /* EB Garamond draws ~1.19× smaller than the reference's Allrounder Antiqua at the same px (glyph width 6221 vs 7409 @100px) — scale up to match its visible size */
 .ra-meet__apart .ra-body { --fit: 1.19; }
 
@@ -1121,7 +1122,7 @@ h1, h2, h3, p { margin: 0; }
 .ra-close__copy { grid-area: 17/2/41/10; z-index: 6; justify-content: flex-start; }
 @media (min-width: 768px) {
   .ra-close__img  { grid-area: 1/2/15/12; }
-  .ra-close__copy { grid-area: 1/14/16/26; }
+  .ra-close__copy { grid-area: 1/13/16/26; }
 }
 .ra-close .ra-h2 { color: #133733; text-align: left; --fit: .936; }  /* Newsreader draws ~7% bigger than the reference's Beaufort */
 .ra-close .ra-body { color: #133733; --fit: 1.19; }                  /* EB Garamond draws ~1.19× smaller than Allrounder Antiqua */
