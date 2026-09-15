@@ -193,7 +193,7 @@ h1, h2, h3, p { margin: 0; }
 .nav[data-tone="solid"] .nav__wordmark,
 .nav[data-scrolled="1"] .nav__wordmark { color: var(--gold-light); letter-spacing: .18em; }
 .nav[data-tone="solid"] .nav__link,
-.nav[data-scrolled="1"] .nav__link { color: #efe9d8; }
+.nav[data-scrolled="1"] .nav__link { color: #ffffff; }
 /* see-through bar while a photo hero ([data-nav-glass]) is under it; back to solid green once the page below reaches the bar */
 .nav[data-glass="1"]:not([data-open="1"]) {
   background-color: color-mix(in srgb, var(--ink) 35%, transparent);

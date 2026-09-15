@@ -38,6 +38,7 @@
   };
   var SOCIAL = [
     { label: "Instagram", href: "https://www.instagram.com/humsafarweddingsbygnkevents/" },
+    { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61591217462973" },
     { label: "WhatsApp", href: "https://wa.me/919354571642" },
     { label: "Email", href: "mailto:info@humsafarweddingbygnk.in" }
   ];
@@ -110,6 +111,7 @@
   ];
   var ICONS = {
     Instagram: '<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r=".9" fill="currentColor" stroke="none"/></svg>',
+    Facebook: '<svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>',
     WhatsApp: '<svg viewBox="0 0 24 24"><path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 5 5L19 13l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>'
   };
 
@@ -118,6 +120,7 @@
     footer.className = "footer";
     var year = new Date().getFullYear();
     var instagram = SOCIAL.filter(function (s) { return s.label === "Instagram"; })[0];
+    var facebook = SOCIAL.filter(function (s) { return s.label === "Facebook"; })[0];
     var whatsapp = SOCIAL.filter(function (s) { return s.label === "WhatsApp"; })[0];
 
     footer.innerHTML =
@@ -143,6 +146,7 @@
           '<div class="footer__reach">' +
             '<div class="footer__social">' +
               (instagram ? '<a href="' + instagram.href + '" target="_blank" rel="noopener" aria-label="Instagram">' + ICONS.Instagram + "</a>" : "") +
+              (facebook ? '<a href="' + facebook.href + '" target="_blank" rel="noopener" aria-label="Facebook">' + ICONS.Facebook + "</a>" : "") +
               (whatsapp ? '<a href="' + whatsapp.href + '" target="_blank" rel="noopener" aria-label="WhatsApp">' + ICONS.WhatsApp + "</a>" : "") +
             "</div>" +
             '<a class="footer__email" href="mailto:' + CONTACT.email + '">' + CONTACT.email + "</a>" +
