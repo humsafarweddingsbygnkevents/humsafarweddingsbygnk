@@ -1,5 +1,5 @@
 /* ============================================================
-   Humsafar Wedding by GNK — site behaviour
+   Humsafar Weddings By GnK Events — site behaviour
    Replaces the Claude design-canvas runtime with plain JS.
    - injects shared nav + footer
    - reveal-on-scroll
@@ -26,12 +26,12 @@
     ] }
   ];
   var WORDMARK = "HUMSAFAR WEDDINGS";
-  var TAGLINE = "By GNK Events";
+  var TAGLINE = "BY GnK EVENTS"; // caps typed in (nav sub has no text-transform) so the small n survives
   var FOOTER_TAGLINE = "By GnK Events"; // footer wordmark keeps mixed case (not uppercased)
 
   /* ---- Footer config: edit links + contact here, once ---- */
   var CONTACT = {
-    email: "info@humsafarweddingbygnk.in",
+    email: "info@humsafarweddingsbygnk.in",
     phoneLabel: "+91 93545 71642",
     whatsapp: "https://wa.me/919354571642",
     studio: "#18, Outside Corbett Platinum Heritage hotel, Peerumadara, Ramnagar, Uttarakhand"
@@ -40,7 +40,7 @@
     { label: "Instagram", href: "https://www.instagram.com/humsafarweddingsbygnkevents/" },
     { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61591217462973" },
     { label: "WhatsApp", href: "https://wa.me/919354571642" },
-    { label: "Email", href: "mailto:info@humsafarweddingbygnk.in" }
+    { label: "Email", href: "mailto:info@humsafarweddingsbygnk.in" }
   ];
 
   var body = document.body;
@@ -387,7 +387,7 @@
       var endpoint = form.getAttribute("action");
       // No real endpoint wired yet → don't pretend it sent.
       if (!endpoint || /YOUR_FORM_ID/.test(endpoint)) {
-        setNote("This form isn’t connected yet — please email info@humsafarweddingbygnk.in for now.", "error");
+        setNote("This form isn’t connected yet — please email info@humsafarweddingsbygnk.in for now.", "error");
         return;
       }
 
@@ -406,12 +406,12 @@
           return res.json().then(function (data) {
             var msg = (data && data.errors && data.errors.length)
               ? data.errors.map(function (x) { return x.message; }).join(", ")
-              : "Something went wrong. Please email info@humsafarweddingbygnk.in instead.";
+              : "Something went wrong. Please email info@humsafarweddingsbygnk.in instead.";
             setNote(msg, "error");
           });
         }
       }).catch(function () {
-        setNote("Network error — please check your connection or email info@humsafarweddingbygnk.in.", "error");
+        setNote("Network error — please check your connection or email info@humsafarweddingsbygnk.in.", "error");
       }).then(function () {
         if (btn) { btn.disabled = false; }
       });
