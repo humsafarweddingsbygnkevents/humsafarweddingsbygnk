@@ -2766,7 +2766,31 @@ body[data-page="testimonials"] .chero__title {
    BLOG (blog.html + blog-*.html) — site type trio: Newsreader 300 headings,
    EB Garamond body, Jost labels (.rr-pre eyebrows); ink #133733
    ===================================================================== */
-body[data-page="blog"] .chero__title { font-size: clamp(3.4rem, 16vw, 200px); }
+/* hero: CC0 vintage bird & floral wallpaper band (tile repeats seamlessly on x), white title box
+   overlapping its lower edge */
+.bhero { position: relative; }
+.bhero__band {
+  height: clamp(340px, 52vh, 480px);
+  background: #f7efe9 url("../images/blog-hero-pattern.jpg") center top / auto 495px repeat-x;
+}
+.bhero__box {
+  position: relative; z-index: 1;
+  width: min(960px, calc(100% - 2 * var(--gutter)));
+  margin: -80px auto 0; padding: clamp(36px, 4.4vw, 60px) var(--gutter) 0;
+  background: var(--paper); text-align: center; color: #133733;
+}
+.bhero__title {
+  margin: 0; font-family: var(--display); font-weight: 300;
+  font-size: clamp(2.6rem, 5vw, 4.4rem); line-height: 1.05; letter-spacing: -.005em;
+}
+.bhero__sub {
+  margin: clamp(14px, 1.6vw, 22px) auto 0; max-width: 60ch;
+  font-family: var(--display); font-weight: 300; font-size: clamp(17px, 1.45vw, 21px); line-height: 1.55;
+}
+@media (max-width: 600px) {
+  .bhero__band { height: 300px; background-size: auto 340px; }
+  .bhero__box { margin-top: -48px; }
+}
 .blog { padding-block: clamp(48px, 7vw, 96px); color: #133733; }
 .blog-section + .blog-section { margin-top: clamp(56px, 8vw, 110px); }
 .blog-eyebrow { text-align: left; margin: 0 0 clamp(18px, 2.4vw, 28px); padding-bottom: 14px; border-bottom: 1px solid rgba(19,55,51,.25); }
