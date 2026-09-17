@@ -208,6 +208,29 @@ h1, h2, h3, p { margin: 0; }
 .nav[data-open="1"] .nav__toggle span:nth-child(2) { opacity: 0; }
 .nav[data-open="1"] .nav__toggle span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
+/* ≤760px the inline links no longer fit beside the wordmark (measured: they
+   touch at 761px) — they move into a slide-in panel behind the toggle */
+@media (max-width: 760px) {
+  .nav__inner { gap: 16px; }
+  .nav__group { position: fixed; inset: 0 0 0 auto; width: min(78vw, 320px); height: 100vh; height: 100dvh; overflow-y: auto; flex-direction: column; align-items: center; justify-content: center; gap: 28px; background: var(--ink); padding: 40px; transform: translateX(100%); visibility: hidden; transition: transform .5s cubic-bezier(.2,.7,.2,1), visibility 0s linear .5s; z-index: 60; }
+  .nav .nav__group .nav__link, .nav[data-tone] .nav__group .nav__link { color: var(--cream); font-size: 13px; }
+  .nav[data-open="1"] .nav__group { transform: translateX(0); visibility: visible; transition: transform .5s cubic-bezier(.2,.7,.2,1), visibility 0s; }
+  .nav__group--right { justify-content: center; }
+  .nav__toggle { display: block; position: relative; z-index: 61; flex: none; }
+  .nav .nav__toggle { color: var(--cream); }
+  .nav[data-tone="paper"]:not([data-scrolled="1"]):not([data-open="1"]) .nav__toggle { color: var(--ink); }
+  .nav__wordmark { min-width: 0; }
+}
+/* set by main.js while the window is being resized — no transitions mid-drag */
+.is-resizing *, .is-resizing *::before, .is-resizing *::after { transition: none !important; }
+/* small phones: shrink the wordmark so logo + name + toggle share one row */
+@media (max-width: 420px) {
+  .nav__wordmark { gap: 8px; font-size: clamp(12px, 3.9vw, 15px); letter-spacing: .1em; }
+  .nav[data-tone="solid"] .nav__wordmark, .nav[data-scrolled="1"] .nav__wordmark { letter-spacing: .1em; }
+  .nav__logo { height: clamp(36px, 11vw, 48px); }
+  .nav__wordmark-sub { font-size: 9px; letter-spacing: .22em; }
+}
+
 /* ---------- 6. Reveal on scroll ---------- */
 [data-reveal] {
   opacity: 0; transform: translateY(28px);
@@ -458,8 +481,27 @@ h1, h2, h3, p { margin: 0; }
   .mosaic__tall .frame { flex: 1 1 auto; height: auto; min-height: 0; }
   .mosaic__tall .frame img { position: absolute; inset: 0; }
 }
+/* ≤1024px the heading takes the full first row, so every photo must start on row 2 or it paints
+   over the heading (the inline grid-row values are the desktop placement). DOM order:
+   1 heading · 2 Haldi · 3 Sangeet and Mehndi · 4 Reception · 5 Cocktail · 6 Vivaah */
 @media (max-width: 1024px) {
-  .mosaic > .gallery-intro { grid-column: 1 / -1 !important; }
+  .mosaic > .gallery-intro { grid-column: 1 / -1 !important; grid-row: 1 !important; }
+  .mosaic > :nth-child(2) { grid-row: 2 / span 2 !important; }
+  .mosaic > :nth-child(3), .mosaic > :nth-child(4) { grid-row: 2 !important; }
+  .mosaic > :nth-child(5), .mosaic > :nth-child(6) { grid-row: 3 !important; }
+}
+/* phones / narrow windows: the 12-column desktop split leaves 3-column photos too thin for their
+   labels, so go to two columns — Sangeet and Mehndi full width, then two pairs */
+@media (max-width: 760px) {
+  .mosaic { grid-template-columns: 1fr 1fr; gap: 20px 12px; }
+  .mosaic > :nth-child(3) { grid-column: 1 / -1 !important; grid-row: 2 !important; }
+  .mosaic > :nth-child(2) { grid-column: 1 !important; grid-row: 3 !important; }
+  .mosaic > :nth-child(4) { grid-column: 2 !important; grid-row: 3 !important; }
+  .mosaic > :nth-child(5) { grid-column: 1 !important; grid-row: 4 !important; }
+  .mosaic > :nth-child(6) { grid-column: 2 !important; grid-row: 4 !important; }
+  .mosaic > :nth-child(3) .frame { --h: min(70vw, 440px) !important; }
+  .mosaic > :nth-child(n+4) .frame, .mosaic > :nth-child(2) .frame { --h: min(58vw, 360px) !important; }
+  .mosaic > :nth-child(n+4) .gallery-cap, .mosaic > :nth-child(2) .gallery-cap { font-size: min(8.4vw, 56px); }
 }
 /* One section per screen: services and gallery are each at least one screen tall under the fixed
    nav (--nav-h is set by JS from the compact nav), so the next section never peeks in; the spare
@@ -1055,6 +1097,9 @@ h1, h2, h3, p { margin: 0; }
   padding: .9em 2.6em;
 }
 @media (min-width: 768px) { .ra-meet__box { padding: 1.2em 2.6em; } }
+/* 768–1119px: the text fills the whole box, so its last lines slid under .ra-meet__apart, which
+   overlaps the box's bottom two grid rows — keep those rows (+ breathing room) clear of text */
+@media (min-width: 768px) and (max-width: 1119px) { .ra-meet__box { padding-bottom: calc(1.2em + 2 * (2.15vw + 11px) + 18px); } }
 .ra-meet__box h3 { font-size: 1em; color: #f7f6ed; margin: 0; }
 .ra-meet__box h3 + h3 { margin-top: calc(1.1em * (1 - .8 / 25)); } /* one blank line between statements */
 /* ink box: centred cream copy */
@@ -1109,6 +1154,11 @@ h1, h2, h3, p { margin: 0; }
   .ra-c__name  { grid-area: 2/12/3/25; }
   .ra-c__quote { grid-area: 3/12/4/23; }
   .ra-c__bio   { grid-area: 4/12/14/23; }
+  /* 768–~840px: the 1rem floor makes the name wrap to two lines and run into the quote
+     in the next grid row — cap it to the column width (no effect from ~900px up) */
+  .ra-a__name .ra-t, .ra-b__name .ra-t, .ra-c__name .ra-t {
+    font-size: min(calc(var(--fit, 1) * min(calc(var(--s) * 1.2vw + 1rem), max(calc(var(--s) * 19.2px + 1rem), calc((var(--s) + 1) * 1rem)))), 2.6vw);
+  }
 }
 .rr-about .ra-h3 { color: #133733; text-align: left; margin: 0; }
 /* no real headshots yet — framed initials stand in for the photo block, same footprint */
@@ -1553,7 +1603,7 @@ a.channel__value:hover { color: var(--gold-light); }
 .contact-info__social {
   margin-top: clamp(30px, 3.6vw, 42px); padding-top: 26px;
   border-top: 1px solid rgba(230,201,138,.18);
-  display: flex; align-items: center; gap: 14px; position: relative; z-index: 1;
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; position: relative; z-index: 1;
 }
 .contact-info__social a {
   font-family: var(--sans); font-size: 12px; letter-spacing: .18em; text-transform: uppercase;

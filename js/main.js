@@ -322,9 +322,20 @@
       nav.setAttribute("data-open", open ? "0" : "1");
       toggle.setAttribute("aria-expanded", open ? "false" : "true");
     });
+    function close() {
+      nav.setAttribute("data-open", "0");
+      toggle.setAttribute("aria-expanded", "false");
+    }
     nav.querySelectorAll(".nav__link, .nav__menu-link").forEach(function (a) {
-      a.addEventListener("click", function () { nav.setAttribute("data-open", "0"); });
+      a.addEventListener("click", close);
     });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
+    // widening the window past the mobile breakpoint must not leave the menu stuck open
+    var mql = window.matchMedia && window.matchMedia("(max-width: 760px)");
+    if (mql) {
+      var onChange = function () { if (!mql.matches) close(); };
+      if (mql.addEventListener) mql.addEventListener("change", onChange); else mql.addListener(onChange);
+    }
   }
 
   /* ---------- Hero slideshow (crossfade) ---------- */
@@ -839,7 +850,10 @@
     function fit(el) {
       var container = el.parentNode;
       container.classList.remove("loaded");
-      var cw = Math.round(container.offsetWidth), tw = Math.round(el.offsetWidth);
+      // always measure from the CSS base size (not the last fitted size) so repeated
+      // resizes land on exactly the same result as a fresh page load
+      el.style.fontSize = "";
+      var cw = container.getBoundingClientRect().width, tw = el.getBoundingClientRect().width;
       if (!cw || !tw) return;
       var f = parseFloat(window.getComputedStyle(el).fontSize);
       el.style.fontSize = Math.max(1, Math.round((cw / tw) * f * 10) / 10) + "px";
@@ -945,8 +959,22 @@
     nav.addEventListener("transitionend", set);
   }
 
+  /* ---------- Resize guard ----------
+     While the window is being dragged, suspend CSS transitions so layout
+     switches at breakpoints (e.g. the nav turning into the slide-in panel)
+     snap into place instead of animating across the screen. */
+  function setupResizeGuard() {
+    var root = document.documentElement, t;
+    window.addEventListener("resize", function () {
+      root.classList.add("is-resizing");
+      clearTimeout(t);
+      t = setTimeout(function () { root.classList.remove("is-resizing"); }, 250);
+    }, { passive: true });
+  }
+
   /* ---------- Init ---------- */
   function init() {
+    setupResizeGuard();
     var nav = buildNav();
     buildFooter();
     setupReveal();
